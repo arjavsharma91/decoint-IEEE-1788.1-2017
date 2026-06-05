@@ -20,12 +20,12 @@ def sub_up(a, b):
     ctx.round = RoundUp
     return a-b
 
-def mult_down(a, b):
+def mul_down(a, b):
   with local_context() as ctx:
     ctx.round = RoundDown
     return a*b
 
-def mult_up(a, b):
+def mul_up(a, b):
   with local_context() as ctx:
     ctx.round = RoundUp
     return a*b
