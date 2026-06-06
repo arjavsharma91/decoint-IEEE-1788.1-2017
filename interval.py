@@ -197,4 +197,26 @@ class Interval:
             return Interval(-self.hi, -self.lo)
         return Interval(0, max(-self.lo, self.hi))
 
+    def __radd__(self, other):
+        from .arithmetic import add
+
+        other = Interval(other, other)
+        return add(other, self)
+
+    def __rsub__(self, other):
+        from .arithmetic import sub
+        other = Interval(other, other)
+        return sub(other, self)
+
+    def __rmul__(self, other):
+        from .arithmetic import mul
+        other = Interval(other, other)
+        return mul(other, self)
+
+    def __rdiv__(self, other):
+        from .arithmetic import div
+        other = Interval(other, other)
+        return div(other, self)
+    
+
     
