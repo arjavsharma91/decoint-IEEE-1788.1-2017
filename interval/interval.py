@@ -243,3 +243,11 @@ class Interval:
     @property
     def contains_zero(self):
         return self.contains(0)
+
+    def bisect(self):
+        if self.is_empty:
+            return (Interval.is_empty(), Interval.is_empty())
+
+        m = self.midpoint
+
+        return (Interval(self.lo, m), Interval(m, self.hi))
