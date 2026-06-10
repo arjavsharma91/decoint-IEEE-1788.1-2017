@@ -251,3 +251,19 @@ class Interval:
         m = self.midpoint
 
         return (Interval(self.lo, m), Interval(m, self.hi))
+
+    @property
+    def sign(self):
+        if interval.is_empty:
+            return Interval.empty()
+        if x.lo > 0:
+            return Interval(Number(1), Number(1))
+        if x.hi < 0:
+            return Interval(Number(-1), Number(-1))
+        if x.lo == 0 and x.hi == 0:
+            return Interval(Number(0), Number(0))
+        if x.lo == 0:
+            return Interval(Number(0), Number(1))
+        if x.hi == 0:
+            return Interval(Number(-1), Number(0))
+        return Interval(Number(-1), Number(1))
