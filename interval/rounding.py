@@ -1,4 +1,4 @@
-from gmpy2 import RoundDown, RoundUp, context, get_context, exp
+from gmpy2 import RoundDown, RoundUp, context, get_context, exp, log
 
 def add_down(a, b):
     a = Number(a)
@@ -79,3 +79,15 @@ def exp_down(a):
     with context(get_context()) as ctx:
         ctx.round = RoundDown
         return exp(a)
+
+def log_down(a):
+    a = Number(a)
+    with context(get_context()) as ctx:
+        ctx.round = RoundDown
+        return log(a)
+
+def log_up(a):
+    a = Number(a)
+    with context(get_context()) as ctx:
+        ctx.round = RoundUp
+        return log(a)
