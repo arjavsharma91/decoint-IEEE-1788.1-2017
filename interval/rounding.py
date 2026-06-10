@@ -1,4 +1,4 @@
-from gmpy2 import RoundDown, RoundUp, context, get_context
+from gmpy2 import RoundDown, RoundUp, context, get_context, exp
 
 def add_down(a, b):
     a = Number(a)
@@ -60,12 +60,22 @@ def sqrt_up(a):
     a = Number(a)
     with context(get_context()) as ctx:
         ctx.round = RoundUp
-    return sqrt(a)
+        return sqrt(a)
 
 def sqrt_down(a):
     a = Number(a)
     with context(get_context()) as ctx:
         ctx.round = RoundDown
-    return sqrt(b)
+        return sqrt(a)
 
-  
+def exp_up(a):
+    a = Number(a)
+    with context(get_context()) as ctx:
+        ctx.round = RoundUp
+        return exp(a)
+
+def exp_down(a):
+    a = Number(a)
+    with context(get_context()) as ctx:
+        ctx.round = RoundDown
+        return exp(a)
