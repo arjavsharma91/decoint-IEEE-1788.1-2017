@@ -1,5 +1,5 @@
 from .interval import Interval
-from .rounding import add_up, add_down, sub_up, sub_down, mul_up, mul_down, div_up, div_down, sqrt_up, sqrt_down, exp_down, exp_up, log_up, log_down, pow_up, pow_down
+from .rounding import add_up, add_down, sub_up, sub_down, mul_up, mul_down, div_up, div_down, sqrt_up, sqrt_down, exp_down, exp_up, log_up, log_down, pow_up, pow_down, root_up, root_down
 from gmpy2 import mpfr
 from .arithmetic import reciprocal
 
@@ -85,5 +85,16 @@ def interval_min(x, y) -> Interval:
     return Interval.empty()
   return Interval(max(x.lo, y.lo), max(x.hi, y.hi))
   
-  
+def nth_root(x, n) -> Interval:
+  x = Interval._coerce(x)
+  if n <= 0:
+    raise ValueError("n must be positive")
+  if x.is_empty:
+    return Interval.empty()
+  if n % 2 == 1:
+    return Interval(root_down(x.lo, n), root_up(x.hi, n))
+  if x.hi < 0:
+    return Interval.empty()
+  lo = max(x.lo, mpfr(0))
+  return Interval(root_down(lo, n), root_up(x.hi, n))
   
