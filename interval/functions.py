@@ -1,7 +1,8 @@
 from .interval import Interval
 from .rounding import add_up, add_down, sub_up, sub_down, mul_up, mul_down, div_up, div_down, sqrt_up, sqrt_down, exp_down, exp_up, log_up, log_down, pow_up, pow_down, root_up, root_down
-from gmpy2 import mpfr
+from gmpy2 import mpfr, floor, ceil
 from .arithmetic import reciprocal
+from .constants import PI, TWO_PI, HALF_PI
 
 def sqrt(x: Interval) -> Interval:
   x = Interval._coerce(x)
@@ -97,4 +98,37 @@ def nth_root(x, n) -> Interval:
     return Interval.empty()
   lo = max(x.lo, mpfr(0))
   return Interval(root_down(lo, n), root_up(x.hi, n))
+
+def contains_periodic_point(x, offset):
+  lower = (x.lo - offset) / TWO_PI
+  higher = (x.hi - offset) / TWO_PI
+  return ceil(lower) <= floor(upper)
+
+
+def sin(x) -> Interval:
+  x = Interval._coerce(x)
+  if x.is_empty:
+    return Interval.empty()
+  if x.width >= TWO_PI:
+    return Interval(mpfr(-1), mpfr(1))
+  s1 = sin_down(x.lo)
+  s2 = sin_down(x.hi)
+  t1 = sin_up(x.lo)
+  t2 = sin_up(x.hi)
+  lo = min(s1, s2)
+  hi = min(t1, t2)
+
+  if contains_periodic_point(x, HALF_PI):
+    hi = mpfr(1)
+  if contains_periodic_point(x, -HALF_PI):
+    lo = mpfr(-1)
+  return Interval(lo, hi)
+
+def cos(x):
+  x = Interval._coerce(x)
+
+  if x.is_empty:
+    return Interval.empty()
+
+  return sin(x + HALF_PI)
   
