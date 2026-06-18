@@ -142,3 +142,15 @@ def sin_up(a):
     with context(get_context()) as ctx:
         ctx.round = RoundUp
         return cos(a)
+
+def tan_up(a):
+    a = Number(a)
+    with context(get_context()) as ctx:
+        ctx.round = RoundUp
+        return tan(a)
+
+def tan_down(a):
+    a = Number(a)
+    with context(get_context()) as ctx:
+        ctx.round = RoundDown
+        return tan(a)
