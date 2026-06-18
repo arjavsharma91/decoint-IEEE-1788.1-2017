@@ -1,4 +1,4 @@
-from gmpy2 import RoundDown, RoundUp, context, get_context, exp, log, mpfr, sin, cos
+from gmpy2 import RoundDown, RoundUp, context, get_context, exp, log, mpfr, sin, cos, asin, atan, acos, tan
 Number = mpfr
 
 def add_down(a, b):
@@ -137,7 +137,7 @@ def cos_down(a):
         ctx.round = RoundDown
         return cos(a)
 
-def sin_up(a):
+def cos_up(a):
     a = Number(a)
     with context(get_context()) as ctx:
         ctx.round = RoundUp
@@ -154,3 +154,39 @@ def tan_down(a):
     with context(get_context()) as ctx:
         ctx.round = RoundDown
         return tan(a)
+
+def asin_up(a):
+    a = Number(a)
+    with context(get_context()) as ctx:
+        ctx.round = RoundUp
+        return asin(a)
+
+def asin_down(a):
+    a = Number(a)
+    with context(get_context()) as ctx:
+        ctx.round = RoundDown
+        return asin(a)
+
+def atan_down(a):
+    a = Number(a)
+    with context(get_context()) as ctx:
+        ctx.round = RoundDown
+        return atan(a)
+
+def atan_up(a):
+    a = Number(a)
+    with context(get_context()) as ctx:
+        ctx.round = RoundUp
+        return atan(a)
+
+def acos_up(a):
+    a = Number(a)
+    with context(get_context()) as ctx:
+        ctx.round = RoundUp
+        return acos(a)
+
+def acos_down(a):
+    a = Number(a)
+    with context(get_context()) as ctx:
+        ctx.round = RoundDown
+        return acos(a)
