@@ -1,11 +1,10 @@
 from .interval import Interval
 from .rounding import add_down, add_up, sub_down, sub_up, div_down, div_up, mul_down, mul_up
 from gmpy2 import mpfr
-# Arithmetic layer rule:
-# never modify Interval class
-# never implement rounding here
-# only combine endpoints using rounding.py
-# always return Interval
+
+# Without interval unions,
+# division by an interval containing zero
+# returns the entire interval.
 
 def add(x, y) -> Interval:
   x = Interval._coerce(x)
@@ -50,7 +49,7 @@ def reciprocal(x) -> Interval:
   x = Interval._coerce(x)
   if x.is_empty:
     return Interval.empty()
-  if x.contains(0):
+  if x.contains_zero:
     return Interval.entire()
   a = div_down(mpfr(1), x.lo)
   b = div_down(mpfr(1), x.hi)
@@ -63,15 +62,13 @@ def reciprocal(x) -> Interval:
 
   return Interval(lo, hi)
 
-# This is primitive form of division right now, will work on edge cases and such when we get into decorations and stuff
-
 def div(x, y) -> Interval:
   x = Interval._coerce(x)
   y = Interval._coerce(y)
   if x.is_empty or y.is_empty:
     return Interval.empty()
 
-  if y.contains(0):
+  if y.contains_zero:
     return Interval.entire()
   
   return mul(x, reciprocal(y))
