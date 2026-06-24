@@ -69,7 +69,10 @@ def div(x, y) -> Interval:
     return Interval.empty()
 
   if y.contains_zero:
-    return Interval.entire()
+    if y.is_point and y.lo == 0:
+      if x.is_point and x.lo == 0:
+        return Interval.empty()
+      return Interval.entire()
   
   return mul(x, reciprocal(y))
   
