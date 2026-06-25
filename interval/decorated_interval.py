@@ -117,6 +117,54 @@ class DecoratedInterval:
       return False
     return self.interval.contains(x)
 
+  def subset(self, other):
+    other = self._coerce(other)
+    if self.is_nai or other.is_nai:
+      return False
+    return self.interval.subset(other.interval)
+
+  def proper_subset(self, other):
+    other = self._coerce(other)
+    if self.is_nai or other.is_nai:
+      return False
+    return self.interval.proper_subset(other.interval)
+
+  def overlaps(self, other):
+    other = self._coerce(other)
+    if self.is_nai or other.is_nai:
+      return False
+    return self.interval.overlaps(other.interval)
+
+  def disjoint(self, other):
+    other = self._coerce(other)
+    if self.is_nai or other.is_nai:
+      return False
+    return self.interval.disjoint(other.interval)
+
+  def precedes(self, other):
+    other = self._coerce(other)
+    if self.is_nai or other.is_nai:
+      return False
+    return self.interval.precedes(other.interval)
+
+  def meets(self, other):
+    other = self._coerce(other)
+    if self.is_nai or other.is_nai:
+      return False
+    return self.interval.meets(other.interval)
+
+  def sup_sub(self, other):
+    other = self._coerce(other)
+    if self.is_nai or other.is_nai:
+      return False
+    return self.interval.sup_sub(other.interval)
+
+  def inf_sub(self, other):
+    other = self._coerce(other)
+    if self.is_nai or other.is_nai:
+      return False
+    return self.interval.inf_sub(other.interval)
+
   def __repr__(self):
     if self.nai:
       return "DecoratedInterval(NaI)"
