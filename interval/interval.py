@@ -322,3 +322,19 @@ class Interval:
 
         m = self.midpoint
         return (Interval(self.lo, m), Interval(m, self.hi))
+
+    def inf_sub(self, other):
+        other = self._coerce(other)
+        if self.is_empty or other.is_empty:
+            return Number('nan')
+        with context(get_context()) as ctx:
+            ctx.round = RoundDown
+            return self.lo - other.lo
+
+    def sup_sub(self, other):
+        other = self._coerce(other)
+        if self.is_empty or other.is_empty:
+            return Number('nan')
+        with context(get_context()) as ctx:
+            ctx.round = RoundUp
+            return self.hi - other.hi
