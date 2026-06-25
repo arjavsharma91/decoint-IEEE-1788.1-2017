@@ -1,7 +1,7 @@
 from enum import IntEnum
 
 class Decoration(IntEnum):
-  ILL = 0
+  NAI = 0
   TRV = 1
   DEF = 2
   DAC = 3
