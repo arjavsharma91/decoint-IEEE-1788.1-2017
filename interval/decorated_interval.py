@@ -93,6 +93,13 @@ class DecoratedInterval:
       f"{self.interval}, "
       f"{str(self.decoration)})")
 
+  def __str__(self):
+    if self.nai:
+      return "[NaI]"
+    int_str = str(self.interval)
+    dec_str = self.decoration.name.lower()
+    return f"{int_str}_{dec_str}"
+
   def __add__(self, other):
     from .decorated_arithmetic import add
     other = self._coerce(other)
