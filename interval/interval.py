@@ -137,7 +137,16 @@ class Interval:
     def __repr__(self):
         if self.is_empty:
             return "Interval.empty()"
+        if self.is_entire:
+            return "Interval.entire()"
         return f"Interval({self.lo}, {self.hi})"
+
+    def __str(self):
+        if self.is_empty:
+            return "[empty]"
+        if self.is_entire:
+            return "[entire]"
+        return f"[{self.lo}, {self.hi}]"
 
     def disjoint(self, other):
         if not isinstance(other, Interval):
