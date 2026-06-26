@@ -11,5 +11,5 @@ dependencies = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["interval*"]
+include = ["decoint*"]
 exclude = ["testing*"]
