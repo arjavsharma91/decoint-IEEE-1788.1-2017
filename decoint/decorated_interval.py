@@ -42,7 +42,9 @@ class DecoratedInterval:
     if isinstance(value, Interval):
       if value.is_empty:
         return cls(value, Decoration.TRV)
-      return cls(value, Decoration.DAC)
+      if not value.is_bounded:
+        return cls(value, Decoration.DAC)
+      return cls(value, Decoration.COM)
 
     try:
       bare_interval = Interval._coerce(value)
