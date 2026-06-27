@@ -368,3 +368,4 @@ def atan2(y, x):
     dec = Decoration.DAC
 
   return DecoratedInterval(interval, dec)
+
