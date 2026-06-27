@@ -138,7 +138,10 @@ def sin(x):
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
-  op_dec = Decoration.COM
+  if not x.interval.is_bounded:
+    op_dec = Decoration.DEF
+  else:
+    op_dec = Decoration.COM
 
   interval = bare_sin(x.interval)
   dec = combine(op_dec, x.decoration)
@@ -153,7 +156,10 @@ def cos(x):
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
-  op_dec = Decoration.COM
+  if not x.interval.is_bounded:
+    op_dec = Decoration.DEF
+  else:
+    op_dec = Decoration.COM
 
   interval = bare_cos(x.interval)
   dec = combine(op_dec, x.decoration)
@@ -170,6 +176,8 @@ def tan(x):
 
   if bare_contains_periodic_point(x.interval, HALF_PI, PI):
     op_dec = Decoration.TRV
+  elif not x.interval.is_bounded:
+    op_dec = Decoration.DEF
   else:
     op_dec = Decoration.COM
 
