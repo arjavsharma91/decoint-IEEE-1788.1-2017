@@ -16,6 +16,4 @@ def combine(*decorations: Decoration) -> Decoration:
     raise ValueError("combine() requires at least one decoration")
 
   return min(decorations)
-
-
   
