@@ -11,7 +11,7 @@ The library implements a strict decoupling between set boundaries and behavioral
 ### 1.1 The Flavor Layer (`Interval`)
 * **Mathematical Set:** Tracks closed connected real intervals $[a, b]$ elements of the set $\mathbb{R} \cup \{-\infty, +\infty\}$ where $a \le b$.
 * **Empty Set Representation:** Supported natively. Any configuration resulting in inverted bounds ($a > b$) dynamically normalizes to a canonical `Interval.empty()` state.
-* **Directed Rounding Control:** Utilizes strict MPFR core engine settings via `gmpy2` context blocks (`RoundUp`, `RoundDown`). All promotions, boundary transformations, and scalar math happen explicitly inside these blocks to prevent precision leaks from native Python floating-point conversions. 53 bit precision is used.
+* **Directed Rounding Control:** Utilizes strict MPFR core engine settings via `gmpy2` context blocks (`RoundUp`, `RoundDown`). All promotions, boundary transformations, and scalar math happen explicitly inside these blocks to prevent precision leaks from native Python floating-point conversions.
 
 ### 1.2 The Metadata Layer (`DecoratedInterval`)
 * **Composition:** Encapsulates a bare `Interval` and a strict mathematical `Decoration` enum tracking function continuity and definition states.
