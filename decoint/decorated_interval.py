@@ -11,11 +11,28 @@ class DecoratedInterval:
   nai: bool = False
     
   def __post_init__(self):
+
+    if isinstance(self.interval, str):
+      try:
+        parsed_decoration = DecoratedInterval.from_string(self.interval)
+        object.__setattr__(self, "interval", parsed_decoration.interval)
+        object.__setattr__(self, "decoration", parsed_decoration.decoration)
+        object.__setattr__(self, "nai", parsed_decoration.nai)
+      except Exception:
+        object.__setattr__(self, "interval", Interval(Number('nan'), Number('nan')))
+        object.__setattr__(self, "decoration", Decoration.ILL)
+        object.__setattr__(self, "nai", True)
+        return
+      
     if not isinstance(self.interval, Interval):
-      raise TypeError("Expected Interval")
+      object.__setattr__(self, "nai", True)
+      object.__setattr__(self, "interval", Interval(Number('nan'), Number('nan')))
+      object.__setattr__(self, "decoration", Decoration.ILL)
 
     if not isinstance(self.decoration, Decoration):
-      raise TypeError("Expected Decoration")
+      object.__setattr__(self, "nai", True)
+      object.__setattr__(self, "interval", Interval(Number('nan'), Number('nan')))
+      object.__setattr__(self, "decoration", Decoration.ILL)
 
     if self.nai:
       if self.decoration != Decoration.ILL:
@@ -62,6 +79,13 @@ class DecoratedInterval:
         return cls(value, Decoration.DAC)
       return cls(value, Decoration.COM)
 
+    if isinstance(value, str):
+      try:
+        x = cls.from_string(value)
+        return(x)
+      except Exception:
+        return cls.new_nai()
+    
     try:
       bare_interval = Interval._coerce(value)
       return cls._coerce(bare_interval)
@@ -288,3 +312,20 @@ class DecoratedInterval:
     if self.interval.is_empty or other.interval.is_empty:
         return False
     return self.interval.lo <= other.interval.hi
+
+  def intersection(self, other):
+    other = self._coerce(other)
+    if self.is_nai or other.is_nai:
+      return DecoratedInterval.new_nai()
+
+    interval = self.interval.intersection(other.interval)
+    dec = combine(self.decoration, other.decoration, Decoration.TRV)
+    return DecoratedInterval(interval, dec)
+
+  def hull(self, other):
+    other = self._coerce(other)
+    if self.is_nai or other.is_nai:
+      return DecoratedInterval.new_nai()
+    interval = self.interval.hull(other.interval)
+    dec = combine(self.decoration, other.decoration, Decoration.TRV)
+    return DecoratedInterval(interval, dec)
