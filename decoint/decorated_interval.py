@@ -2,7 +2,12 @@ from .interval import Interval
 from dataclasses import dataclass
 from .decorations import Decoration, combine
 from gmpy2 import mpfr as Number
-from gmpy2 import is_nan
+from gmpy2 import is_nan, context, get_context
+
+ctx = get_context()
+ctx.precision = 53
+ctx.emin = -1073
+ctx.emax = 1024
 
 @dataclass(frozen=True)
 class DecoratedInterval:
@@ -135,10 +140,22 @@ class DecoratedInterval:
     return self.interval.is_entire
 
   @property
+  def is_common(self):
+    if self.is_nai:
+      return False
+    return self.interval.is_common
+
+  @property
   def width(self):
     if self.is_nai:
       return Number('nan')
     return self.interval.width
+
+  @property
+  def is_singleton(self):
+    if self.is_nai:
+      return False
+    return self.interval.lo == self.interval.hi
 
   @property
   def radius(self):
@@ -210,6 +227,12 @@ class DecoratedInterval:
     if self.is_nai or other.is_nai:
       return False
     return self.interval.sup_sub(other.interval)
+
+  def interior(self, other):
+    other = self._coerce(other)
+    if self.is_nai or other.is_nai:
+      return False
+    return self.interval.interior(other.interval)
 
   def inf_sub(self, other):
     other = self._coerce(other)
@@ -293,25 +316,19 @@ class DecoratedInterval:
     other = self._coerce(other)
     if self.is_nai or other.is_nai:
       return False
-    if self.interval.is_empty or other.interval.is_empty:
-      return False
-    return self.interval.hi < other.interval.lo
+    return self.interval < other.interval
 
   def __gt__(self, other):
     other = self._coerce(other)
     if self.is_nai or other.is_nai:
       return False
-    if self.interval.is_empty or other.interval.is_empty:
-      return False
-    return self.interval.lo > other.interval.hi
+    return self.interval > other.interval
 
-  def possibly_less_than(self, other):
+  def strictly_less_than(self, other):
     other = self._coerce(other)
     if self.is_nai or other.is_nai:
       return False
-    if self.interval.is_empty or other.interval.is_empty:
-        return False
-    return self.interval.lo <= other.interval.hi
+    return self.interval.strictly_less_than(other.interval)
 
   def intersection(self, other):
     other = self._coerce(other)
@@ -329,3 +346,32 @@ class DecoratedInterval:
     interval = self.interval.hull(other.interval)
     dec = combine(self.decoration, other.decoration, Decoration.TRV)
     return DecoratedInterval(interval, dec)
+
+  def __eq__(self, other):
+    other = self._coerce(other)
+    if self.is_nai or other.is_nai:
+      return False
+    if (self.interval.lo == other.interval.lo) and (self.interval.hi == other.interval.hi):
+      return True
+    return False
+
+  def strictly_precedes(self, other):
+    other = self._coerce(other)
+    if self.is_nai or other.is_nai:
+      return False
+    return self.interval.strictly_precedes(other.interval)
+
+  def __neg__(self):
+    if self.is_nai:
+      return DecoratedInterval.new_nai()
+    return DecoratedInterval(-self.interval, self.decoration)
+
+  def inf(self):
+    if self.is_nai:
+      return Number('nan')
+    return self.interval.lo
+
+  def sup(self):
+    if self.is_nai:
+      return Number('nan')
+    return self.interval.hi
