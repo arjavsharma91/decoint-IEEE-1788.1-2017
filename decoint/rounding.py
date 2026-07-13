@@ -1,5 +1,9 @@
 from gmpy2 import RoundDown, RoundUp, context, get_context, exp, log, mpfr, sin, cos, asin, atan, acos, tan, sqrt, sinh, tanh, cosh, asinh, acosh, atanh, atan2, root, square, fma, exp2, exp10, log2, log10
 Number = mpfr
+ctx = get_context()
+ctx.precision = 53
+ctx.emin = -1073
+ctx.emax = 1024
 
 def add_down(a, b):
     with context(get_context(), round = RoundDown):
