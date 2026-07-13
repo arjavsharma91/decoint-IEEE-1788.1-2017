@@ -1,11 +1,30 @@
 from .interval import Interval
-from .rounding import add_up, add_down, sub_up, sub_down, mul_up, mul_down, div_up, div_down, sqrt_up, sqrt_down, exp_down, exp_up, log_up, log_down, pow_up, pow_down, root_up, root_down, sin_up, sin_down, tan_up, tan_down, asin_up, asin_down, acos_up, acos_down, atan_up, atan_down, sinh_up, sinh_down, cosh_up, cosh_down, tanh_up, tanh_down, atanh_up, atanh_down, asinh_up, asinh_down, acosh_up, acosh_down, cos_up, cos_down, sqr_up, sqr_down, pow_down_interval, pow_up_interval, exp2_up, exp2_down, log2_up, log2_down, exp10_up, exp10_down, log10_up, log10_down
-from gmpy2 import mpfr, floor, ceil
+from .rounding import add_up, add_down, sub_up, sub_down, mul_up, mul_down, div_up, div_down, sqrt_up, sqrt_down, exp_down, exp_up, log_up, log_down, pow_up, pow_down, root_up, root_down, sin_up, sin_down, tan_up, tan_down, asin_up, asin_down, acos_up, acos_down, atan_up, atan_down, sinh_up, sinh_down, cosh_up, cosh_down, tanh_up, tanh_down, atanh_up, atanh_down, asinh_up, asinh_down, acosh_up, acosh_down, cos_up, cos_down, sqr_up, sqr_down, pow_down_interval, pow_up_interval, exp2_up, exp2_down, log2_up, log2_down, exp10_up, exp10_down, log10_up, log10_down, atan2_down, atan2_up
+from gmpy2 import mpfr, floor, ceil, context, get_context, is_zero, RoundDown, RoundUp, trunc
 from .arithmetic import reciprocal
 from .constants import PI, TWO_PI, HALF_PI
 import builtins
 
 Number = mpfr
+ctx = get_context()
+ctx.precision = 53
+ctx.emin = -1073
+ctx.emax = 1024
+
+ZERO = mpfr(0)
+with context(get_context(), round = RoundDown):
+  PI_DN = Number(PI)
+  HALF_PI_DN = Number(HALF_PI)
+  TWO_PI_DN = Number(TWO_PI)
+with context(get_context(), round = RoundUp):
+  PI_UP = Number(PI)
+  HALF_PI_UP = Number(HALF_PI)
+  TWO_PI_UP = Number(TWO_PI)
+
+MPI_DN = -PI_UP
+MPI_UP = -PI_DN
+MHALF_PI_DN = -HALF_PI_UP
+MHALF_PI_UP = -HALF_PI_DN
 
 def sqrt(x: Interval) -> Interval:
   x = Interval._coerce(x)
@@ -122,12 +141,23 @@ def nth_root(x, n) -> Interval:
   lo = max(x.lo, mpfr(0))
   return Interval(root_down(lo, n_int), root_up(x.hi, n_int))
 
-def contains_periodic_point(x, offset, period):
-  lower = div_down(sub_down(x.lo, offset), period)
-  higher = div_up(sub_up(x.hi, offset), period)
-  return ceil(lower) <= floor(higher)
+def contains_periodic_point(x, offset, period, prec = 128):
+  with context(get_context(), precision = prec):
+    off_val = offset() if callable(offset) else offset
+    per_val = period() if callable(offset) else period
 
+    lo_mpfr = mpfr(str(x.lo))
+    hi_mpfr = mpfr(str(x.hi))
+    off_mpfr = mpfr(str(off_val))
+    per_mpfr = mpfr(str(per_val))
 
+    if hi_mpfr - lo_mpfr >= per_mpfr:
+      return True
+
+    k_lo = (lo_mpfr - off_mpfr) / per_mpfr
+    k_hi = (hi_mpfr - off_mpfr) / per_mpfr
+
+    return ceil(k_lo) <= floor(k_hi)
 def sin(x) -> Interval:
   x = Interval._coerce(x)
   if x.is_empty:
@@ -276,25 +306,110 @@ def abs(x):
   hi = max(-x.lo, x.hi)
   return Interval(Number(0), hi)
 
-def atan2(x, y):
+def safe_atan2_dn(y, x):
+  y_val = ZERO if is_zero(y) else y
+  x_val = ZERO if is_zero(x) else x
+  return atan2_down(y_val, x_val)
+
+def safe_atan2_up(y, x):
+  y_val = ZERO if is_zero(y) else y
+  x_val = ZERO if is_zero(x) else x
+  return atan2_up(y_val, x_val)
+
+def atan2(y, x):
   y = Interval._coerce(y)
   x = Interval._coerce(x)
 
+  # 1. Empty set handling
   if y.is_empty or x.is_empty:
     return Interval.empty()
 
-  if y.lo == 0 and y.hi == 0 and x.lo == 0 and x.hi == 0:
-        return Interval.empty()
+  # 2. Undefined origin point (0, 0) handling
+  if y.lo == ZERO and y.hi == ZERO and x.lo == ZERO and x.hi == ZERO:
+    return Interval.empty()
 
-  if x.hi < 0 and y.lo < 0 and y.hi > 0:
-    return Interval(-PI, PI)
+  y1, y2 = y.lo, y.hi
+  x1, x2 = x.lo, x.hi
 
-  c1_lo, c1_hi = atan2_down(y.lo, x.lo), atan2_up(y.lo, x.lo)
-  c2_lo, c2_hi = atan2_down(y.lo, x.hi), atan2_up(y.lo, x.hi)
-  c3_lo, c3_hi = atan2_down(y.hi, x.lo), atan2_up(y.hi, x.lo)
-  c4_lo, c4_hi = atan2_down(y.hi, x.hi), atan2_up(y.hi, x.hi)
+  # Case 1: X is strictly positive (x1 > 0)
+  if x1 > ZERO:
+    if y1 >= ZERO:
+      lo = safe_atan2_dn(y1, x2)
+      hi = safe_atan2_up(y2, x1)
+    elif y2 <= ZERO:
+      lo = safe_atan2_dn(y1, x1)
+      hi = safe_atan2_up(y2, x2)
+    else:
+      lo = safe_atan2_dn(y1, x1)
+      hi = safe_atan2_up(y2, x1)
 
-  return Interval(min(c1_lo, c2_lo, c3_lo, c4_lo), max(c1_hi, c2_hi, c3_hi, c4_hi))
+  # Case 2: X is strictly negative (x2 < 0)
+  elif x2 < ZERO:
+    if y1 > ZERO:
+      lo = safe_atan2_dn(y2, x2)
+      hi = safe_atan2_up(y1, x1)
+    elif y2 < ZERO:
+      lo = safe_atan2_dn(y2, x1)
+      hi = safe_atan2_up(y1, x2)
+    elif y1 == ZERO and y2 == ZERO:
+      lo, hi = PI_DN, PI_UP
+    elif y1 == ZERO and y2 > ZERO:
+      lo = safe_atan2_dn(y2, x2)
+      hi = PI_UP
+    else:  # y1 < ZERO and y2 >= ZERO
+      lo, hi = MPI_DN, PI_UP
+
+  # Case 3: X contains zero (x1 <= 0 <= x2)
+  else:
+    # Subcase 3.0: X is degenerate [0, 0]
+    if x1 == ZERO and x2 == ZERO:
+      if y1 >= ZERO:
+        lo, hi = HALF_PI_DN, HALF_PI_UP
+      elif y2 <= ZERO:
+        lo, hi = MHALF_PI_DN, MHALF_PI_UP
+      else:  # y1 < ZERO and y2 > ZERO
+        lo, hi = MHALF_PI_DN, HALF_PI_UP
+
+    # Subcase 3.1: Y is strictly positive
+    elif y1 > ZERO:
+      lo = safe_atan2_dn(y1, x2)
+      hi = safe_atan2_up(y1, x1)
+
+    # Subcase 3.2: Y is strictly negative
+    elif y2 < ZERO:
+      lo = safe_atan2_dn(y2, x1)
+      hi = safe_atan2_up(y2, x2)
+
+    # Subcase 3.3: Y contains zero (y1 <= 0 <= y2) and X is non-degenerate
+    else:
+      if x1 < ZERO:
+        if y1 < ZERO and y2 > ZERO:
+          lo, hi = MPI_DN, PI_UP
+        elif y1 == ZERO and y2 == ZERO:
+          if x2 > ZERO:
+            lo, hi = ZERO, PI_UP
+          else:  # x2 == ZERO
+            lo, hi = PI_DN, PI_UP
+        elif y1 == ZERO and y2 > ZERO:
+          if x2 > ZERO:
+            lo, hi = ZERO, PI_UP
+          else:  # x2 == ZERO
+            lo, hi = HALF_PI_DN, PI_UP
+        else:  # y1 < ZERO and y2 == ZERO
+          lo, hi = MPI_DN, PI_UP
+      else:  # x1 == ZERO and x2 > ZERO
+        if y1 < ZERO and y2 > ZERO:
+          lo, hi = MHALF_PI_DN, HALF_PI_UP
+        elif y1 == ZERO and y2 == ZERO:
+          lo, hi = ZERO, ZERO
+        elif y1 == ZERO and y2 > ZERO:
+          lo, hi = ZERO, HALF_PI_UP
+        else:  # y1 < ZERO and y2 == ZERO
+          lo, hi = MHALF_PI_DN, ZERO
+
+  return Interval(lo, hi)
+            
+
 
 def sqr(x):
   x = Interval._coerce(x)
@@ -318,11 +433,52 @@ def pow_interval(x, y):
   if x.is_empty or y.is_empty:
     return Interval.empty()
 
-  if x.lo < 0:
-    return Interval(mpfr('nan'), mpfr('nan'))
-  
-  v_down = [pow_down_interval(x.lo, y.lo), pow_down_interval(x.lo, y.hi), pow_down_interval(x.hi, y.lo), pow_down_interval(x.hi, y.hi)]
-  v_up = [pow_up_interval(x.lo, y.lo), pow_up_interval(x.lo, y.hi), pow_up_interval(x.hi, y.lo), pow_up_interval(x.hi, y.hi)]
+  x_lo = max(0, x.lo)
+  x_hi = x.hi
+
+  if x_lo > x_hi:
+    return Interval.empty()
+    
+  if x_hi == 0:
+    if y.hi <= 0:
+      return Interval.empty()
+    return Interval(mpfr(0), mpfr(0))
+
+  if x_lo == 0:
+    v_down = [
+      pow_down_interval(x_hi, y.lo),
+      pow_down_interval(x_hi, y.hi)
+    ]
+    v_up = [
+      pow_up_interval(x_hi, y.lo),
+      pow_up_interval(x_hi, y.hi)
+    ]
+
+    if y.lo > 0 or y.hi > 0:
+      v_down.append(mpfr(0))
+      v_up.append(mpfr(0))
+
+    if y.lo < 0 or y.hi < 0:
+      v_down.append(mpfr('inf'))
+      v_up.append(mpfr('inf'))
+
+    if y.lo <= 0 <= y.hi:
+      v_down.append(mpfr(1))
+      v_up.append(mpfr(1))
+
+  else:
+    v_down = [
+      pow_down_interval(x_lo, y.lo),
+      pow_down_interval(x_lo, y.hi),
+      pow_down_interval(x_hi, y.lo),
+      pow_down_interval(x_hi, y.hi)
+    ]
+    v_up = [
+      pow_up_interval(x_lo, y.lo),
+      pow_up_interval(x_lo, y.hi),
+      pow_up_interval(x_hi, y.lo),
+      pow_up_interval(x_hi, y.hi)
+    ]
 
   return Interval(min(v_down), max(v_up))
 
@@ -366,4 +522,43 @@ def log10(x):
   else:
     lo = log10_down(x.lo)
   hi = log10_up(x.hi)
+  return Interval(lo, hi)
+
+def interval_ceil(x):
+  if x.is_empty:
+    return Interval.empty()
+  if x.lo == mpfr('-inf'):
+    lo = mpfr('-inf')
+  else:
+    lo = ceil(x.lo)
+  if x.hi == mpfr('inf'):
+    hi = mpfr('inf')
+  else:
+    hi = ceil(x.hi)
+  return Interval(lo, hi)
+
+def interval_floor(x):
+  if x.is_empty:
+    return Interval.empty()
+  if x.lo == mpfr('-inf'):
+    lo = mpfr('-inf')
+  else:
+    lo = floor(x.lo)
+  if x.hi == mpfr('inf'):
+    hi = mpfr('inf')
+  else:
+    hi = floor(x.hi)
+  return Interval(lo, hi)
+
+def interval_trunc(x):
+  if x.is_empty:
+    return Interval.empty()
+  if x.lo == mpfr('-inf'):
+    lo = mpfr('-inf')
+  else:
+    lo = trunc(x.lo)
+  if x.hi == mpfr('inf'):
+    hi = mpfr('inf')
+  else:
+    hi = trunc(x.hi)
   return Interval(lo, hi)
