@@ -5,10 +5,18 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "decoint"
 version = "0.1.0"
+readme = "README.md"
+requires-python = ">=3.8"
 description = "An IEEE 1788-2015 compliant interval arithmetic library"
+license = {text = "MIT"}
+authors = [
+    {name = "Arjav Sharma", email = "arjav.sharma.91@gmail.com"
 dependencies = [
-    "gmpy2",
+    "gmpy2>=2.1.0"
 ]
+
+[project.urls]
+Homepage = 
 
 [tool.setuptools.packages.find]
 include = ["decoint*"]
