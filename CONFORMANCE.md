@@ -25,6 +25,7 @@ The following table itemizes the operations and elementary functions implemented
 | **Trigonometric** | `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `atan2` | Fully Compliant |
 | **Hyperbolic** | `sinh`, `cosh`, `tanh`, `asinh`, `acosh`, `atanh` | Fully Compliant |
 | **Special Primitive** | `abs`, `sign`, `interval_trunc`, `interval_floor`, `interval_ceil` | Fully Compliant |
+| **Set Operations** | `hull`, `intersection` | Fully Compliant |
 
 ---
 
