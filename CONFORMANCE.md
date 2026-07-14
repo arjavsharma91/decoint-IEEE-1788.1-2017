@@ -1,5 +1,5 @@
 # IEEE 1788.1-2017 Conformance Statement
-**Library:** Decoint   
+**Library:** decoint   
 **Version:** 1.0.0  
 **Author:** Arjav Sharma   
 **Date:** July 5, 2026  
@@ -8,7 +8,7 @@
 
 ## 1. Underlying Numeric Type
 
-This library achieves strict IEEE 1788.1-2017 compliance by anchoring all endpoint calculations to arbitrary-precision floating-point numbers via the `gmpy2` library, which wraps the GNU MPFR C engine. Instead of relying on native Python `float` types (which map to hardware-dependent IEEE 754 binary64 and risk implicit precision leaks), all numeric constants, strings, and inputs are explicitly promoted to MPFR instances using a centralized factory layer (`Number`). This configuration ensures that every upper and lower bound modification is strictly bound to the active MPFR hardware context flags. Directed rounding modes (`RoundUp` and `RoundDown`) are dynamically set within localized atomic execution blocks (`with context(...)`). This approach eliminates double-rounding issues during complex transcendental operations and guarantees a watertight containment enclosure.
+This library achieves strict IEEE 1788.1-2017 compliance by anchoring all endpoint calculations to arbitrary-precision floating-point numbers via the `gmpy2` library, which wraps the GNU MPFR C engine. Instead of relying on native Python `float` types (which map to hardware-dependent IEEE 754 binary64 and risk implicit precision leaks), all numeric constants, strings, and inputs are explicitly promoted to MPFR instances using a centralized factory layer (`Number`). This configuration ensures that every upper and lower bound modification is strictly bound to the active MPFR hardware context flags. Directed rounding modes (`RoundUp` and `RoundDown`) are dynamically set within localized atomic execution blocks (`with context(...)`). This approach eliminates double-rounding issues during complex transcendental operations and guarantees a watertight containment enclosure. Exponent minimums and maximums are manually set to ensure compliance with IEEE 754 Floating Point Numbers.
 
 ---
 
@@ -31,5 +31,5 @@ The following table itemizes the operations and elementary functions implemented
 ## 3. Exception Handling & Interval Decorations
 
 * **Exception-Free Execution:** In compliance with the standard, out-of-domain calculations avoid standard runtime panics or hard crashes. Operations that are completely out-of-domain (e.g., `log` of a strictly negative range) return a valid empty set interval, while structural execution failures or uninitialized data safely propagate as a NaI state.
-* **Lattice Decoration Tracking:** The library tracks continuous metadata updates across the standard's ordinal decoration hierarchy (`COM` $\succ$ `DAC` $\succ$ `DEF` $\succ$ `TRV`). Incoming decorations are systematically merged using a `combine()` function that extracts the weakest common state.
+* **Lattice Decoration Tracking:** The library tracks continuous metadata updates across the standard's ordinal decoration hierarchy (`COM` $\succ$ `DAC` $\succ$ `DEF` $\succ$ `TRV` $\succ$ `ILL`). Incoming decorations are systematically merged using a `combine()` function that extracts the weakest common state.
 * **Automatic Decoration Demotion:** Operations that cross unbounded asymptotes or hit infinities automatically downgrade from `COM` to `DAC` if the underlying bare interval becomes unbounded.
