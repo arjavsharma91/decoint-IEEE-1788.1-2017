@@ -160,3 +160,49 @@ decorated_add = di1 + di2
 ```
 
 ---
+
+## 6. Algebraic and Power Operations
+
+`decoint` provides specialized functions for executing algebraic powers, squares, and roots rigorously. These functions ensure that the interval bounds are mapped correctly according to properties like function parity and monotonicity.
+
+Depending on the operation, the syntax accepts a single interval, an interval paired with an integer, or two separate intervals.
+
+### Unary Operators
+These functions take a single `Interval` or `DecoratedInterval` as their sole argument.
+
+```python
+from decoint import Interval, sqr, sqrt
+
+# Square an interval
+# Evaluates to [1, 4]
+res_sqr = sqr(Interval(1, 2))
+
+# Square root of an interval
+# Evaluates to [2, 3]
+res_sqrt = sqrt(Interval(4, 9))
+```
+
+### Interval and Integer Operators
+These functions require an `Interval` or `DecoratedInterval` for the base/radicand, and an integer for the exponent or root degree.
+
+```python
+from decoint import Interval, pow_int, nth_root
+
+# Raise an interval to an integer power
+# Evaluates to [8, 27]
+res_pow_int = pow_int(Interval(2, 3), 3)
+
+# Take the nth root of an interval using an integer degree
+# Evaluates to [2, 3]
+res_nth_root = nth_root(Interval(4, 9), 2)
+```
+
+### Interval and Interval Power Operators
+For operations where both the base and the exponent are uncertain, use interval-to-interval power functions.
+
+```python
+from decoint import Interval, pow_interval
+
+# Raise an interval base to an interval exponent
+res_pow_intv = pow_interval(Interval(1, 2), Interval(3, 4))
+```
