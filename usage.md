@@ -266,3 +266,32 @@ atan_res = atan(Interval(-1, 1))
 # Accepts two intervals representing the y and x coordinates respectively
 atan2_res = atan2(Interval(1, 2), Interval(3, 4))
 ```
+
+---
+
+## 9. Hyperbolic Operations
+
+`decoint` natively tracks hyperbolic functions and their inverses. While functions like `sinh`, `tanh`, `asinh`, `acosh`, and `atanh` are strictly monotonic over their domains, the `cosh` function includes a global minimum at $x = 0$. The engine safely registers this critical inflection point to produce rigorous outer boundaries.
+
+All listed functions are **unary operators** and take an `Interval` or `DecoratedInterval` instance as their lone argument.
+
+### Supported Hyperbolic Functions
+* **Standard Hyperbolics:** `sinh`, `cosh`, `tanh`
+* **Inverse Hyperbolics:** `asinh`, `acosh`, `atanh`
+
+```python
+from decoint import Interval, sinh, cosh, tanh, asinh, acosh, atanh
+
+# Standard Hyperbolic Functions
+# cosh evaluates across 0 tracking the lower bound boundary correctly at 1.0
+sinh_res = sinh(Interval(-1, 1))
+cosh_res = cosh(Interval(-1, 1))  
+tanh_res = tanh(Interval(-2, 2))
+
+# Inverse Hyperbolic Functions
+asinh_res = asinh(Interval(-5, 5))
+acosh_res = acosh(Interval(1, 5))    # Domain restricted to [1, inf)
+atanh_res = atanh(Interval("-0.5", "0.5")) # Domain restricted to (-1, 1)
+```
+
+---
