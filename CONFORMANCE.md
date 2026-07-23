@@ -28,7 +28,7 @@ The following table itemizes the operations and elementary functions implemented
 | **Set Operations** | `hull`, `intersection` | Fully Compliant |
 | **Unary Boolean Properties** | `is_empty`, `is_common`, `is_entire`, `is_bounded`, `is_singleton` | Fully Compliant |
 | **Unary Properties** | `width`, `radius`, `midpoint`, `magnitude`, `mignitude`, `inf`, `sup` | Fully Compliant |
-| **Set Relations** | `subset`, `contains`, `proper_subset`, `overlaps`, `disjoint`, `interior`, `precedes`, `meets`, `less_than`, `greater_than`, `strictly_less_than`, `strictly_greater_than` | Fully Compliant |
+| **Set Relations** | `subset`, `contains`, `proper_subset`, `disjoint`, `interior`, `precedes`, `meets`, `less_than`, `greater_than`, `strictly_less_than`, `strictly_greater_than` | Fully Compliant |
 
 ---
 
