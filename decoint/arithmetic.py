@@ -1,7 +1,7 @@
 from .interval import Interval
 from .rounding import add_down, add_up, sub_down, sub_up, div_down, div_up, mul_down, mul_up, fma_up, fma_down
 from gmpy2 import mpfr, is_infinite, is_signed, sign, context, get_context
-#Circular Dependency if not careful
+
 
 ctx = get_context()
 ctx.precision = 53
