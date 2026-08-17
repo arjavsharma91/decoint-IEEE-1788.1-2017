@@ -1,5 +1,5 @@
 from decoint import Interval, DecoratedInterval, recip, fma
-from test_cases.test_arithmetic import add_test
+from test_cases.test_arithmetic import add_test, add_dec_test, sub_test, sub_dec_test, mul_test, mul_dec_test, div_test, div_dec_test, neg_test, neg_dec_test, recip_test, recip_dec_test, fma_test
 import pytest
 
 @pytest.mark.parametrize("operand1, operand2, answer", add_test)
