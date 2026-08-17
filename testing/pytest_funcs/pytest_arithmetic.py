@@ -1,4 +1,4 @@
-import decoint
+from decoint import Interval, DecoratedInterval, recip, fma
 from test_cases.test_arithmetic import add_test
 import pytest
 
@@ -93,3 +93,71 @@ def division_dec_testing(operand1, operand2, answer):
     assert actual.interval.hi >= ans.interval.hi
     assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
     assert actual.decoration == ans.decoration
+
+@pytest.mark.parametrize("operand1, answer", recip_dec_test)
+def division_dec_testing(operand1, answer):
+    op1 = DecoratedInterval(operand1)
+    ans = DecoratedInterval(ans)
+    actual = recip(op1)
+    assert actual.interval.lo <= ans.interval.lo
+    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+    assert actual.interval.hi >= ans.interval.hi
+    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+    assert actual.decoration == ans.decoration
+
+@pytest.mark.parametrize("operand1, answer", recip_dec_test)
+def recip_dec_testing(operand1, answer):
+    op1 = DecoratedInterval(operand1)
+    ans = DecoratedInterval(ans)
+    actual = reciprocal(op1)
+    assert actual.interval.lo <= ans.interval.lo
+    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+    assert actual.interval.hi >= ans.interval.hi
+    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+    assert actual.decoration == ans.decoration
+
+@pytest.mark.parametrize("operand1, answer", recip_test)
+def recip_dec_testing(operand1, answer):
+    op1 = DecoratedInterval(operand1)
+    ans = DecoratedInterval(ans)
+    actual = reciprocal(op1)
+    assert actual.interval.lo <= ans.interval.lo
+    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+    assert actual.interval.hi >= ans.interval.hi
+    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+
+@pytest.mark.parametrize("operand1, answer", neg_dec_test)
+def neg_dec_testing(operand1, answer):
+    op1 = DecoratedInterval(operand1)
+    ans = DecoratedInterval(ans)
+    actual = -op1
+    assert actual.interval.lo <= ans.interval.lo
+    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+    assert actual.interval.hi >= ans.interval.hi
+    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+    assert actual.decoration == ans.decoration
+    
+@pytest.mark.parametrize("operand1, answer", neg_test)
+def neg_testing(operand1, answer):
+    op1 = Interval(operand1)
+    ans = Interval(ans)
+    actual = -op1
+    assert actual.lo <= ans.lo
+    assert actual.lo >= pytest.approx(ans.lo - 0.1)
+    assert actual.hi >= ans.hi
+    assert actual.hi <= pytest.approx(ans.hi + 0.1)
+
+@pytest.mark.parametrize("operand1, operand2, operand3, answer", fma_test)
+def fma_testing(operand1, operand2, operand3, answer):
+    op1 = DecoratedInterval(operand1)
+    op2 = DecoratedInterval(operand2)
+    op3 = DecoratedInterval(operand3)
+    ans = DecoratedInterval(ans)
+    actual = fma(op1, op2, op3)
+    assert actual.interval.lo <= ans.interval.lo
+    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+    assert actual.interval.hi >= ans.interval.hi
+    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+
+
+
