@@ -1,6 +1,6 @@
 from decoint import DecoratedInterval, Interval
 import pytest
-from test_cases.test_set_ops import test_equal, test_equal_dec, test_subset, test_subset_dec, test_less, test_less_dec, test_precedes, test_precedes_dec, test_interior, test_interior_dec, test_strictly_less_than, test_strictly_less_than_dec, test_strictly_precedes, test_strictly_precedes_dec, test_disjoint, test_disjoint_dec
+from test_cases.test_set_relations import test_equal, test_equal_dec, test_subset, test_subset_dec, test_less, test_less_dec, test_precedes, test_precedes_dec, test_interior, test_interior_dec, test_strictly_less_than, test_strictly_less_than_dec, test_strictly_precedes, test_strictly_precedes_dec, test_disjoint, test_disjoint_dec
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_equal)
 def equal_testing(operand1, operand2, answer):
