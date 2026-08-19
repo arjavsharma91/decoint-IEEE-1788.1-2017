@@ -44,8 +44,8 @@ def sqrt_dec_testing(operand1, answer):
     assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
     assert actual.decoration == ans.decoration
 
-@pytest.mark.parametrize("operand1, answer", test_pow_int)
-def pow_int_testing(operand1, answer):
+@pytest.mark.parametrize("operand1, operand2, answer", test_pow_int)
+def pow_int_testing(operand1, operand2, answer):
     op1 = DecoratedInterval(operand1)
     op2 = int(operand2)
     ans = DecoratedInterval(ans)
@@ -55,8 +55,8 @@ def pow_int_testing(operand1, answer):
     assert actual.interval.hi >= ans.interval.hi
     assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
 
-@pytest.mark.parametrize("operand1, answer", test_pow_interval)
-def pow_interval_testing(operand1, answer):
+@pytest.mark.parametrize("operand1, operand2, answer", test_pow_interval)
+def pow_interval_testing(operand1, operand2, answer):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(ans)
@@ -66,8 +66,8 @@ def pow_interval_testing(operand1, answer):
     assert actual.interval.hi >= ans.interval.hi
     assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
 
-@pytest.mark.parametrize("operand1, answer", test_pow_interval_dec)
-def pow_interval_dec_testing(operand1, answer):
+@pytest.mark.parametrize("operand1, operand2, answer", test_pow_interval_dec)
+def pow_interval_dec_testing(operand1, operand2, answer):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(ans)
@@ -78,8 +78,8 @@ def pow_interval_dec_testing(operand1, answer):
     assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
     assert actual.decoration == ans.decoration
 
-@pytest.mark.parametrize("operand1, answer", test_pow_int_dec)
-def pow_int_dec_testing(operand1, answer):
+@pytest.mark.parametrize("operand1, operand2, answer", test_pow_int_dec)
+def pow_int_dec_testing(operand1, operand2, answer):
     op1 = DecoratedInterval(operand1)
     op2 = Int(operand2)
     ans = DecoratedInterval(ans)
