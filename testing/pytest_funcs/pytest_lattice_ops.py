@@ -19,11 +19,14 @@ def interval_max_dec_testing(operand1, operand2, answer):
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(ans)
     actual = interval_max(op1, op2)
-    assert actual.interval.lo <= ans.interval.lo
-    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
-    assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
-    assert actual.decoration == ans.decoration
+    if ans.is_nai and actual.is_nai:
+        assert 1 == 1
+    else:
+        assert actual.interval.lo <= ans.interval.lo
+        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.hi >= ans.interval.hi
+        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.decoration == ans.decoration
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_interval_min)
 def interval_min_testing(operand1, operand2, answer):
@@ -42,8 +45,11 @@ def interval_min_dec_testing(operand1, operand2, answer):
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(ans)
     actual = interval_min(op1, op2)
-    assert actual.interval.lo <= ans.interval.lo
-    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
-    assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
-    assert actual.decoration == ans.decoration
+    if ans.is_nai and actual.is_nai:
+        assert 1 == 1
+    else:
+        assert actual.interval.lo <= ans.interval.lo
+        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.hi >= ans.interval.hi
+        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.decoration == ans.decoration
