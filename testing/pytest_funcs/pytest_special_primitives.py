@@ -17,11 +17,14 @@ def sign_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(ans)
     actual = sign(op1)
-    assert actual.interval.lo <= ans.interval.lo
-    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
-    assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
-    assert actual.decoration == ans.decoration
+    if ans.is_nai and actual.is_nai:
+        assert 1 == 1
+    else:
+        assert actual.interval.lo <= ans.interval.lo
+        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.hi >= ans.interval.hi
+        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.decoration == ans.decoration
 
 @pytest.mark.parametrize("operand1, answer", test_ceil)
 def ceil_testing(operand1, answer):
@@ -38,11 +41,14 @@ def ceil_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(ans)
     actual = ceil(op1)
-    assert actual.interval.lo <= ans.interval.lo
-    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
-    assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
-    assert actual.decoration == ans.decoration
+    if ans.is_nai and actual.is_nai:
+        assert 1 == 1
+    else:
+        assert actual.interval.lo <= ans.interval.lo
+        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.hi >= ans.interval.hi
+        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.decoration == ans.decoration
 
 @pytest.mark.parametrize("operand1, answer", test_floor)
 def floor_testing(operand1, answer):
@@ -59,11 +65,14 @@ def floor_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(ans)
     actual = floor(op1)
-    assert actual.interval.lo <= ans.interval.lo
-    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
-    assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
-    assert actual.decoration == ans.decoration
+    if ans.is_nai and actual.is_nai:
+        assert 1 == 1
+    else:
+        assert actual.interval.lo <= ans.interval.lo
+        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.hi >= ans.interval.hi
+        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.decoration == ans.decoration
 
 @pytest.mark.parametrize("operand1, answer", test_trunc)
 def trunc_testing(operand1, answer):
@@ -80,11 +89,14 @@ def trunc_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(ans)
     actual = trunc(op1)
-    assert actual.interval.lo <= ans.interval.lo
-    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
-    assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
-    assert actual.decoration == ans.decoration
+    if ans.is_nai and actual.is_nai:
+        assert 1 == 1
+    else:
+        assert actual.interval.lo <= ans.interval.lo
+        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.hi >= ans.interval.hi
+        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.decoration == ans.decoration
 
 @pytest.mark.parametrize("operand1, answer", test_abs)
 def abs_testing(operand1, answer):
@@ -101,8 +113,11 @@ def abs_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(ans)
     actual = abs(op1)
-    assert actual.interval.lo <= ans.interval.lo
-    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
-    assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
-    assert actual.decoration == ans.decoration
+    if ans.is_nai and actual.is_nai:
+        assert 1 == 1
+    else:
+        assert actual.interval.lo <= ans.interval.lo
+        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.hi >= ans.interval.hi
+        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.decoration == ans.decoration
