@@ -71,9 +71,8 @@ def addition_dec_testing(operand1, operand2, answer):
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
     actual = op1 + op2
-    if ans.is_nai and actual.is_nai:
-        assert 1 == 1
-    else:
+    assert actual.is_nai == ans.is_nai
+    if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
         assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
@@ -87,9 +86,8 @@ def division_dec_testing(operand1, operand2, answer):
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
     actual = op1 / op2
-    if ans.is_nai and actual.is_nai:
-        assert 1 == 1
-    else:
+    assert actual.is_nai == ans.is_nai
+    if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
         assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
@@ -103,9 +101,8 @@ def subtraction_dec_testing(operand1, operand2, answer):
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
     actual = op1 - op2
-    if ans.is_nai and actual.is_nai:
-        assert 1 == 1
-    else:
+    assert actual.is_nai == ans.is_nai
+    if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
         assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
@@ -119,9 +116,8 @@ def multiplication_dec_testing(operand1, operand2, answer):
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
     actual = op1 * op2
-    if ans.is_nai and actual.is_nai:
-        assert 1 == 1
-    else:
+    assert actual.is_nai == ans.is_nai
+    if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
         assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
@@ -134,9 +130,8 @@ def recip_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = recip(op1)
-    if ans.is_nai and actual.is_nai:
-        assert 1 == 1
-    else:
+    assert actual.is_nai == ans.is_nai
+    if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
         assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
@@ -160,9 +155,8 @@ def neg_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = -op1
-    if ans.is_nai and actual.is_nai:
-        assert 1 == 1
-    else:
+    assert actual.is_nai == ans.is_nai
+    if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
         assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
@@ -192,5 +186,4 @@ def fma_testing(operand1, operand2, operand3, answer):
     assert actual.lo >= pytest.approx(ans.lo - 0.1)
     assert actual.hi >= ans.hi
     assert actual.hi <= pytest.approx(ans.hi + 0.1)
-
 
