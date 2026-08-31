@@ -1,6 +1,6 @@
 import pytest
 from decoint import DecoratedInterval, interval_max, interval_min
-from test_cases.test_exp_log_funcs import (
+from testing.test_cases.test_exp_log_funcs import (
     test_interval_max,
     test_interval_max_dec,
     test_interval_min,
