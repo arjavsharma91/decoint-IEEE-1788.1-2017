@@ -1,6 +1,6 @@
 import pytest
 from decoint import DecoratedInterval, Interval
-from test_cases.test_set_relations import (
+from testing.test_cases.test_set_relations import (
     test_disjoint,
     test_disjoint_dec,
     test_equal,
