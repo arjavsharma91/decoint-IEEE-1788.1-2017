@@ -1,5 +1,5 @@
 import pytest
-from decoint import DecoratedInterval, abs, ceil, floor, sign, trunc
+from decoint import DecoratedInterval, abs, interval_ceil, interval_floor, sign, interval_trunc
 from test_cases.test_set_ops import (
     test_abs,
     test_abs_dec,
@@ -43,7 +43,7 @@ def sign_dec_testing(operand1, answer):
 def ceil_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
-    actual = ceil(op1)
+    actual = interval_ceil(op1)
     assert actual.interval.lo <= ans.interval.lo
     assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
     assert actual.interval.hi >= ans.interval.hi
@@ -54,7 +54,7 @@ def ceil_testing(operand1, answer):
 def ceil_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
-    actual = ceil(op1)
+    actual = interval_ceil(op1)
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
@@ -68,7 +68,7 @@ def ceil_dec_testing(operand1, answer):
 def floor_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
-    actual = floor(op1)
+    actual = interval_floor(op1)
     assert actual.interval.lo <= ans.interval.lo
     assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
     assert actual.interval.hi >= ans.interval.hi
@@ -79,7 +79,7 @@ def floor_testing(operand1, answer):
 def floor_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
-    actual = floor(op1)
+    actual = interval_floor(op1)
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
@@ -93,7 +93,7 @@ def floor_dec_testing(operand1, answer):
 def trunc_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
-    actual = trunc(op1)
+    actual = interval_trunc(op1)
     assert actual.interval.lo <= ans.interval.lo
     assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
     assert actual.interval.hi >= ans.interval.hi
@@ -104,7 +104,7 @@ def trunc_testing(operand1, answer):
 def trunc_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
-    actual = trunc(op1)
+    actual = interval_trunc(op1)
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
