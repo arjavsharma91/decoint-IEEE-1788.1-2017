@@ -1,6 +1,6 @@
 import pytest
 from decoint import DecoratedInterval, abs, interval_ceil, interval_floor, sign, interval_trunc
-from test_cases.test_set_ops import (
+from testing.test_cases.test_set_ops import (
     test_abs,
     test_abs_dec,
     test_ceil,
