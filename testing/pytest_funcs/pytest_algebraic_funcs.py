@@ -1,6 +1,6 @@
 import pytest
 from decoint import DecoratedInterval, Interval, pow_int, pow_interval, sqr, sqrt
-from test_cases.test_algebraic_funcs import (
+from testing.test_cases.test_algebraic_funcs import (
     test_pow_int,
     test_pow_int_dec,
     test_pow_interval,
