@@ -1,6 +1,6 @@
 import pytest
 from decoint import DecoratedInterval, acosh, asinh, atanh, cosh, sinh, tanh
-from test_cases.test_hyperbolic_funcs import (
+from testing.test_cases.test_hyperbolic_funcs import (
     test_acosh,
     test_acosh_dec,
     test_asinh,
