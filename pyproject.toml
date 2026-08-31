@@ -22,3 +22,20 @@ Homepage = "https://github.com/arjavsharma91/IEEE-1788.1-2017-Interval-Arithmeti
 [tool.setuptools.packages.find]
 include = ["decoint*"]
 exclude = ["testing*"]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "testing/pytest_funcs"
+]
+
+python_files = [
+    "pytest_*.py"
+]
+
+python_functions = [
+    "*_testing"
+]
+
+pythonpath = [
+    "."
+]
