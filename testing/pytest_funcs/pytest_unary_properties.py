@@ -1,7 +1,7 @@
 import pytest
 from decoint import DecoratedInterval
 from gmpy2 import mpfr
-from test_cases.test_unary_properties import (
+from testing.test_cases.test_unary_properties import (
     test_inf,
     test_inf_dec,
     test_magnitude,
