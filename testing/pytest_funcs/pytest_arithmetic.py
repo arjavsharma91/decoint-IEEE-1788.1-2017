@@ -1,5 +1,5 @@
 import pytest
-from decoint import DecoratedInterval, Interval, fma, recip
+from decoint import DecoratedInterval, Interval, fma, reciprocal
 from test_cases.test_arithmetic import (
     add_dec_test,
     add_test,
@@ -129,7 +129,7 @@ def multiplication_dec_testing(operand1, operand2, answer):
 def recip_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
-    actual = recip(op1)
+    actual = reciprocal(op1)
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
@@ -143,7 +143,7 @@ def recip_dec_testing(operand1, answer):
 def recip_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
-    actual = recip(op1)
+    actual = reciprocal(op1)
     assert actual.interval.lo <= ans.interval.lo
     assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
     assert actual.interval.hi >= ans.interval.hi
