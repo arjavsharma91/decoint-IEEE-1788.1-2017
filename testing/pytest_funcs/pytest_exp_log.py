@@ -1,6 +1,6 @@
 import pytest
 from decoint import DecoratedInterval, exp, exp2, exp10, log, log2, log10
-from test_cases.test_exp_log_funcs import (
+from testing.test_cases.test_exp_log_funcs import (
     test_exp,
     test_exp_dec,
     test_exp2,
