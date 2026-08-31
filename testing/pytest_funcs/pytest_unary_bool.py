@@ -1,6 +1,6 @@
 import pytest
 from decoint import DecoratedInterval, Interval
-from test_cases.test_unary_bool import (
+from testing.test_cases.test_unary_bool import (
     test_is_common,
     test_is_common_dec,
     test_is_empty,
