@@ -1,6 +1,6 @@
 import pytest
 from decoint import DecoratedInterval, Interval
-from test_cases.test_set_ops import (
+from testing.test_cases.test_set_ops import (
     test_hull,
     test_hull_dec,
     test_intersection,
