@@ -1,6 +1,6 @@
 import pytest
 from decoint import DecoratedInterval, Interval, fma, reciprocal
-from test_cases.test_arithmetic import (
+from testing.test_cases.test_arithmetic import (
     add_dec_test,
     add_test,
     div_dec_test,
