@@ -1,6 +1,6 @@
 import pytest
 from decoint import DecoratedInterval, acos, asin, atan, atan2, cos, sin, tan
-from testing.test_cases.test_exp_log_funcs import (
+from testing.test_cases.test_trig_funcs import (
     test_acos,
     test_acos_dec,
     test_asin,
