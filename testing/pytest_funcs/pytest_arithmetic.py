@@ -24,9 +24,9 @@ def addition_testing(operand1, operand2, answer):
     ans = Interval(answer)
     actual = op1 + op2
     assert actual.lo <= ans.lo
-    assert actual.lo >= pytest.approx(ans.lo - 0.1)
+    assert actual.lo >= (ans.lo - 0.1)
     assert actual.hi >= ans.hi
-    assert actual.hi <= pytest.approx(ans.hi + 0.1)
+    assert actual.hi <= (ans.hi + 0.1)
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", sub_test)
@@ -36,9 +36,9 @@ def subtraction_testing(operand1, operand2, answer):
     ans = Interval(answer)
     actual = op1 - op2
     assert actual.lo <= ans.lo
-    assert actual.lo >= pytest.approx(ans.lo - 0.1)
+    assert actual.lo >= (ans.lo - 0.1)
     assert actual.hi >= ans.hi
-    assert actual.hi <= pytest.approx(ans.hi + 0.1)
+    assert actual.hi <= (ans.hi + 0.1)
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", mul_test)
@@ -48,9 +48,9 @@ def multiplication_testing(operand1, operand2, answer):
     ans = Interval(answer)
     actual = op1 * op2
     assert actual.lo <= ans.lo
-    assert actual.lo >= pytest.approx(ans.lo - 0.1)
+    assert actual.lo >= (ans.lo - 0.1)
     assert actual.hi >= ans.hi
-    assert actual.hi <= pytest.approx(ans.hi + 0.1)
+    assert actual.hi <= (ans.hi + 0.1)
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", div_test)
@@ -60,9 +60,9 @@ def division_testing(operand1, operand2, answer):
     ans = Interval(answer)
     actual = op1 / op2
     assert actual.lo <= ans.lo
-    assert actual.lo >= pytest.approx(ans.lo - 0.1)
+    assert actual.lo >= (ans.lo - 0.1)
     assert actual.hi >= ans.hi
-    assert actual.hi <= pytest.approx(ans.hi + 0.1)
+    assert actual.hi <= (ans.hi + 0.1)
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", add_dec_test)
@@ -74,9 +74,9 @@ def addition_dec_testing(operand1, operand2, answer):
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.lo >= (ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.interval.hi <= (ans.interval.hi + 0.1)
         assert actual.decoration == ans.decoration
 
 
@@ -89,9 +89,9 @@ def division_dec_testing(operand1, operand2, answer):
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.lo >= (ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.interval.hi <= (ans.interval.hi + 0.1)
         assert actual.decoration == ans.decoration
 
 
@@ -104,9 +104,9 @@ def subtraction_dec_testing(operand1, operand2, answer):
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.lo >= (ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.interval.hi <= (ans.interval.hi + 0.1)
         assert actual.decoration == ans.decoration
 
 
@@ -119,9 +119,9 @@ def multiplication_dec_testing(operand1, operand2, answer):
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.lo >= (ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.interval.hi <= (ans.interval.hi + 0.1)
         assert actual.decoration == ans.decoration
 
 
@@ -133,9 +133,9 @@ def recip_dec_testing(operand1, answer):
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.lo >= (ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.interval.hi <= (ans.interval.hi + 0.1)
         assert actual.decoration == ans.decoration
 
 
@@ -145,9 +145,9 @@ def recip_testing(operand1, answer):
     ans = DecoratedInterval(answer)
     actual = reciprocal(op1)
     assert actual.interval.lo <= ans.interval.lo
-    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+    assert actual.interval.lo >= (ans.interval.lo - 0.1)
     assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+    assert actual.interval.hi <= (ans.interval.hi + 0.1)
 
 
 @pytest.mark.parametrize("operand1, answer", neg_dec_test)
@@ -158,9 +158,9 @@ def neg_dec_testing(operand1, answer):
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.lo >= (ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.interval.hi <= (ans.interval.hi + 0.1)
         assert actual.decoration == ans.decoration
 
 
@@ -170,9 +170,9 @@ def neg_testing(operand1, answer):
     ans = Interval(answer)
     actual = -op1
     assert actual.lo <= ans.lo
-    assert actual.lo >= pytest.approx(ans.lo - 0.1)
+    assert actual.lo >= (ans.lo - 0.1)
     assert actual.hi >= ans.hi
-    assert actual.hi <= pytest.approx(ans.hi + 0.1)
+    assert actual.hi <= (ans.hi + 0.1)
 
 
 @pytest.mark.parametrize("operand1, operand2, operand3, answer", fma_test)
@@ -183,7 +183,7 @@ def fma_testing(operand1, operand2, operand3, answer):
     ans = Interval(answer)
     actual = fma(op1, op2, op3)
     assert actual.lo <= ans.lo
-    assert actual.lo >= pytest.approx(ans.lo - 0.1)
+    assert actual.lo >= (ans.lo - 0.1)
     assert actual.hi >= ans.hi
-    assert actual.hi <= pytest.approx(ans.hi + 0.1)
+    assert actual.hi <= (ans.hi + 0.1)
 
