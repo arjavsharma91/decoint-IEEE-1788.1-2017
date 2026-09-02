@@ -365,12 +365,14 @@ class DecoratedInterval:
     if self.is_nai:
       return DecoratedInterval.new_nai()
     return DecoratedInterval(-self.interval, self.decoration)
-
+  
+  @property
   def inf(self):
     if self.is_nai:
       return Number('nan')
     return self.interval.lo
 
+  @property
   def sup(self):
     if self.is_nai:
       return Number('nan')
