@@ -22,9 +22,9 @@ def sinh_testing(operand1, answer):
     ans = DecoratedInterval(answer)
     actual = sinh(op1)
     assert actual.interval.lo <= ans.interval.lo
-    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+    assert actual.interval.lo >= (ans.interval.lo - 0.1)
     assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+    assert actual.interval.hi <= (ans.interval.hi + 0.1)
 
 
 @pytest.mark.parametrize("operand1, answer", test_cosh)
@@ -33,9 +33,9 @@ def cosh_testing(operand1, answer):
     ans = DecoratedInterval(answer)
     actual = cosh(op1)
     assert actual.interval.lo <= ans.interval.lo
-    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+    assert actual.interval.lo >= (ans.interval.lo - 0.1)
     assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+    assert actual.interval.hi <= (ans.interval.hi + 0.1)
 
 
 @pytest.mark.parametrize("operand1, answer", test_tanh)
@@ -44,9 +44,9 @@ def tanh_testing(operand1, answer):
     ans = DecoratedInterval(answer)
     actual = tanh(op1)
     assert actual.interval.lo <= ans.interval.lo
-    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+    assert actual.interval.lo >= (ans.interval.lo - 0.1)
     assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+    assert actual.interval.hi <= (ans.interval.hi + 0.1)
 
 
 @pytest.mark.parametrize("operand1, answer", test_sinh_dec)
@@ -57,9 +57,9 @@ def sinh_dec_testing(operand1, answer):
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.lo >= (ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.interval.hi <= (ans.interval.hi + 0.1)
         assert actual.decoration == ans.decoration
 
 
@@ -71,9 +71,9 @@ def cosh_dec_testing(operand1, answer):
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.lo >= (ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.interval.hi <= (ans.interval.hi + 0.1)
         assert actual.decoration == ans.decoration
 
 
@@ -85,9 +85,9 @@ def tanh_dec_testing(operand1, answer):
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.lo >= (ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.interval.hi <= (ans.interval.hi + 0.1)
         assert actual.decoration == ans.decoration
 
 
@@ -97,9 +97,9 @@ def asinh_testing(operand1, answer):
     ans = DecoratedInterval(answer)
     actual = asinh(op1)
     assert actual.interval.lo <= ans.interval.lo
-    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+    assert actual.interval.lo >= (ans.interval.lo - 0.1)
     assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+    assert actual.interval.hi <= (ans.interval.hi + 0.1)
 
 
 @pytest.mark.parametrize("operand1, answer", test_acosh)
@@ -108,9 +108,9 @@ def acosh_testing(operand1, answer):
     ans = DecoratedInterval(answer)
     actual = acosh(op1)
     assert actual.interval.lo <= ans.interval.lo
-    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+    assert actual.interval.lo >= (ans.interval.lo - 0.1)
     assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+    assert actual.interval.hi <= (ans.interval.hi + 0.1)
 
 
 @pytest.mark.parametrize("operand1, answer", test_atanh)
@@ -119,9 +119,9 @@ def atanh_testing(operand1, answer):
     ans = DecoratedInterval(answer)
     actual = atanh(op1)
     assert actual.interval.lo <= ans.interval.lo
-    assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+    assert actual.interval.lo >= (ans.interval.lo - 0.1)
     assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+    assert actual.interval.hi <= (ans.interval.hi + 0.1)
 
 
 @pytest.mark.parametrize("operand1, answer", test_asinh_dec)
@@ -132,9 +132,9 @@ def asinh_dec_testing(operand1, answer):
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.lo >= (ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.interval.hi <= (ans.interval.hi + 0.1)
         assert actual.decoration == ans.decoration
 
 
@@ -146,9 +146,9 @@ def acosh_dec_testing(operand1, answer):
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.lo >= (ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.interval.hi <= (ans.interval.hi + 0.1)
         assert actual.decoration == ans.decoration
 
 
@@ -160,7 +160,7 @@ def atanh_dec_testing(operand1, answer):
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.lo >= (ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.interval.hi <= (ans.interval.hi + 0.1)
         assert actual.decoration == ans.decoration
