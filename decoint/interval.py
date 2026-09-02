@@ -538,9 +538,11 @@ class Interval:
         if self.is_entire:
             return self
         return Interval(-self.hi, -self.lo)
-
+    
+    @property
     def inf(self):
         return self.lo
-
+    
+    @property
     def sup(self):
         return self.hi
