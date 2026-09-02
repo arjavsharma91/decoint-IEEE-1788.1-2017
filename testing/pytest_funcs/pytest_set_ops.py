@@ -15,9 +15,9 @@ def intersection_testing(operand1, operand2, answer):
     ans = Interval(answer)
     actual = op1.intersection(op2)
     assert actual.lo <= ans.lo
-    assert actual.lo >= pytest.approx(ans.lo - 0.1)
+    assert actual.lo >= (ans.lo - 0.1)
     assert actual.hi >= ans.hi
-    assert actual.hi <= pytest.approx(ans.hi + 0.1)
+    assert actual.hi <= (ans.hi + 0.1)
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_hull)
@@ -27,9 +27,9 @@ def hull_testing(operand1, operand2, answer):
     ans = Interval(answer)
     actual = op1.hull(op2)
     assert actual.lo <= ans.lo
-    assert actual.lo >= pytest.approx(ans.lo - 0.1)
+    assert actual.lo >= (ans.lo - 0.1)
     assert actual.hi >= ans.hi
-    assert actual.hi <= pytest.approx(ans.hi + 0.1)
+    assert actual.hi <= (ans.hi + 0.1)
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_hull_dec)
@@ -41,9 +41,9 @@ def hull_dec_testing(operand1, operand2, answer):
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.lo >= (ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.interval.hi <= (ans.interval.hi + 0.1)
         assert actual.decoration == ans.decoration
 
 
@@ -56,7 +56,7 @@ def intersection_dec_testing(operand1, operand2, answer):
     assert actual.is_nai == ans.is_nai
     if not ans.is_nai:
         assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= pytest.approx(ans.interval.lo - 0.1)
+        assert actual.interval.lo >= (ans.interval.lo - 0.1)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= pytest.approx(ans.interval.hi + 0.1)
+        assert actual.interval.hi <= (ans.interval.hi + 0.1)
         assert actual.decoration == ans.decoration
