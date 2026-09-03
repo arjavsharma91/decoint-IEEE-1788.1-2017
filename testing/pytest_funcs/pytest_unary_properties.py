@@ -30,7 +30,8 @@ def inf_testing(operand1, answer):
         assert 1 == 0
     elif actual.is_nan():
         assert 1 == 0
-    assert actual == ans
+    else:
+        assert actual == ans
 
 
 @pytest.mark.parametrize("operand1, answer", test_inf_dec)
@@ -45,7 +46,8 @@ def inf_dec_testing(operand1, answer):
         assert 1 == 0
     elif actual.is_nan():
         assert 1 == 0
-    assert actual == ans
+    else:
+        assert actual == ans
 
 
 @pytest.mark.parametrize("operand1, answer", test_sup)
@@ -60,7 +62,8 @@ def sup_testing(operand1, answer):
         assert 1 == 0
     elif actual.is_nan():
         assert 1 == 0
-    assert actual == ans
+    else:
+        assert actual == ans
 
 @pytest.mark.parametrize("operand1, answer", test_sup_dec)
 def sup_dec_testing(operand1, answer):
@@ -74,7 +77,8 @@ def sup_dec_testing(operand1, answer):
         assert 1 == 0
     elif actual.is_nan():
         assert 1 == 0
-    assert actual == ans
+    else:
+        assert actual == ans
 
 
 @pytest.mark.parametrize("operand1, answer", test_midpoint)
@@ -89,7 +93,8 @@ def midpoint_testing(operand1, answer):
         assert 1 == 0
     elif actual.is_nan():
         assert 1 == 0
-    assert actual == ans
+    else:
+        assert actual == ans
 
 
 @pytest.mark.parametrize("operand1, answer", test_midpoint_dec)
@@ -104,7 +109,8 @@ def midpoint_dec_testing(operand1, answer):
         assert 1 == 0
     elif actual.is_nan():
         assert 1 == 0
-    assert actual == ans
+    else:
+        assert actual == ans
 
 
 @pytest.mark.parametrize("operand1, answer", test_radius)
@@ -119,7 +125,8 @@ def radius_testing(operand1, answer):
         assert 1 == 0
     elif actual.is_nan():
         assert 1 == 0
-    assert actual == ans
+    else:
+        assert actual == ans
 
 
 @pytest.mark.parametrize("operand1, answer", test_radius_dec)
@@ -134,7 +141,8 @@ def radius_dec_testing(operand1, answer):
         assert 1 == 0
     elif actual.is_nan():
         assert 1 == 0
-    assert actual == ans
+    else:
+        assert actual == ans
 
 
 @pytest.mark.parametrize("operand1, answer", test_width)
@@ -149,7 +157,8 @@ def width_testing(operand1, answer):
         assert 1 == 0
     elif actual.is_nan():
         assert 1 == 0
-    assert actual == ans
+    else:
+        assert actual == ans
 
 
 @pytest.mark.parametrize("operand1, answer", test_width_dec)
@@ -164,7 +173,8 @@ def width_dec_testing(operand1, answer):
         assert 1 == 0
     elif actual.is_nan():
         assert 1 == 0
-    assert actual == ans
+    else:
+        assert actual == ans
 
 
 @pytest.mark.parametrize("operand1, answer", test_magnitude)
@@ -179,7 +189,8 @@ def magnitude_testing(operand1, answer):
         assert 1 == 0
     elif actual.is_nan():
         assert 1 == 0
-    assert actual == ans
+    else:
+        assert actual == ans
 
 
 @pytest.mark.parametrize("operand1, answer", test_magnitude_dec)
@@ -194,7 +205,8 @@ def magnitude_dec_testing(operand1, answer):
         assert 1 == 0
     elif actual.is_nan():
         assert 1 == 0
-    assert actual == ans
+    else:
+        assert actual == ans
 
 
 @pytest.mark.parametrize("operand1, answer", test_mignitude)
@@ -209,7 +221,8 @@ def mignitude_testing(operand1, answer):
         assert 1 == 0
     elif actual.is_nan():
         assert 1 == 0
-    assert actual == ans
+    else:
+        assert actual == ans
 
 
 @pytest.mark.parametrize("operand1, answer", test_mignitude_dec)
@@ -224,4 +237,5 @@ def mignitude_dec_testing(operand1, answer):
         assert 1 == 0
     elif actual.is_nan():
         assert 1 == 0
-    assert actual == ans
+    else:
+        assert actual == ans
