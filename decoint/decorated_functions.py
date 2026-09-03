@@ -77,7 +77,7 @@ def sign(x):
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
-  if x.interval.contains(0) and not x.interval.is_point:
+  if x.interval.contains(0) and not x.interval.is_singleton:
     op_dec = Decoration.DEF
   else:
     op_dec = Decoration.COM
