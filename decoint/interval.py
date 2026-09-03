@@ -280,7 +280,10 @@ class Interval:
             return -Number("0x1.fffffffffffffpe+1023")
         if is_infinite(hi):
             return Number("0x1.fffffffffffffpe+1023")
-        return (lo / 2) + (hi / 2)
+        if (lo < 0 and hi > 0) or (lo > 0 and hi < 0):
+            return (lo + hi) / 2
+        else:
+            return lo + (hi - lo) / 2
 
     @property
     def magnitude(self):
