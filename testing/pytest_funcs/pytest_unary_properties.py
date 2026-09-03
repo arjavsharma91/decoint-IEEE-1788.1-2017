@@ -1,6 +1,6 @@
 import pytest
 from decoint import DecoratedInterval
-from gmpy2 import mpfr
+from gmpy2 import mpfr, is_nan
 from testing.test_cases.test_unary_properties import (
     test_inf,
     test_inf_dec,
@@ -24,6 +24,12 @@ def inf_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.inf
+    if ans.is_nan and actual.is_nan:
+        assert 1 == 1
+    elif ans.is_nan:
+        assert 1 == 0
+    elif actual.is_nan:
+        assert 1 == 0
     assert actual == ans
 
 
@@ -32,6 +38,12 @@ def inf_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.inf
+    if ans.is_nan and actual.is_nan:
+        assert 1 == 1
+    elif ans.is_nan:
+        assert 1 == 0
+    elif actual.is_nan:
+        assert 1 == 0
     assert actual == ans
 
 
@@ -40,14 +52,25 @@ def sup_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.sup
+    if ans.is_nan and actual.is_nan:
+        assert 1 == 1
+    elif ans.is_nan:
+        assert 1 == 0
+    elif actual.is_nan:
+        assert 1 == 0
     assert actual == ans
-
 
 @pytest.mark.parametrize("operand1, answer", test_sup_dec)
 def sup_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.sup
+    if ans.is_nan and actual.is_nan:
+        assert 1 == 1
+    elif ans.is_nan:
+        assert 1 == 0
+    elif actual.is_nan:
+        assert 1 == 0
     assert actual == ans
 
 
@@ -56,6 +79,12 @@ def midpoint_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.midpoint
+    if ans.is_nan and actual.is_nan:
+        assert 1 == 1
+    elif ans.is_nan:
+        assert 1 == 0
+    elif actual.is_nan:
+        assert 1 == 0
     assert actual == ans
 
 
@@ -64,6 +93,12 @@ def midpoint_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.midpoint
+    if ans.is_nan and actual.is_nan:
+        assert 1 == 1
+    elif ans.is_nan:
+        assert 1 == 0
+    elif actual.is_nan:
+        assert 1 == 0
     assert actual == ans
 
 
@@ -72,6 +107,12 @@ def radius_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.radius
+    if ans.is_nan and actual.is_nan:
+        assert 1 == 1
+    elif ans.is_nan:
+        assert 1 == 0
+    elif actual.is_nan:
+        assert 1 == 0
     assert actual == ans
 
 
@@ -80,6 +121,12 @@ def radius_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.radius
+    if ans.is_nan and actual.is_nan:
+        assert 1 == 1
+    elif ans.is_nan:
+        assert 1 == 0
+    elif actual.is_nan:
+        assert 1 == 0
     assert actual == ans
 
 
@@ -88,6 +135,12 @@ def width_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.width
+    if ans.is_nan and actual.is_nan:
+        assert 1 == 1
+    elif ans.is_nan:
+        assert 1 == 0
+    elif actual.is_nan:
+        assert 1 == 0
     assert actual == ans
 
 
@@ -96,6 +149,12 @@ def width_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.width
+    if ans.is_nan and actual.is_nan:
+        assert 1 == 1
+    elif ans.is_nan:
+        assert 1 == 0
+    elif actual.is_nan:
+        assert 1 == 0
     assert actual == ans
 
 
@@ -104,6 +163,12 @@ def magnitude_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.magnitude
+    if ans.is_nan and actual.is_nan:
+        assert 1 == 1
+    elif ans.is_nan:
+        assert 1 == 0
+    elif actual.is_nan:
+        assert 1 == 0
     assert actual == ans
 
 
@@ -112,6 +177,12 @@ def magnitude_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.magnitude
+    if ans.is_nan and actual.is_nan:
+        assert 1 == 1
+    elif ans.is_nan:
+        assert 1 == 0
+    elif actual.is_nan:
+        assert 1 == 0
     assert actual == ans
 
 
@@ -120,6 +191,12 @@ def mignitude_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.mignitude
+    if ans.is_nan and actual.is_nan:
+        assert 1 == 1
+    elif ans.is_nan:
+        assert 1 == 0
+    elif actual.is_nan:
+        assert 1 == 0
     assert actual == ans
 
 
@@ -128,4 +205,10 @@ def mignitude_dec_testing(operand1, answer):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.mignitude
+    if ans.is_nan and actual.is_nan:
+        assert 1 == 1
+    elif ans.is_nan:
+        assert 1 == 0
+    elif actual.is_nan:
+        assert 1 == 0
     assert actual == ans
