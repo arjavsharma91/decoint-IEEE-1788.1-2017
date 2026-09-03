@@ -177,13 +177,13 @@ def neg_testing(operand1, answer):
 
 @pytest.mark.parametrize("operand1, operand2, operand3, answer", fma_test)
 def fma_testing(operand1, operand2, operand3, answer):
-    op1 = Interval(operand1)
-    op2 = Interval(operand2)
-    op3 = Interval(operand3)
-    ans = Interval(answer)
+    op1 = DecoratedInterval(operand1)
+    op2 = DecoratedInterval(operand2)
+    op3 = DecoratedInterval(operand3)
+    ans = DecoratedInterval(answer)
     actual = fma(op1, op2, op3)
-    assert actual.lo <= ans.lo
-    assert actual.lo >= (ans.lo - 0.1)
-    assert actual.hi >= ans.hi
-    assert actual.hi <= (ans.hi + 0.1)
+    assert actual.interval.lo <= ans.interval.lo
+    assert actual.interval.lo >= (ans.interval.lo - 0.1)
+    assert actual.interval.hi >= ans.interval.hi
+    assert actual.interval.hi <= (ans.interval.hi + 0.1)
 
