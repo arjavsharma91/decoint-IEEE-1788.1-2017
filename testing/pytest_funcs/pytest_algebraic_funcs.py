@@ -76,7 +76,7 @@ def pow_int_testing(operand1, operand2, answer):
     assert actual.interval.lo <= ans.interval.lo
     assert actual.interval.lo >= (ans.interval.lo - tol_lo)
     assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= (ans.interval.hi - tol_hi)
+    assert actual.interval.hi <= (ans.interval.hi + tol_hi)
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_pow_interval)
@@ -91,7 +91,7 @@ def pow_interval_testing(operand1, operand2, answer):
     assert actual.interval.lo <= ans.interval.lo
     assert actual.interval.lo >= (ans.interval.lo - tol_lo)
     assert actual.interval.hi >= ans.interval.hi
-    assert actual.interval.hi <= (ans.interval.hi - tol_hi)
+    assert actual.interval.hi <= (ans.interval.hi + tol_hi)
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_pow_interval_dec)
@@ -108,7 +108,7 @@ def pow_interval_dec_testing(operand1, operand2, answer):
         assert actual.interval.lo <= ans.interval.lo
         assert actual.interval.lo >= (ans.interval.lo - tol_lo)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= (ans.interval.hi - tol_hi)
+        assert actual.interval.hi <= (ans.interval.hi + tol_hi)
 
 
 
@@ -126,5 +126,5 @@ def pow_int_dec_testing(operand1, operand2, answer):
         assert actual.interval.lo <= ans.interval.lo
         assert actual.interval.lo >= (ans.interval.lo - tol_lo)
         assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= (ans.interval.hi - tol_hi)
+        assert actual.interval.hi <= (ans.interval.hi + tol_hi)
 
