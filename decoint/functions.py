@@ -69,8 +69,8 @@ def pow_int(x, n):
   if n_int < 0:
     return reciprocal(pow_int(x, -n_int))
   if n_int % 2 == 1:
-    lo = pow_down(x.lo, n_int)
-    hi = pow_up(x.hi, n_int)
+    lo = pow_down(x.lo, n_int) if x.lo >= 0 else -pow_up(builtins.abs(x.lo), n_int)
+    hi = pow_up(x.hi, n_int) if x.hi >= 0 else -pow_down(builtins.abs(x.hi), n_int)
     return Interval(lo, hi)
   if n_int % 2 == 0:
     if x.lo >= 0:
