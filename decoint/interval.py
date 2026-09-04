@@ -277,9 +277,9 @@ class Interval:
         if self.is_entire or (is_infinite(lo) and is_infinite(hi)):
             return Number(0)
         if is_infinite(lo):
-            return -Number("0x1.fffffffffffffpe+1023")
+            return -Number("0x1.FFFFFFFFFFFFFp1023")
         if is_infinite(hi):
-            return Number("0x1.fffffffffffffpe+1023")
+            return Number("0x1.FFFFFFFFFFFFFp1023")
         if (lo < 0 and hi > 0) or (lo > 0 and hi < 0):
             return (lo + hi) / 2
         else:
