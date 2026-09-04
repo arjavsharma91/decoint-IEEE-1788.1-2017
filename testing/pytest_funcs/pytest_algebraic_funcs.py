@@ -1,4 +1,5 @@
 import pytest
+import builtins
 from decoint import DecoratedInterval, Interval, pow_int, pow_interval, sqr, sqrt
 from gmpy2 import mpfr
 from testing.test_cases.test_algebraic_funcs import (
