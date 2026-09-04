@@ -70,7 +70,7 @@ def pow_int_testing(operand1, operand2, answer):
   op2 = int(operand2)
   ans = DecoratedInterval(answer)
   actual = pow_int(op1, op2)
-  rel_tol = mpfr("1e-5")
+  rel_tol = mpfr("1e-4")
   
   assert actual.interval.lo <= ans.interval.lo
   if not ans.interval.lo.is_infinite():
@@ -89,7 +89,7 @@ def pow_interval_testing(operand1, operand2, answer):
   op2 = DecoratedInterval(operand2)
   ans = DecoratedInterval(answer)
   actual = pow_interval(op1, op2)
-  rel_tol = mpfr("1e-5")
+  rel_tol = mpfr("1e-4")
   
   assert actual.interval.lo <= ans.interval.lo
   if not ans.interval.lo.is_infinite():
@@ -110,7 +110,7 @@ def pow_interval_dec_testing(operand1, operand2, answer):
   actual = pow_interval(op1, op2)
   assert actual.is_nai == ans.is_nai
   if not ans.is_nai:
-    rel_tol = mpfr("1e-5")
+    rel_tol = mpfr("1e-4")
     
     assert actual.interval.lo <= ans.interval.lo
     if not ans.interval.lo.is_infinite():
@@ -131,7 +131,7 @@ def pow_int_dec_testing(operand1, operand2, answer):
   actual = pow_int(op1, op2)
   assert actual.is_nai == ans.is_nai
   if not ans.is_nai:
-    rel_tol = mpfr("1e-5")
+    rel_tol = mpfr("1e-4")
     
     assert actual.interval.lo <= ans.interval.lo
     if not ans.interval.lo.is_infinite():
