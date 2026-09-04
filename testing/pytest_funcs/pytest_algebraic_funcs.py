@@ -66,65 +66,80 @@ def sqrt_dec_testing(operand1, answer):
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_pow_int)
 def pow_int_testing(operand1, operand2, answer):
-    op1 = DecoratedInterval(operand1)
-    op2 = int(operand2)
-    ans = DecoratedInterval(answer)
-    actual = pow_int(op1, op2)
-    rel_tol = mpfr("1e-5")
+  op1 = DecoratedInterval(operand1)
+  op2 = int(operand2)
+  ans = DecoratedInterval(answer)
+  actual = pow_int(op1, op2)
+  rel_tol = mpfr("1e-5")
+  
+  assert actual.interval.lo <= ans.interval.lo
+  if not ans.interval.lo.is_infinite():
     tol_lo = (builtins.abs(ans.interval.lo) * rel_tol) + mpfr("1e-12")
-    tol_hi = (builtins.abs(ans.interval.hi) * rel_tol) + mpfr("1e-12")
-    assert actual.interval.lo <= ans.interval.lo
     assert actual.interval.lo >= (ans.interval.lo - tol_lo)
-    assert actual.interval.hi >= ans.interval.hi
+    
+  assert actual.interval.hi >= ans.interval.hi
+  if not ans.interval.hi.is_infinite():
+    tol_hi = (builtins.abs(ans.interval.hi) * rel_tol) + mpfr("1e-12")
     assert actual.interval.hi <= (ans.interval.hi + tol_hi)
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_pow_interval)
 def pow_interval_testing(operand1, operand2, answer):
-    op1 = DecoratedInterval(operand1)
-    op2 = DecoratedInterval(operand2)
-    ans = DecoratedInterval(answer)
-    actual = pow_interval(op1, op2)
-    rel_tol = mpfr("1e-5")
+  op1 = DecoratedInterval(operand1)
+  op2 = DecoratedInterval(operand2)
+  ans = DecoratedInterval(answer)
+  actual = pow_interval(op1, op2)
+  rel_tol = mpfr("1e-5")
+  
+  assert actual.interval.lo <= ans.interval.lo
+  if not ans.interval.lo.is_infinite():
     tol_lo = (builtins.abs(ans.interval.lo) * rel_tol) + mpfr("1e-12")
-    tol_hi = (builtins.abs(ans.interval.hi) * rel_tol) + mpfr("1e-12")
-    assert actual.interval.lo <= ans.interval.lo
     assert actual.interval.lo >= (ans.interval.lo - tol_lo)
-    assert actual.interval.hi >= ans.interval.hi
+    
+  assert actual.interval.hi >= ans.interval.hi
+  if not ans.interval.hi.is_infinite():
+    tol_hi = (builtins.abs(ans.interval.hi) * rel_tol) + mpfr("1e-12")
     assert actual.interval.hi <= (ans.interval.hi + tol_hi)
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_pow_interval_dec)
 def pow_interval_dec_testing(operand1, operand2, answer):
-    op1 = DecoratedInterval(operand1)
-    op2 = DecoratedInterval(operand2)
-    ans = DecoratedInterval(answer)
-    actual = pow_interval(op1, op2)
-    assert actual.is_nai == ans.is_nai
-    if not ans.is_nai:
-        rel_tol = mpfr("1e-5")
-        tol_lo = (builtins.abs(ans.interval.lo) * rel_tol) + mpfr("1e-12")
-        tol_hi = (builtins.abs(ans.interval.hi) * rel_tol) + mpfr("1e-12")
-        assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= (ans.interval.lo - tol_lo)
-        assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= (ans.interval.hi + tol_hi)
-
+  op1 = DecoratedInterval(operand1)
+  op2 = DecoratedInterval(operand2)
+  ans = DecoratedInterval(answer)
+  actual = pow_interval(op1, op2)
+  assert actual.is_nai == ans.is_nai
+  if not ans.is_nai:
+    rel_tol = mpfr("1e-5")
+    
+    assert actual.interval.lo <= ans.interval.lo
+    if not ans.interval.lo.is_infinite():
+      tol_lo = (builtins.abs(ans.interval.lo) * rel_tol) + mpfr("1e-12")
+      assert actual.interval.lo >= (ans.interval.lo - tol_lo)
+      
+    assert actual.interval.hi >= ans.interval.hi
+    if not ans.interval.hi.is_infinite():
+      tol_hi = (builtins.abs(ans.interval.hi) * rel_tol) + mpfr("1e-12")
+      assert actual.interval.hi <= (ans.interval.hi + tol_hi)
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_pow_int_dec)
 def pow_int_dec_testing(operand1, operand2, answer):
-    op1 = DecoratedInterval(operand1)
-    op2 = int(operand2)
-    ans = DecoratedInterval(answer)
-    actual = pow_int(op1, op2)
-    assert actual.is_nai == ans.is_nai
-    if not ans.is_nai:
-        rel_tol = mpfr("1e-5")
-        tol_lo = (builtins.abs(ans.interval.lo) * rel_tol) + mpfr("1e-12")
-        tol_hi = (builtins.abs(ans.interval.hi) * rel_tol) + mpfr("1e-12")
-        assert actual.interval.lo <= ans.interval.lo
-        assert actual.interval.lo >= (ans.interval.lo - tol_lo)
-        assert actual.interval.hi >= ans.interval.hi
-        assert actual.interval.hi <= (ans.interval.hi + tol_hi)
+  op1 = DecoratedInterval(operand1)
+  op2 = int(operand2)
+  ans = DecoratedInterval(answer)
+  actual = pow_int(op1, op2)
+  assert actual.is_nai == ans.is_nai
+  if not ans.is_nai:
+    rel_tol = mpfr("1e-5")
+    
+    assert actual.interval.lo <= ans.interval.lo
+    if not ans.interval.lo.is_infinite():
+      tol_lo = (builtins.abs(ans.interval.lo) * rel_tol) + mpfr("1e-12")
+      assert actual.interval.lo >= (ans.interval.lo - tol_lo)
+      
+    assert actual.interval.hi >= ans.interval.hi
+    if not ans.interval.hi.is_infinite():
+      tol_hi = (builtins.abs(ans.interval.hi) * rel_tol) + mpfr("1e-12")
+      assert actual.interval.hi <= (ans.interval.hi + tol_hi)
 
