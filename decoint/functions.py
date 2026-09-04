@@ -54,6 +54,9 @@ def log(x) -> Interval:
   hi = log_up(x.hi)
   return Interval(lo, hi)
 
+Here is the updated implementation re-indented so that internal function logic uses 2 spaces while the outer function / class body stays at 4 spaces:
+
+Python
 def pow_int(x, n):
   x = Interval._coerce(x)
   if x.is_empty:
@@ -64,15 +67,16 @@ def pow_int(x, n):
       return Interval(mpfr('nan'), mpfr('nan'))
   except Exception:
     return Interval(mpfr('nan'), mpfr('nan'))
+
   if n_int == 0:
     return Interval(mpfr(1), mpfr(1))
-  if n_int < 0:
-    return reciprocal(pow_int(x, -n_int))
-  if n_int % 2 == 1:
-    lo = pow_down(x.lo, n_int) if x.lo >= 0 else -pow_up(builtins.abs(x.lo), n_int)
-    hi = pow_up(x.hi, n_int) if x.hi >= 0 else -pow_down(builtins.abs(x.hi), n_int)
-    return Interval(lo, hi)
+
+  # --- EVEN POWERS ---
   if n_int % 2 == 0:
+    if n_int < 0:
+      pos_pow = pow_int(x, -n_int)
+      return reciprocal(pos_pow)
+
     if x.lo >= 0:
       lo = pow_down(x.lo, n_int)
       hi = pow_up(x.hi, n_int)
@@ -83,13 +87,22 @@ def pow_int(x, n):
       lo = pow_down(hi_sub, n_int)
       hi = pow_up(lo_sub, n_int)
       return Interval(lo, hi)
+
+    # Straddles zero
     hi_sub = builtins.abs(x.hi)
     lo_sub = builtins.abs(x.lo)
-    hi = max(
-    pow_up(hi_sub, n_int),
-    pow_up(lo_sub, n_int)
-    )
+    hi = max(pow_up(hi_sub, n_int), pow_up(lo_sub, n_int))
     return Interval(mpfr(0), hi)
+
+  # --- ODD POWERS ---
+  if n_int % 2 == 1:
+    if n_int < 0:
+      pos_pow = pow_int(x, -n_int)
+      return reciprocal(pos_pow)
+
+    lo = pow_down(x.lo, n_int) if x.lo >= 0 else -pow_up(builtins.abs(x.lo), n_int)
+    hi = pow_up(x.hi, n_int) if x.hi >= 0 else -pow_down(builtins.abs(x.hi), n_int)
+    return Interval(lo, hi)
 
 def sign(x) -> Interval:
   x = Interval._coerce(x)
