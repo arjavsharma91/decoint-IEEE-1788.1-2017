@@ -54,9 +54,7 @@ def log(x) -> Interval:
   hi = log_up(x.hi)
   return Interval(lo, hi)
 
-Here is the updated implementation re-indented so that internal function logic uses 2 spaces while the outer function / class body stays at 4 spaces:
 
-Python
 def pow_int(x, n):
   x = Interval._coerce(x)
   if x.is_empty:
