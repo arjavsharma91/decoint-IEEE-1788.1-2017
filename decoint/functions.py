@@ -444,54 +444,58 @@ def pow_interval(x, y):
   if x.is_empty or y.is_empty:
     return Interval.empty()
 
-  x_lo = max(0, x.lo)
+  # Domain check: general x^y is undefined for x < 0
+  if x.hi < 0:
+    return Interval.empty()
+
+  # Restrict x to non-negative domain [max(0, x.lo), x.hi]
+  x_lo = max(mpfr(0), x.lo)
   x_hi = x.hi
 
   if x_lo > x_hi:
     return Interval.empty()
-    
+
+  # Special Case: Point base at 0
   if x_hi == 0:
-    if y.hi <= 0:
+    if y.lo > 0:
+      return Interval(mpfr(0), mpfr(0))
+    elif y.hi <= 0:
       return Interval.empty()
-    return Interval(mpfr(0), mpfr(0))
+    else:
+      # y straddles 0: 0^y is undefined for y <= 0
+      return Interval(mpfr(0), mpfr(0))
 
-  if x_lo == 0:
-    v_down = [
-      pow_down_interval(x_hi, y.lo),
-      pow_down_interval(x_hi, y.hi)
-    ]
-    v_up = [
-      pow_up_interval(x_hi, y.lo),
-      pow_up_interval(x_hi, y.hi)
-    ]
+  # Candidate evaluation at interval corners: (x_lo, y.lo), (x_lo, y.hi), (x_hi, y.lo), (x_hi, y.hi)
+  v_down = []
+  v_up = []
 
-    if y.lo > 0 or y.hi > 0:
+  # 1. Base x_hi > 0
+  v_down.extend([pow_down_interval(x_hi, y.lo), pow_down_interval(x_hi, y.hi)])
+  v_up.extend([pow_up_interval(x_hi, y.lo), pow_up_interval(x_hi, y.hi)])
+
+  # 2. Base x_lo
+  if x_lo > 0:
+    v_down.extend([pow_down_interval(x_lo, y.lo), pow_down_interval(x_lo, y.hi)])
+    v_up.extend([pow_up_interval(x_lo, y.lo), pow_up_interval(x_lo, y.hi)])
+  else:
+    # x_lo == 0
+    if y.lo > 0:
       v_down.append(mpfr(0))
       v_up.append(mpfr(0))
-
-    if y.lo < 0 or y.hi < 0:
-      v_down.append(mpfr('inf'))
-      v_up.append(mpfr('inf'))
-
-    if y.lo <= 0 <= y.hi:
-      v_down.append(mpfr(1))
+    elif y.lo <= 0 <= y.hi:
+      v_down.append(mpfr(0))
+      # 0^0 is 1 in IEEE 1788
       v_up.append(mpfr(1))
 
-  else:
-    v_down = [
-      pow_down_interval(x_lo, y.lo),
-      pow_down_interval(x_lo, y.hi),
-      pow_down_interval(x_hi, y.lo),
-      pow_down_interval(x_hi, y.hi)
-    ]
-    v_up = [
-      pow_up_interval(x_lo, y.lo),
-      pow_up_interval(x_lo, y.hi),
-      pow_up_interval(x_hi, y.lo),
-      pow_up_interval(x_hi, y.hi)
-    ]
+  # 3. Include critical value x^0 = 1 when 0 is in y
+  if y.lo <= 0 <= y.hi:
+    v_down.append(mpfr(1))
+    v_up.append(mpfr(1))
 
-  return Interval(min(v_down), max(v_up))
+  lo = min(v_down)
+  hi = max(v_up)
+
+  return Interval(lo, hi)
 
 def exp2(x):
   x = Interval._coerce(x)
