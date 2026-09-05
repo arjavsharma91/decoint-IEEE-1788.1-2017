@@ -438,60 +438,70 @@ def sqr(x):
   return Interval(mpfr(0), hi)
 
 def pow_interval(x, y):
-  x = Interval._coerce(x)
-  y = Interval._coerce(y)
+    x = Interval._coerce(x)
+    y = Interval._coerce(y)
 
-  if x.is_empty or y.is_empty:
-    return Interval.empty()
+    if x.is_empty or y.is_empty:
+        return Interval.empty()
 
-  x_lo = max(0, x.lo)
-  x_hi = x.hi
+    x_lo = max(0, x.lo)
+    x_hi = x.hi
 
-  if x_lo > x_hi:
-    return Interval.empty()
-    
-  if x_hi == 0:
-    if y.hi <= 0:
-      return Interval.empty()
-    return Interval(mpfr(0), mpfr(0))
+    if x_lo > x_hi:
+        return Interval.empty()
+        
+    if x_hi == 0:
+        if y.hi <= 0:
+            return Interval.empty()
+        return Interval(mpfr(0), mpfr(0))
 
-  if x_lo == 0:
-    v_down = [
-      pow_down_interval(x_hi, y.lo),
-      pow_down_interval(x_hi, y.hi)
-    ]
-    v_up = [
-      pow_up_interval(x_hi, y.lo),
-      pow_up_interval(x_hi, y.hi)
-    ]
+    if x_lo == 0:
+        v_down = [
+            pow_down_interval(x_hi, y.lo),
+            pow_down_interval(x_hi, y.hi)
+        ]
+        v_up = [
+            pow_up_interval(x_hi, y.lo),
+            pow_up_interval(x_hi, y.hi)
+        ]
 
-    if y.lo > 0 or y.hi > 0:
-      v_down.append(mpfr(0))
-      v_up.append(mpfr(0))
+        if y.lo > 0 or y.hi > 0:
+            v_down.append(mpfr(0))
+            v_up.append(mpfr(0))
 
-    if y.lo < 0 or y.hi < 0:
-      v_down.append(mpfr('inf'))
-      v_up.append(mpfr('inf'))
+        if y.lo < 0 or y.hi < 0:
+            v_down.append(mpfr('inf'))
+            v_up.append(mpfr('inf'))
 
-    if y.lo <= 0 <= y.hi:
-      v_down.append(mpfr(1))
-      v_up.append(mpfr(1))
+        if y.lo <= 0 <= y.hi:
+            v_down.append(mpfr(1))
+            v_up.append(mpfr(1))
 
-  else:
-    v_down = [
-      pow_down_interval(x_lo, y.lo),
-      pow_down_interval(x_lo, y.hi),
-      pow_down_interval(x_hi, y.lo),
-      pow_down_interval(x_hi, y.hi)
-    ]
-    v_up = [
-      pow_up_interval(x_lo, y.lo),
-      pow_up_interval(x_lo, y.hi),
-      pow_up_interval(x_hi, y.lo),
-      pow_up_interval(x_hi, y.hi)
-    ]
+    else:
+        v_down = [
+            pow_down_interval(x_lo, y.lo),
+            pow_down_interval(x_lo, y.hi),
+            pow_down_interval(x_hi, y.lo),
+            pow_down_interval(x_hi, y.hi)
+        ]
+        v_up = [
+            pow_up_interval(x_lo, y.lo),
+            pow_up_interval(x_lo, y.hi),
+            pow_up_interval(x_hi, y.lo),
+            pow_up_interval(x_hi, y.hi)
+        ]
 
-  return Interval(min(v_down), max(v_up))
+        # Critical point: x^0 = 1 for any x > 0 when 0 is within y
+        if y.lo <= 0 <= y.hi:
+            v_down.append(mpfr(1))
+            v_up.append(mpfr(1))
+
+        # Critical point: 1^y = 1 for any y when 1 is within x
+        if x_lo <= 1 <= x_hi:
+            v_down.append(mpfr(1))
+            v_up.append(mpfr(1))
+
+    return Interval(min(v_down), max(v_up))
 
 def exp2(x):
   x = Interval._coerce(x)
