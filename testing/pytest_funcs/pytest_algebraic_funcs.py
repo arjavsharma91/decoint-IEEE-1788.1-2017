@@ -92,7 +92,7 @@ def pow_interval_testing(operand1, operand2, anslo, anshi):
   actual = pow_interval(op1, op2)
   rel_tol = mpfr("1e-4")
   
-  assert actual.interval.lo <= ans_hi
+  assert actual.interval.lo <= ans_lo
   if not ans_lo.is_infinite():
     tol_lo = (builtins.abs(ans_lo) * rel_tol) + mpfr("1e-12")
     assert actual.interval.lo >= (ans_lo - tol_lo)
