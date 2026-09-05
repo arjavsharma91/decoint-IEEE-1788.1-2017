@@ -83,23 +83,24 @@ def pow_int_testing(operand1, operand2, answer):
     assert actual.interval.hi <= (ans.interval.hi + tol_hi)
 
 
-@pytest.mark.parametrize("operand1, operand2, answer", test_pow_interval)
-def pow_interval_testing(operand1, operand2, answer):
+@pytest.mark.parametrize("operand1, operand2, anslo, anshi", test_pow_interval)
+def pow_interval_testing(operand1, operand2, anslo, anshi):
   op1 = DecoratedInterval(operand1)
   op2 = DecoratedInterval(operand2)
-  ans = DecoratedInterval(answer)
+  ans_lo = mpfr(anslo)
+  ans_hi = mpfr(anshi)
   actual = pow_interval(op1, op2)
   rel_tol = mpfr("1e-4")
   
-  assert actual.interval.lo <= ans.interval.lo
-  if not ans.interval.lo.is_infinite():
-    tol_lo = (builtins.abs(ans.interval.lo) * rel_tol) + mpfr("1e-12")
-    assert actual.interval.lo >= (ans.interval.lo - tol_lo)
+  assert actual.interval.lo <= ans_hi
+  if not ans_lo.is_infinite():
+    tol_lo = (builtins.abs(ans_lo) * rel_tol) + mpfr("1e-12")
+    assert actual.interval.lo >= (ans_lo - tol_lo)
     
-  assert actual.interval.hi >= ans.interval.hi
-  if not ans.interval.hi.is_infinite():
-    tol_hi = (builtins.abs(ans.interval.hi) * rel_tol) + mpfr("1e-12")
-    assert actual.interval.hi <= (ans.interval.hi + tol_hi)
+  assert actual.interval.hi >= ans_hi
+  if not ans_hi.is_infinite():
+    tol_hi = (builtins.abs(ans_hi) * rel_tol) + mpfr("1e-12")
+    assert actual.interval.hi <= (ans_hi + tol_hi)
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_pow_interval_dec)
