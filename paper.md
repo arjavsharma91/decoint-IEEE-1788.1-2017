@@ -29,7 +29,7 @@ In scientific computing, IEEE 754 binary64 floating point arithmetic introduces 
 
 Researchers are often forced to use arithmetic while suffering through floating point error propagation throughout calculations. Interval Arithmetic solves this problem by replacing scalar values with set based calculations. However, basic interval implementations often restrict their evaluation entirely to the lower and upper bounds, neglecting to monitor the underlying domain boundaries and continuity of functions over non-continuous execution spaces.
 
-`decoint` fills this gap within the Python scientific computing community. By wrapping `gmpy2` and executing hardware enforced directed rounding the library ensures that the true results never escape the containment bounds computed. `decoint` also integrates the full IEEE 1788 decoration subsystem. The library prevents silent informational degradation by tracking domain bounds and continuity to track the validity of a result. This gives researchers astandard compliant tool to detect mathematical anomalies, providing numerical rigor directly within Python.
+`decoint` fills this gap within the Python scientific computing community. By wrapping `gmpy2` and executing hardware enforced directed rounding the library ensures that the true results never escape the containment bounds computed. `decoint` also integrates the full IEEE 1788 decoration subsystem. The library prevents silent informational degradation by tracking domain bounds and continuity to track the validity of a result. This gives researchers a standard compliant tool to detect mathematical anomalies, providing numerical rigor directly within Python.
 
 # State of the Field
 
@@ -49,7 +49,9 @@ The pipeline for interval computations flows through a three tier hierarchy:
 
 # Research Impact Statement
 
-`decoint` provides immediate value to researchers by providing reliable guarenteed containment and the elimination of floating point rounding errors, as well as reliable error state tracking. With extensive ITF1788 edge case testing, it provides a reliable tool for verifying numerical stability across scientific computing and research.
+`decoint` provides immediate value to researchers by providing reliable guaranteed containment and the elimination of floating point rounding errors, as well as reliable error state tracking. With extensive ITF1788 edge case testing, it provides a reliable tool for verifying numerical stability across scientific computing and research.
+
+To show the viability of the library, `decoint` was used to analyze error growth in the Logistic Map [@sharma2026predictability]. By implementing Mean Value Forms, the library tracks loss of state certainty in chaotic regimes while demonstrating contraction down to machine precision ($\approx 10^{-16}$) in stable regimes.
 
 # AI Usage Disclosure
 
