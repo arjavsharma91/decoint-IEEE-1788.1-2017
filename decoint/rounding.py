@@ -5,31 +5,31 @@ ctx.precision = 53
 ctx.emin = -1073
 ctx.emax = 1024
 
-def add_down(a, b):
+def add_down(a: Number, b: Number) -> Number:
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
         return mpfr_a + mpfr_b
 
-def add_up(a, b):
+def add_up(a: Number, b: Number) -> Number:
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
         return mpfr_a + mpfr_b
 
-def sub_down(a, b):
+def sub_down(a: Number, b: Number) -> Number:
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
         return mpfr_a - mpfr_b
 
-def sub_up(a, b):
+def sub_up(a: Number, b: Number) -> Number:
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
         return mpfr_a - mpfr_b
 
-def mul_down(a, b):
+def mul_down(a: Number, b: Number) -> Number:
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
