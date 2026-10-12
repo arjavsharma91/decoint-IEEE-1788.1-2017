@@ -88,77 +88,77 @@ def pow_up(a: Number, n: int):
         mpfr_a = Number(a)
         return mpfr_a ** n
 
-def pow_down(a, n):
+def pow_down(a: Number, n: int):
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return mpfr_a ** n
 
-def root_up(a, n):
+def root_up(a: Number, n: int):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return root(mpfr_a, int(n))
 
-def root_down(a, n):
+def root_down(a: Number, n: int):
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return root(mpfr_a, int(n))
 
-def sin_up(a):
+def sin_up(a: Number):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return sin(mpfr_a)
 
-def sin_down(a):
+def sin_down(a: Number):
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return sin(mpfr_a)
 
-def cos_down(a):
+def cos_down(a: Number):
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return cos(mpfr_a)
 
-def cos_up(a):
+def cos_up(a: Number):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return cos(mpfr_a)
 
-def tan_up(a):
+def tan_up(a: Number):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return tan(mpfr_a)
 
-def tan_down(a):
+def tan_down(a: Number):
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return tan(mpfr_a)
 
-def asin_up(a):
+def asin_up(a: Number):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return asin(mpfr_a)
 
-def asin_down(a):
+def asin_down(a: Number):
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return asin(mpfr_a)
 
-def atan_down(a):
+def atan_down(a: Number):
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return atan(mpfr_a)
 
-def atan_up(a):
+def atan_up(a: Number):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return atan(mpfr_a)
 
-def acos_up(a):
+def acos_up(a: Number):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return acos(mpfr_a)
 
-def acos_down(a):
+def acos_down(a: Number):
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return acos(mpfr_a)
