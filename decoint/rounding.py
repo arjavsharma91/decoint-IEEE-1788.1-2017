@@ -35,55 +35,55 @@ def mul_down(a: Number, b: Number) -> Number:
         mpfr_b = Number(b)
         return mpfr_a*mpfr_b
 
-def mul_up(a, b):
+def mul_up(a: Number, b: Number):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
         return mpfr_a*mpfr_b
 
-def div_down(a, b):
+def div_down(a: Number, b: Number):
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
         return mpfr_a / mpfr_b
 
-def div_up(a, b):
+def div_up(a: Number, b: Number):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
         return mpfr_a / mpfr_b
 
-def sqrt_up(a):
+def sqrt_up(a: Number):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return sqrt(mpfr_a)
 
-def sqrt_down(a):
+def sqrt_down(a: Number):
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return sqrt(mpfr_a)
 
-def exp_up(a):
+def exp_up(a: Number):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return exp(mpfr_a)
 
-def exp_down(a):
+def exp_down(a: Number):
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return exp(mpfr_a)
 
-def log_down(a):
+def log_down(a: Number):
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return log(mpfr_a)
 
-def log_up(a):
+def log_up(a: Number):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return log(mpfr_a)
 
-def pow_up(a, n):
+def pow_up(a: Number, n: int):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return mpfr_a ** n
