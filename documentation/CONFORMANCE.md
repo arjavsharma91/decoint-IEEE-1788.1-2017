@@ -35,4 +35,4 @@ The following table itemizes the operations and elementary functions implemented
 ## 3. Exception Handling & Interval Decorations
 
 * **Exception-Free Execution:** In compliance with the standard, structural failures of the library safely propagate to an NAI state rather than throwing a runtime error.
-* **Lattice Decoration Tracking:** The library tracks continuous metadata updates across the standard's ordinal decoration hierarchy (`COM` $\succ$ `DAC` $\succ$ `DEF` $\succ$ `TRV` $\succ$ `ILL`). Incoming decorations are systematically merged using a `combine()` function that extracts the weakest common state.
+* **Lattice Decoration Tracking:** The library tracks continuous metadata updates across the standard's ordinal decoration hierarchy (`COM` $\succ$ `DAC` $\succ$ `DEF` $\succ$ `TRV` $\succ$ `ILL`). Incoming decorations are merged using a `combine()` function that extracts the weakest common state.
