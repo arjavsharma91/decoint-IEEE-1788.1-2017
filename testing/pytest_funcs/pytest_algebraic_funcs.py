@@ -15,7 +15,7 @@ from testing.test_cases.test_algebraic_funcs import (
 
 
 @pytest.mark.parametrize("operand1, answer", test_sqr)
-def sqr_testing(operand1, answer):
+def sqr_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = sqr(op1)
@@ -26,7 +26,7 @@ def sqr_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_sqrt)
-def sqrt_testing(operand1, answer):
+def sqrt_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = sqrt(op1)
@@ -37,7 +37,7 @@ def sqrt_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_sqr_dec)
-def sqr_dec_testing(operand1, answer):
+def sqr_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = sqr(op1)
