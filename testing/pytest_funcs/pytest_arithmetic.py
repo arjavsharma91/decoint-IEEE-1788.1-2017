@@ -18,7 +18,7 @@ from testing.test_cases.test_arithmetic_cases import (
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", add_test)
-def addition_testing(operand1, operand2, answer):
+def addition_testing(operand1: Interval, operand2: Interval, answer: Interval):
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = Interval(answer)
@@ -30,7 +30,7 @@ def addition_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", sub_test)
-def subtraction_testing(operand1, operand2, answer):
+def subtraction_testing(operand1: Interval, operand2: Interval, answer: Interval):
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = Interval(answer)
@@ -42,7 +42,7 @@ def subtraction_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", mul_test)
-def multiplication_testing(operand1, operand2, answer):
+def multiplication_testing(operand1: Interval, operand2: Interval, answer: Interval):
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = Interval(answer)
@@ -54,7 +54,7 @@ def multiplication_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", div_test)
-def division_testing(operand1, operand2, answer):
+def division_testing(operand1: Interval, operand2: Interval, answer: Interval):
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = Interval(answer)
