@@ -83,7 +83,7 @@ def log10_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
 
 
 @pytest.mark.parametrize("operand1, answer", test_log_dec)
-def log_dec_testing(operand1, answer):
+def log_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = log(op1)
@@ -97,7 +97,7 @@ def log_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_log2_dec)
-def log2_dec_testing(operand1, answer):
+def log2_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = log2(op1)
@@ -111,7 +111,7 @@ def log2_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_log10_dec)
-def log10_dec_testing(operand1, answer):
+def log10_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = log10(op1)
@@ -125,7 +125,7 @@ def log10_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_exp_dec)
-def exp_dec_testing(operand1, answer):
+def exp_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = exp(op1)
@@ -139,7 +139,7 @@ def exp_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_exp2_dec)
-def exp2_dec_testing(operand1, answer):
+def exp2_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = exp2(op1)
@@ -153,7 +153,7 @@ def exp2_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_exp10_dec)
-def exp10_dec_testing(operand1, answer):
+def exp10_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = exp10(op1)
