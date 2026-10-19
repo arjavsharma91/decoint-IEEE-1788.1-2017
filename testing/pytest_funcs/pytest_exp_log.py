@@ -17,7 +17,7 @@ from testing.test_cases.test_exp_log_funcs import (
 
 
 @pytest.mark.parametrize("operand1, answer", test_exp)
-def exp_testing(operand1, answer):
+def exp_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = exp(op1)
@@ -28,7 +28,7 @@ def exp_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_exp10)
-def exp10_testing(operand1, answer):
+def exp10_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = exp10(op1)
@@ -39,7 +39,7 @@ def exp10_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_exp2)
-def exp2_testing(operand1, answer):
+def exp2_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = exp2(op1)
@@ -50,7 +50,7 @@ def exp2_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_log)
-def log_testing(operand1, answer):
+def log_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = log(op1)
@@ -61,7 +61,7 @@ def log_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_log2)
-def log2_testing(operand1, answer):
+def log2_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = log2(op1)
@@ -72,7 +72,7 @@ def log2_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_log10)
-def log10_testing(operand1, answer):
+def log10_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = log10(op1)
