@@ -78,7 +78,7 @@ def cosh_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
 
 
 @pytest.mark.parametrize("operand1, answer", test_tanh_dec)
-def tanh_dec_testing(operand1, answer):
+def tanh_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = tanh(op1)
@@ -92,7 +92,7 @@ def tanh_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_asinh)
-def asinh_testing(operand1, answer):
+def asinh_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = asinh(op1)
@@ -103,7 +103,7 @@ def asinh_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_acosh)
-def acosh_testing(operand1, answer):
+def acosh_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = acosh(op1)
@@ -114,7 +114,7 @@ def acosh_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_atanh)
-def atanh_testing(operand1, answer):
+def atanh_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = atanh(op1)
@@ -125,7 +125,7 @@ def atanh_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_asinh_dec)
-def asinh_dec_testing(operand1, answer):
+def asinh_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = asinh(op1)
@@ -139,7 +139,7 @@ def asinh_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_acosh_dec)
-def acosh_dec_testing(operand1, answer):
+def acosh_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = acosh(op1)
@@ -153,7 +153,7 @@ def acosh_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_atanh_dec)
-def atanh_dec_testing(operand1, answer):
+def atanh_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = atanh(op1)
