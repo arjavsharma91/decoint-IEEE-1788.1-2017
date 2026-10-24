@@ -17,7 +17,7 @@ from testing.test_cases.test_hyperbolic_funcs import (
 
 
 @pytest.mark.parametrize("operand1, answer", test_sinh)
-def sinh_testing(operand1, answer):
+def sinh_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = sinh(op1)
@@ -28,7 +28,7 @@ def sinh_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_cosh)
-def cosh_testing(operand1, answer):
+def cosh_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = cosh(op1)
@@ -39,7 +39,7 @@ def cosh_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_tanh)
-def tanh_testing(operand1, answer):
+def tanh_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = tanh(op1)
@@ -50,7 +50,7 @@ def tanh_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_sinh_dec)
-def sinh_dec_testing(operand1, answer):
+def sinh_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = sinh(op1)
@@ -64,7 +64,7 @@ def sinh_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_cosh_dec)
-def cosh_dec_testing(operand1, answer):
+def cosh_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = cosh(op1)
