@@ -9,7 +9,7 @@ from testing.test_cases.test_lattice_ops import (
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_interval_max)
-def interval_max_testing(operand1, operand2, answer):
+def interval_max_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
@@ -21,7 +21,7 @@ def interval_max_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_interval_max_dec)
-def interval_max_dec_testing(operand1, operand2, answer):
+def interval_max_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
@@ -36,7 +36,7 @@ def interval_max_dec_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_interval_min)
-def interval_min_testing(operand1, operand2, answer):
+def interval_min_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
@@ -48,7 +48,7 @@ def interval_min_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_interval_min_dec)
-def interval_min_dec_testing(operand1, operand2, answer):
+def interval_min_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
