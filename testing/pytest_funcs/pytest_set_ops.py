@@ -9,7 +9,7 @@ from testing.test_cases.test_set_ops import (
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_intersection)
-def intersection_testing(operand1, operand2, answer):
+def intersection_testing(operand1: Interval, operand2: Interval, answer: Interval):
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = Interval(answer)
@@ -21,7 +21,7 @@ def intersection_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_hull)
-def hull_testing(operand1, operand2, answer):
+def hull_testing(operand1: Interval, operand2: Interval, answer: Interval):
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = Interval(answer)
@@ -33,7 +33,7 @@ def hull_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_hull_dec)
-def hull_dec_testing(operand1, operand2, answer):
+def hull_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
@@ -48,7 +48,7 @@ def hull_dec_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_intersection_dec)
-def intersection_dec_testing(operand1, operand2, answer):
+def intersection_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
