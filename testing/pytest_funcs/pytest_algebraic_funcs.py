@@ -15,7 +15,7 @@ from testing.test_cases.test_algebraic_funcs import (
 
 
 @pytest.mark.parametrize("operand1, answer", test_sqr)
-def sqr_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
+def sqr_testing(operand1: DecoratedInterval, answer: DecoratedInterval) -> bool:
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = sqr(op1)
@@ -26,7 +26,7 @@ def sqr_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
 
 
 @pytest.mark.parametrize("operand1, answer", test_sqrt)
-def sqrt_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
+def sqrt_testing(operand1: DecoratedInterval, answer: DecoratedInterval) -> bool:
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = sqrt(op1)
@@ -37,7 +37,7 @@ def sqrt_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
 
 
 @pytest.mark.parametrize("operand1, answer", test_sqr_dec)
-def sqr_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
+def sqr_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval) -> bool:
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = sqr(op1)
@@ -51,7 +51,7 @@ def sqr_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
 
 
 @pytest.mark.parametrize("operand1, answer", test_sqrt_dec)
-def sqrt_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
+def sqrt_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval) -> bool:
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = sqrt(op1)
@@ -65,7 +65,7 @@ def sqrt_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_pow_int)
-def pow_int_testing(operand1: DecoratedInterval, operand2: int, answer: DecoratedInterval):
+def pow_int_testing(operand1: DecoratedInterval, operand2: int, answer: DecoratedInterval) -> bool:
   op1 = DecoratedInterval(operand1)
   op2 = int(operand2)
   ans = DecoratedInterval(answer)
@@ -84,7 +84,7 @@ def pow_int_testing(operand1: DecoratedInterval, operand2: int, answer: Decorate
 
 
 @pytest.mark.parametrize("operand1, operand2, anslo, anshi", test_pow_interval)
-def pow_interval_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, anslo: mpfr, anshi: mpfr):
+def pow_interval_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, anslo: mpfr, anshi: mpfr) -> bool:
   op1 = DecoratedInterval(operand1)
   op2 = DecoratedInterval(operand2)
   ans_lo = mpfr(anslo)
@@ -104,7 +104,7 @@ def pow_interval_testing(operand1: DecoratedInterval, operand2: DecoratedInterva
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_pow_interval_dec)
-def pow_interval_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval):
+def pow_interval_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval) -> bool:
   op1 = DecoratedInterval(operand1)
   op2 = DecoratedInterval(operand2)
   ans = DecoratedInterval(answer)
@@ -125,7 +125,7 @@ def pow_interval_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInt
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_pow_int_dec)
-def pow_int_dec_testing(operand1: DecoratedInterval, operand2: int, answer: DecoratedInterval):
+def pow_int_dec_testing(operand1: DecoratedInterval, operand2: int, answer: DecoratedInterval) -> bool:
   op1 = DecoratedInterval(operand1)
   op2 = int(operand2)
   ans = DecoratedInterval(answer)
