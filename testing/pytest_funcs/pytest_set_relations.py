@@ -84,7 +84,7 @@ def precedes_testing(operand1: Interval, operand2: Interval, answer: bool):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_precedes_dec)
-def precedes_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: Interval):
+def precedes_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: bool):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = bool(answer)
