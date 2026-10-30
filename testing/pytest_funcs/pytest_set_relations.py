@@ -21,7 +21,7 @@ from testing.test_cases.test_set_relations import (
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_equal)
-def equal_testing(operand1, operand2, answer):
+def equal_testing(operand1: Interval, operand2: Interval, answer: bool):
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = bool(answer)
@@ -30,7 +30,7 @@ def equal_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_equal_dec)
-def equal_dec_testing(operand1, operand2, answer):
+def equal_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: bool):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = bool(answer)
@@ -39,7 +39,7 @@ def equal_dec_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_subset)
-def subset_testing(operand1, operand2, answer):
+def subset_testing(operand1: Interval, operand2: Interval, answer: bool):
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = bool(answer)
@@ -48,7 +48,7 @@ def subset_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_subset_dec)
-def subset_dec_testing(operand1, operand2, answer):
+def subset_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: bool):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = bool(answer)
@@ -57,7 +57,7 @@ def subset_dec_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_less)
-def less_testing(operand1, operand2, answer):
+def less_testing(operand1: Interval, operand2: Interval, answer: bool):
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = bool(answer)
@@ -66,7 +66,7 @@ def less_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_less_dec)
-def less_dec_testing(operand1, operand2, answer):
+def less_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: bool):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = bool(answer)
@@ -75,7 +75,7 @@ def less_dec_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_precedes)
-def precedes_testing(operand1, operand2, answer):
+def precedes_testing(operand1: Interval, operand2: Interval, answer: bool):
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = bool(answer)
@@ -84,7 +84,7 @@ def precedes_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_precedes_dec)
-def precedes_dec_testing(operand1, operand2, answer):
+def precedes_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: Interval):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = bool(answer)
@@ -93,7 +93,7 @@ def precedes_dec_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_interior)
-def interior_testing(operand1, operand2, answer):
+def interior_testing(operand1: Interval, operand2: Interval, answer: bool):
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = bool(answer)
