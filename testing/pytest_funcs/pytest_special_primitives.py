@@ -15,7 +15,7 @@ from testing.test_cases.test_special_primitives import (
 
 
 @pytest.mark.parametrize("operand1, answer", test_sign)
-def sign_testing(operand1, answer):
+def sign_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = sign(op1)
@@ -26,7 +26,7 @@ def sign_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_sign_dec)
-def sign_dec_testing(operand1, answer):
+def sign_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = sign(op1)
@@ -40,7 +40,7 @@ def sign_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_ceil)
-def ceil_testing(operand1, answer):
+def ceil_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = interval_ceil(op1)
@@ -51,7 +51,7 @@ def ceil_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_ceil_dec)
-def ceil_dec_testing(operand1, answer):
+def ceil_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = interval_ceil(op1)
@@ -65,7 +65,7 @@ def ceil_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_floor)
-def floor_testing(operand1, answer):
+def floor_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = interval_floor(op1)
@@ -76,7 +76,7 @@ def floor_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_floor_dec)
-def floor_dec_testing(operand1, answer):
+def floor_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = interval_floor(op1)
