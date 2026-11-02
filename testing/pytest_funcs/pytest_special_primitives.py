@@ -90,7 +90,7 @@ def floor_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
 
 
 @pytest.mark.parametrize("operand1, answer", test_trunc)
-def trunc_testing(operand1, answer):
+def trunc_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = interval_trunc(op1)
@@ -101,7 +101,7 @@ def trunc_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_trunc_dec)
-def trunc_dec_testing(operand1, answer):
+def trunc_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = interval_trunc(op1)
@@ -115,7 +115,7 @@ def trunc_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_abs)
-def abs_testing(operand1, answer):
+def abs_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = abs(op1)
@@ -126,7 +126,7 @@ def abs_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_abs_dec)
-def abs_dec_testing(operand1, answer):
+def abs_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = abs(op1)
