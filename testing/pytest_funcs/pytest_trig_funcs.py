@@ -19,7 +19,7 @@ from testing.test_cases.test_trig_funcs import (
 
 
 @pytest.mark.parametrize("operand1, answer", test_sin)
-def sin_testing(operand1, answer):
+def sin_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = sin(op1)
@@ -30,7 +30,7 @@ def sin_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_sin_dec)
-def sin_dec_testing(operand1, answer):
+def sin_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = sin(op1)
@@ -44,7 +44,7 @@ def sin_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_cos)
-def cos_testing(operand1, answer):
+def cos_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = cos(op1)
@@ -55,7 +55,7 @@ def cos_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_cos_dec)
-def cos_dec_testing(operand1, answer):
+def cos_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = cos(op1)
@@ -69,7 +69,7 @@ def cos_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_tan)
-def tan_testing(operand1, answer):
+def tan_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = tan(op1)
@@ -80,7 +80,7 @@ def tan_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_tan_dec)
-def tan_dec_testing(operand1, answer):
+def tan_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = tan(op1)
