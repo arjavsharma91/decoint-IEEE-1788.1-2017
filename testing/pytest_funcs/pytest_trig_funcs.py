@@ -94,7 +94,7 @@ def tan_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
 
 
 @pytest.mark.parametrize("operand1, answer", test_asin)
-def asin_testing(operand1, answer):
+def asin_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = asin(op1)
@@ -105,7 +105,7 @@ def asin_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_asin_dec)
-def asin_dec_testing(operand1, answer):
+def asin_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = asin(op1)
@@ -119,7 +119,7 @@ def asin_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_acos)
-def acos_testing(operand1, answer):
+def acos_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = acos(op1)
@@ -130,7 +130,7 @@ def acos_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_acos_dec)
-def acos_dec_testing(operand1, answer):
+def acos_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = acos(op1)
@@ -144,7 +144,7 @@ def acos_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_atan)
-def atan_testing(operand1, answer):
+def atan_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = atan(op1)
@@ -155,7 +155,7 @@ def atan_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_atan_dec)
-def atan_dec_testing(operand1, answer):
+def atan_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = atan(op1)
@@ -169,7 +169,7 @@ def atan_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_atan2)
-def atan2_testing(operand1, operand2, answer):
+def atan2_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
@@ -181,7 +181,7 @@ def atan2_testing(operand1, operand2, answer):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", test_atan2_dec)
-def atan2_dec_testing(operand1, operand2, answer):
+def atan2_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
