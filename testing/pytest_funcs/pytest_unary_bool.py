@@ -13,7 +13,7 @@ from testing.test_cases.test_unary_bool import (
 
 
 @pytest.mark.parametrize("operand1, answer", test_is_empty)
-def empty_testing(operand1, answer):
+def empty_testing(operand1: Interval, answer: bool):
     op1 = Interval(operand1)
     ans = bool(answer)
     actual = op1.is_empty
@@ -21,7 +21,7 @@ def empty_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_is_empty_dec)
-def empty_dec_testing(operand1, answer):
+def empty_dec_testing(operand1: DecoratedInterval, answer: bool):
     op1 = DecoratedInterval(operand1)
     ans = bool(answer)
     actual = op1.is_empty
@@ -29,7 +29,7 @@ def empty_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_is_entire)
-def entire_testing(operand1, answer):
+def entire_testing(operand1: Interval, answer: bool):
     op1 = Interval(operand1)
     ans = bool(answer)
     actual = op1.is_entire
@@ -37,7 +37,7 @@ def entire_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_is_entire_dec)
-def entire_dec_testing(operand1, answer):
+def entire_dec_testing(operand1: DecoratedInterval, answer: bool):
     op1 = DecoratedInterval(operand1)
     ans = bool(answer)
     actual = op1.is_entire
@@ -45,7 +45,7 @@ def entire_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_is_common)
-def common_testing(operand1, answer):
+def common_testing(operand1: Interval, answer: bool):
     op1 = Interval(operand1)
     ans = bool(answer)
     actual = op1.is_common
@@ -53,7 +53,7 @@ def common_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_is_common_dec)
-def common_dec_testing(operand1, answer):
+def common_dec_testing(operand1: DecoratedInterval, answer: bool):
     op1 = DecoratedInterval(operand1)
     ans = bool(answer)
     actual = op1.is_common
@@ -61,7 +61,7 @@ def common_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_is_singleton)
-def singleton_testing(operand1, answer):
+def singleton_testing(operand1: Interval, answer: bool):
     op1 = Interval(operand1)
     ans = bool(answer)
     actual = op1.is_singleton
@@ -69,7 +69,7 @@ def singleton_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_is_singleton_dec)
-def singleton_dec_testing(operand1, answer):
+def singleton_dec_testing(operand1: DecoratedInterval, answer: bool):
     op1 = DecoratedInterval(operand1)
     ans = bool(answer)
     actual = op1.is_singleton
