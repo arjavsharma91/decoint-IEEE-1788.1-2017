@@ -20,7 +20,7 @@ from testing.test_cases.test_unary_properties import (
 
 
 @pytest.mark.parametrize("operand1, answer", test_inf)
-def inf_testing(operand1, answer):
+def inf_testing(operand1: DecoratedInterval, answer: mpfr):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.inf
@@ -35,7 +35,7 @@ def inf_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_inf_dec)
-def inf_dec_testing(operand1, answer):
+def inf_dec_testing(operand1: DecoratedInterval, answer: mpfr):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.inf
@@ -51,7 +51,7 @@ def inf_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_sup)
-def sup_testing(operand1, answer):
+def sup_testing(operand1: DecoratedInterval, answer: mpfr):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.sup
@@ -66,7 +66,7 @@ def sup_testing(operand1, answer):
         assert actual == ans
 
 @pytest.mark.parametrize("operand1, answer", test_sup_dec)
-def sup_dec_testing(operand1, answer):
+def sup_dec_testing(operand1: DecoratedInterval, answer: mpfr):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.sup
@@ -82,7 +82,7 @@ def sup_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_midpoint)
-def midpoint_testing(operand1, answer):
+def midpoint_testing(operand1: DecoratedInterval, answer: mpfr):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.midpoint
@@ -98,7 +98,7 @@ def midpoint_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_midpoint_dec)
-def midpoint_dec_testing(operand1, answer):
+def midpoint_dec_testing(operand1: DecoratedInterval, answer: mpfr):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.midpoint
@@ -114,7 +114,7 @@ def midpoint_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_radius)
-def radius_testing(operand1, answer):
+def radius_testing(operand1: DecoratedInterval, answer: mpfr):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.radius
@@ -130,7 +130,7 @@ def radius_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_radius_dec)
-def radius_dec_testing(operand1, answer):
+def radius_dec_testing(operand1: DecoratedInterval, answer: mpfr):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.radius
