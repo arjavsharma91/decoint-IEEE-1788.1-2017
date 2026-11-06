@@ -60,7 +60,7 @@ print(a.subset(c))  # False
 print(f"Lower bound: {a.lo}, Upper bound: {a.hi}")
 ```
 
-For detailed API guides, tutorials, and advanced examples, check [`documentation/usage.md`](usage.md).
+For detailed API guides, tutorials, and advanced examples, check [`usage.md`](documentation/usage.md).
 
 ---
 
@@ -74,13 +74,13 @@ To run the full test suite locally:
 python -m pytest
 ```
 
-Refer to [`documentation/CONFORMANCE.md`](Conformance.md) for a complete breakdown of IEEE 1788.1-2017 clause coverage and verification results.
+Refer to [`CONFORMANCE.md`](documentation/CONFORMANCE.md) for a complete breakdown of IEEE 1788.1-2017 clause coverage and verification results.
 
 ---
 
 ## Contributing
 
-Contributions, bug reports, and improvements are welcome! Please review [`documentation/contributing.md`](CONTRIBUTING.md) before submitting pull requests or opening issues.
+Contributions, bug reports, and improvements are welcome! Please review [`contributing.md`](documentation/contributing.md) before submitting pull requests or opening issues.
 
 ---
 ## License
