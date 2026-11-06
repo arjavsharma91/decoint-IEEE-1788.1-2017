@@ -146,7 +146,7 @@ def radius_dec_testing(operand1: DecoratedInterval, answer: mpfr):
 
 
 @pytest.mark.parametrize("operand1, answer", test_width)
-def width_testing(operand1, answer):
+def width_testing(operand1: DecoratedInterval, answer: mpfr):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.width
@@ -162,7 +162,7 @@ def width_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_width_dec)
-def width_dec_testing(operand1, answer):
+def width_dec_testing(operand1: DecoratedInterval, answer: mpfr):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.width
@@ -178,7 +178,7 @@ def width_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_magnitude)
-def magnitude_testing(operand1, answer):
+def magnitude_testing(operand1: DecoratedInterval, answer: mpfr):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.magnitude
@@ -194,7 +194,7 @@ def magnitude_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_magnitude_dec)
-def magnitude_dec_testing(operand1, answer):
+def magnitude_dec_testing(operand1: DecoratedInterval, answer: mpfr):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.magnitude
@@ -210,7 +210,7 @@ def magnitude_dec_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_mignitude)
-def mignitude_testing(operand1, answer):
+def mignitude_testing(operand1: DecoratedInterval, answer: mpfr):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.mignitude
@@ -226,7 +226,7 @@ def mignitude_testing(operand1, answer):
 
 
 @pytest.mark.parametrize("operand1, answer", test_mignitude_dec)
-def mignitude_dec_testing(operand1, answer):
+def mignitude_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
     op1 = DecoratedInterval(operand1)
     ans = mpfr(answer)
     actual = op1.mignitude
