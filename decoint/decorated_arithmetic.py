@@ -80,6 +80,21 @@ def sub(x: DecoratedInterval, y: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def mul(x: DecoratedInterval, y: DecoratedInterval) -> DecoratedInterval:
+  """
+  Perform decorated interval multiplication.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      First decorated interval factor.
+  y : DecoratedInterval
+      Second decorated interval factor.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated interval product.
+  """
   x = DecoratedInterval._coerce(x)
   y = DecoratedInterval._coerce(y)
 
