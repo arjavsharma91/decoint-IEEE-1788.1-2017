@@ -9,13 +9,28 @@ ctx.emin = -1073
 ctx.emax = 1024
 
 def add(x: Interval, y: Interval) -> Interval:
-  x = Interval._coerce(x)
-  y = Interval._coerce(y)
-  if x.is_empty or y.is_empty:
-    return Interval.empty()
-  lo = add_down(x.lo, y.lo)
-  hi = add_up(x.hi, y.hi)
-  return Interval(lo, hi)
+    """
+    Perform interval addition.
+
+    Parameters
+    ----------
+    x : Interval
+        First interval operand.
+    y : Interval
+        Second interval operand.
+
+    Returns
+    -------
+    Interval
+        The resulting interval sum, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    y = Interval._coerce(y)
+    if x.is_empty or y.is_empty:
+        return Interval.empty()
+    lo = add_down(x.lo, y.lo)
+    hi = add_up(x.hi, y.hi)
+    return Interval(lo, hi)
 
 def sub(x: Interval, y: Interval) -> Interval:
   x = Interval._coerce(x)
