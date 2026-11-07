@@ -57,38 +57,53 @@ def sub(x: Interval, y: Interval) -> Interval:
     return Interval(lo, hi)
 
 def mul(x: Interval, y: Interval) -> Interval:
-  x = Interval._coerce(x)
-  y = Interval._coerce(y)
-  if x.is_empty or y.is_empty:
-    return Interval.empty()
+    """
+    Perform interval multiplication.
 
-  def safe_mul_down(a, b):
-    if (a == 0 and is_infinite(b)) or (b == 0 and is_infinite(a)):
-      is_neg = is_signed(a) * is_signed(b)
-      return mpfr('0') if is_neg else mpfr('-0.0')
-    return mul_down(a, b)
+    Parameters
+    ----------
+    x : Interval
+        First interval factor.
+    y : Interval
+        Second interval factor.
 
-  def safe_mul_up(a, b):
-    if (a == 0 and is_infinite(b)) or (b == 0 and is_infinite(a)):
-      is_neg = is_signed(a) * is_signed(b)
-      return mpfr('0') if is_neg else mpfr('-0.0')
-    return mul_up(a, b)
+    Returns
+    -------
+    Interval
+        The resulting interval product, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    y = Interval._coerce(y)
+    if x.is_empty or y.is_empty:
+        return Interval.empty()
 
-  p1 = safe_mul_down(x.lo, y.lo)
-  p2 = safe_mul_down(x.lo, y.hi)
-  p3 = safe_mul_down(x.hi, y.lo)
-  p4 = safe_mul_down(x.hi, y.hi)
-  
-  lo = min(p1, p2, p3, p4)
+    def safe_mul_down(a, b):
+        if (a == 0 and is_infinite(b)) or (b == 0 and is_infinite(a)):
+            is_neg = is_signed(a) * is_signed(b)
+            return mpfr('0') if is_neg else mpfr('-0.0')
+        return mul_down(a, b)
 
-  q1 = safe_mul_up(x.lo, y.lo)
-  q2 = safe_mul_up(x.lo, y.hi)
-  q3 = safe_mul_up(x.hi, y.lo)
-  q4 = safe_mul_up(x.hi, y.hi)
-  
-  hi = max(q1, q2, q3, q4)
+    def safe_mul_up(a, b):
+        if (a == 0 and is_infinite(b)) or (b == 0 and is_infinite(a)):
+            is_neg = is_signed(a) * is_signed(b)
+            return mpfr('0') if is_neg else mpfr('-0.0')
+        return mul_up(a, b)
 
-  return Interval(lo, hi)
+    p1 = safe_mul_down(x.lo, y.lo)
+    p2 = safe_mul_down(x.lo, y.hi)
+    p3 = safe_mul_down(x.hi, y.lo)
+    p4 = safe_mul_down(x.hi, y.hi)
+    
+    lo = min(p1, p2, p3, p4)
+
+    q1 = safe_mul_up(x.lo, y.lo)
+    q2 = safe_mul_up(x.lo, y.hi)
+    q3 = safe_mul_up(x.hi, y.lo)
+    q4 = safe_mul_up(x.hi, y.hi)
+    
+    hi = max(q1, q2, q3, q4)
+
+    return Interval(lo, hi)
 
 def reciprocal(x: Interval) -> Interval:
   x = Interval._coerce(x)
