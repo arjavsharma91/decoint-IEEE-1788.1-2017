@@ -246,29 +246,46 @@ def evaluate_fma_corner(x, y, z, round_up=False):
 
 
 def fma(x: Interval, y: Interval, z: Interval) -> Interval:
-  x = Interval._coerce(x)
-  y = Interval._coerce(y)
-  z = Interval._coerce(z)
+    """
+    Perform interval fused multiply-add (FMA): (x * y) + z.
 
-  if x.is_empty or y.is_empty or z.is_empty:
-    return Interval.empty()
+    Parameters
+    ----------
+    x : Interval
+        First interval factor.
+    y : Interval
+        Second interval factor.
+    z : Interval
+        Third interval addend.
 
-  # Evaluate lower bound corner combinations
-  v_down = []
-  for cx in (x.lo, x.hi):
-    for cy in (y.lo, y.hi):
-      val = evaluate_fma_corner(cx, cy, z.lo, round_up=False)
-      if val is None:
-        return Interval.entire()
-      v_down.append(val)
+    Returns
+    -------
+    Interval
+        The resulting interval enclosure for the FMA operation.
+    """
+    x = Interval._coerce(x)
+    y = Interval._coerce(y)
+    z = Interval._coerce(z)
 
-  # Evaluate upper bound corner combinations
-  v_up = []
-  for cx in (x.lo, x.hi):
-    for cy in (y.lo, y.hi):
-      val = evaluate_fma_corner(cx, cy, z.hi, round_up=True)
-      if val is None:
-        return Interval.entire()
-      v_up.append(val)
+    if x.is_empty or y.is_empty or z.is_empty:
+        return Interval.empty()
 
-  return Interval(min(v_down), max(v_up))
+    # Evaluate lower bound corner combinations
+    v_down = []
+    for cx in (x.lo, x.hi):
+        for cy in (y.lo, y.hi):
+            val = evaluate_fma_corner(cx, cy, z.lo, round_up=False)
+            if val is None:
+                return Interval.entire()
+            v_down.append(val)
+
+    # Evaluate upper bound corner combinations
+    v_up = []
+    for cx in (x.lo, x.hi):
+        for cy in (y.lo, y.hi):
+            val = evaluate_fma_corner(cx, cy, z.hi, round_up=True)
+            if val is None:
+                return Interval.entire()
+            v_up.append(val)
+
+    return Interval(min(v_down), max(v_up))
