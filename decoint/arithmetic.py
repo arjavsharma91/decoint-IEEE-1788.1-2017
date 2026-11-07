@@ -106,19 +106,32 @@ def mul(x: Interval, y: Interval) -> Interval:
     return Interval(lo, hi)
 
 def reciprocal(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-  if x.contains_zero:
-    if x.lo == 0 and x.hi == 0:
-      return Interval.empty()
-    if x.lo == 0:
-      return Interval(div_down(mpfr(1), x.hi), mpfr('inf'))
-    if x.hi == 0:
-      return Interval(mpfr('-inf'), div_up(mpfr(1), x.lo))
-    return Interval.entire()
+    """
+    Compute the multiplicative inverse (reciprocal) of an interval.
 
-  return Interval(div_down(mpfr(1), x.hi), div_up(mpfr(1), x.lo))
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The reciprocal interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+    if x.contains_zero:
+        if x.lo == 0 and x.hi == 0:
+            return Interval.empty()
+        if x.lo == 0:
+            return Interval(div_down(mpfr(1), x.hi), mpfr('inf'))
+        if x.hi == 0:
+            return Interval(mpfr('-inf'), div_up(mpfr(1), x.lo))
+        return Interval.entire()
+
+    return Interval(div_down(mpfr(1), x.hi), div_up(mpfr(1), x.lo))
 
 def div(x: Interval, y: Interval) -> Interval:
   x = Interval._coerce(x)
