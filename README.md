@@ -1,5 +1,5 @@
 [![CI Tests](https://github.com/arjavsharma91/decoint-IEEE-1788.1-2017/actions/workflows/tests.yml/badge.svg)](https://github.com/arjavsharma91/decoint-IEEE-1788.1-2017/actions/workflows/tests.yml)
-[![Python Version](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org/)
+[![Python Version](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org/)
 [![IEEE Standard](https://img.shields.io/badge/IEEE-1788.1--2017%20Compliant-green)](https://standards.ieee.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
