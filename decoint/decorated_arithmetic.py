@@ -4,6 +4,21 @@ from .decorations import Decoration, combine
 from .decorated_interval import DecoratedInterval
 
 def _finalize_decoration(base_dec: Decoration, interval: Interval) -> Decoration:
+  """
+  Finalize a decoration based on the boundedness of the resulting interval.
+
+  Parameters
+  ----------
+  base_dec : Decoration
+      The base combined decoration.
+  interval : Interval
+      The resulting interval.
+
+  Returns
+  -------
+  Decoration
+      The finalized decoration.
+  """
   if base_dec == Decoration.COM and not interval.is_bounded:
     return Decoration.DAC
   return base_dec
