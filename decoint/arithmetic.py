@@ -33,13 +33,28 @@ def add(x: Interval, y: Interval) -> Interval:
     return Interval(lo, hi)
 
 def sub(x: Interval, y: Interval) -> Interval:
-  x = Interval._coerce(x)
-  y = Interval._coerce(y)
-  if x.is_empty or y.is_empty:
-    return Interval.empty()
-  lo = sub_down(x.lo, y.hi)
-  hi = sub_up(x.hi, y.lo)
-  return Interval(lo, hi)
+    """
+    Perform interval subtraction.
+
+    Parameters
+    ----------
+    x : Interval
+        Minuend interval.
+    y : Interval
+        Subtrahend interval.
+
+    Returns
+    -------
+    Interval
+        The resulting interval difference, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    y = Interval._coerce(y)
+    if x.is_empty or y.is_empty:
+        return Interval.empty()
+    lo = sub_down(x.lo, y.hi)
+    hi = sub_up(x.hi, y.lo)
+    return Interval(lo, hi)
 
 def mul(x: Interval, y: Interval) -> Interval:
   x = Interval._coerce(x)
