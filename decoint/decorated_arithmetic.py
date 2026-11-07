@@ -24,6 +24,21 @@ def _finalize_decoration(base_dec: Decoration, interval: Interval) -> Decoration
   return base_dec
 
 def add(x: DecoratedInterval, y: DecoratedInterval) -> DecoratedInterval:
+  """
+  Perform decorated interval addition.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      First decorated interval operand.
+  y : DecoratedInterval
+      Second decorated interval operand.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated interval sum.
+  """
   x = DecoratedInterval._coerce(x)
   y = DecoratedInterval._coerce(y)
 
