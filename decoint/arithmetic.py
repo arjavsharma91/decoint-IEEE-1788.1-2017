@@ -134,64 +134,79 @@ def reciprocal(x: Interval) -> Interval:
     return Interval(div_down(mpfr(1), x.hi), div_up(mpfr(1), x.lo))
 
 def div(x: Interval, y: Interval) -> Interval:
-  x = Interval._coerce(x)
-  y = Interval._coerce(y)
-  if x.is_empty or y.is_empty:
-    return Interval.empty()
+    """
+    Perform interval division.
 
-  if x.is_entire and not y.contains(0):
-    return Interval.entire()
+    Parameters
+    ----------
+    x : Interval
+        Numerator interval.
+    y : Interval
+        Denominator interval.
 
-  if y.contains(0):
-    if y.hi == 0 and y.lo == 0:
-      return Interval.empty()
-    if x.hi == 0 and x.lo == 0:
-      return Interval(mpfr('0'), mpfr('0'))
-    if x.lo >= 0:
-      if y.lo == 0:
-        return Interval(div_down(x.lo, y.hi), mpfr('inf'))
-      elif y.hi == 0:
-        return Interval(mpfr('-inf'), div_up(x.lo, y.lo))
-      else:
-        return Interval.entire()        
-    elif x.hi <= 0:
-      if y.lo == 0:
-        return Interval(mpfr('-inf'), div_up(x.hi, y.hi))
-      elif y.hi == 0:
-        return Interval(div_down(x.hi, y.lo), mpfr('inf'))
-      else:
+    Returns
+    -------
+    Interval
+        The resulting interval quotient, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    y = Interval._coerce(y)
+    if x.is_empty or y.is_empty:
+        return Interval.empty()
+
+    if x.is_entire and not y.contains(0):
         return Interval.entire()
-    else:
-      return Interval.entire()
 
-  # --- CLEAN DIRECT REPLACEMENT FOR mul(x, reciprocal(y)) ---
-  if y.lo > 0:  # Denominator is strictly positive
-    # Lower bound logic
-    if x.lo == mpfr('-inf'):
-      lo = mpfr('-inf')
-    else:
-      lo = div_down(x.lo, y.hi if x.lo >= 0 else y.lo)
-    
-    # Upper bound logic
-    if x.hi == mpfr('inf'):
-      hi = mpfr('inf')
-    else:
-      hi = div_up(x.hi, y.lo if x.hi >= 0 else y.hi)
-      
-  else:  # Denominator is strictly negative (y.hi < 0)
-    # Lower bound logic
-    if x.hi == mpfr('inf'):
-      lo = mpfr('-inf')
-    else:
-      lo = div_down(x.hi, y.hi if x.hi >= 0 else y.lo)
-      
-    # Upper bound logic
-    if x.lo == mpfr('-inf'):
-      hi = mpfr('inf')
-    else:
-      hi = div_up(x.lo, y.lo if x.lo >= 0 else y.hi)
+    if y.contains(0):
+        if y.hi == 0 and y.lo == 0:
+            return Interval.empty()
+        if x.hi == 0 and x.lo == 0:
+            return Interval(mpfr('0'), mpfr('0'))
+        if x.lo >= 0:
+            if y.lo == 0:
+                return Interval(div_down(x.lo, y.hi), mpfr('inf'))
+            elif y.hi == 0:
+                return Interval(mpfr('-inf'), div_up(x.lo, y.lo))
+            else:
+                return Interval.entire()        
+        elif x.hi <= 0:
+            if y.lo == 0:
+                return Interval(mpfr('-inf'), div_up(x.hi, y.hi))
+            elif y.hi == 0:
+                return Interval(div_down(x.hi, y.lo), mpfr('inf'))
+            else:
+                return Interval.entire()
+        else:
+            return Interval.entire()
 
-  return Interval(lo, hi)
+    # --- CLEAN DIRECT REPLACEMENT FOR mul(x, reciprocal(y)) ---
+    if y.lo > 0:  # Denominator is strictly positive
+        # Lower bound logic
+        if x.lo == mpfr('-inf'):
+            lo = mpfr('-inf')
+        else:
+            lo = div_down(x.lo, y.hi if x.lo >= 0 else y.lo)
+        
+        # Upper bound logic
+        if x.hi == mpfr('inf'):
+            hi = mpfr('inf')
+        else:
+            hi = div_up(x.hi, y.lo if x.hi >= 0 else y.hi)
+        
+    else:  # Denominator is strictly negative (y.hi < 0)
+        # Lower bound logic
+        if x.hi == mpfr('inf'):
+            lo = mpfr('-inf')
+        else:
+            lo = div_down(x.hi, y.hi if x.hi >= 0 else y.lo)
+        
+        # Upper bound logic
+        if x.lo == mpfr('-inf'):
+            hi = mpfr('inf')
+        else:
+            hi = div_up(x.lo, y.lo if x.lo >= 0 else y.hi)
+
+    return Interval(lo, hi)
 
 def evaluate_fma_corner(x, y, z, round_up=False):
   # 1. Handle 0 * inf indeterminate form -> results in 0, so 0 + z = z
