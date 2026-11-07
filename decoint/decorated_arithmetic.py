@@ -52,6 +52,21 @@ def add(x: DecoratedInterval, y: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def sub(x: DecoratedInterval, y: DecoratedInterval) -> DecoratedInterval:
+  """
+  Perform decorated interval subtraction.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Minuend decorated interval.
+  y : DecoratedInterval
+      Subtrahend decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated interval difference.
+  """
   x = DecoratedInterval._coerce(x)
   y = DecoratedInterval._coerce(y)
 
