@@ -209,21 +209,40 @@ def div(x: Interval, y: Interval) -> Interval:
     return Interval(lo, hi)
 
 def evaluate_fma_corner(x, y, z, round_up=False):
-  # 1. Handle 0 * inf indeterminate form -> results in 0, so 0 + z = z
-  if (x == 0 and is_infinite(y)) or (is_infinite(x) and y == 0):
-    return z
+    """
+    Evaluate a corner combination for fused multiply-add (FMA) with directed rounding.
 
-  # 2. Handle true inf - inf indeterminate form
-  if is_infinite(x) or is_infinite(y):
-    if is_infinite(z):
-      prod_neg = (x < 0) != (y < 0)
-      z_neg = z < 0
-      # If the infinite product's sign opposes z's infinite sign, it's inf - inf
-      if prod_neg != z_neg:
-        return None  # Signal containment explosion
+    Parameters
+    ----------
+    x : mpfr or float/int
+        Endpoint value from the first interval factor.
+    y : mpfr or float/int
+        Endpoint value from the second interval factor.
+    z : mpfr or float/int
+        Endpoint value from the third interval operand.
+    round_up : bool, optional
+        If True, round up; otherwise, round down. Defaults to False.
 
-  # Safe to compute standard hardware rounded FMA
-  return fma_up(x, y, z) if round_up else fma_down(x, y, z)
+    Returns
+    -------
+    mpfr or None
+        The computed FMA endpoint, or None if an indeterminate form triggers containment explosion.
+    """
+    # 1. Handle 0 * inf indeterminate form -> results in 0, so 0 + z = z
+    if (x == 0 and is_infinite(y)) or (is_infinite(x) and y == 0):
+        return z
+
+    # 2. Handle true inf - inf indeterminate form
+    if is_infinite(x) or is_infinite(y):
+        if is_infinite(z):
+            prod_neg = (x < 0) != (y < 0)
+            z_neg = z < 0
+            # If the infinite product's sign opposes z's infinite sign, it's inf - inf
+            if prod_neg != z_neg:
+                return None  # Signal containment explosion
+
+    # Safe to compute standard hardware rounded FMA
+    return fma_up(x, y, z) if round_up else fma_down(x, y, z)
 
 
 def fma(x: Interval, y: Interval, z: Interval) -> Interval:
