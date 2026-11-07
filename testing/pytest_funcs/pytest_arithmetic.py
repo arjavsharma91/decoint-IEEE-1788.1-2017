@@ -18,7 +18,7 @@ from testing.test_cases.test_arithmetic_cases import (
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", add_test)
-def addition_testing(operand1: Interval, operand2: Interval, answer: Interval):
+def addition_testing(operand1: Interval, operand2: Interval, answer: Interval) -> bool:
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = Interval(answer)
@@ -30,7 +30,7 @@ def addition_testing(operand1: Interval, operand2: Interval, answer: Interval):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", sub_test)
-def subtraction_testing(operand1: Interval, operand2: Interval, answer: Interval):
+def subtraction_testing(operand1: Interval, operand2: Interval, answer: Interval) -> bool:
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = Interval(answer)
@@ -42,7 +42,7 @@ def subtraction_testing(operand1: Interval, operand2: Interval, answer: Interval
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", mul_test)
-def multiplication_testing(operand1: Interval, operand2: Interval, answer: Interval):
+def multiplication_testing(operand1: Interval, operand2: Interval, answer: Interval) -> bool:
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = Interval(answer)
@@ -54,7 +54,7 @@ def multiplication_testing(operand1: Interval, operand2: Interval, answer: Inter
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", div_test)
-def division_testing(operand1: Interval, operand2: Interval, answer: Interval):
+def division_testing(operand1: Interval, operand2: Interval, answer: Interval) -> bool:
     op1 = Interval(operand1)
     op2 = Interval(operand2)
     ans = Interval(answer)
@@ -66,7 +66,7 @@ def division_testing(operand1: Interval, operand2: Interval, answer: Interval):
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", add_dec_test)
-def addition_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval):
+def addition_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval) -> bool:
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
@@ -81,7 +81,7 @@ def addition_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterva
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", div_dec_test)
-def division_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval):
+def division_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval) -> bool:
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
@@ -96,7 +96,7 @@ def division_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterva
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", sub_dec_test)
-def subtraction_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval):
+def subtraction_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval) -> bool:
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
@@ -111,7 +111,7 @@ def subtraction_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInte
 
 
 @pytest.mark.parametrize("operand1, operand2, answer", mul_dec_test)
-def multiplication_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval):
+def multiplication_dec_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, answer: DecoratedInterval) -> bool:
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     ans = DecoratedInterval(answer)
@@ -126,7 +126,7 @@ def multiplication_dec_testing(operand1: DecoratedInterval, operand2: DecoratedI
 
 
 @pytest.mark.parametrize("operand1, answer", recip_dec_test)
-def recip_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
+def recip_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval) -> bool:
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = reciprocal(op1)
@@ -140,7 +140,7 @@ def recip_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
 
 
 @pytest.mark.parametrize("operand1, answer", recip_test)
-def recip_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
+def recip_testing(operand1: DecoratedInterval, answer: DecoratedInterval) -> bool:
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = reciprocal(op1)
@@ -151,7 +151,7 @@ def recip_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
 
 
 @pytest.mark.parametrize("operand1, answer", neg_dec_test)
-def neg_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
+def neg_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval) -> bool:
     op1 = DecoratedInterval(operand1)
     ans = DecoratedInterval(answer)
     actual = -op1
@@ -165,7 +165,7 @@ def neg_dec_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
 
 
 @pytest.mark.parametrize("operand1, answer", neg_test)
-def neg_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
+def neg_testing(operand1: DecoratedInterval, answer: DecoratedInterval) -> bool:
     op1 = Interval(operand1)
     ans = Interval(answer)
     actual = -op1
@@ -176,7 +176,7 @@ def neg_testing(operand1: DecoratedInterval, answer: DecoratedInterval):
 
 
 @pytest.mark.parametrize("operand1, operand2, operand3, answer", fma_test)
-def fma_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, operand3: DecoratedInterval, answer: DecoratedInterval):
+def fma_testing(operand1: DecoratedInterval, operand2: DecoratedInterval, operand3: DecoratedInterval, answer: DecoratedInterval) -> bool:
     op1 = DecoratedInterval(operand1)
     op2 = DecoratedInterval(operand2)
     op3 = DecoratedInterval(operand3)
