@@ -108,6 +108,19 @@ def mul(x: DecoratedInterval, y: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def reciprocal(x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the reciprocal of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting reciprocal decorated interval.
+  """
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
