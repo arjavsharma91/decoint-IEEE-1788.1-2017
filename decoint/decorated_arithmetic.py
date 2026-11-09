@@ -135,6 +135,21 @@ def reciprocal(x: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def div(x: DecoratedInterval, y: DecoratedInterval) -> DecoratedInterval:
+  """
+  Perform decorated interval division.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Numerator decorated interval.
+  y : DecoratedInterval
+      Denominator decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated interval quotient.
+  """
   x = DecoratedInterval._coerce(x)
   y = DecoratedInterval._coerce(y)
 
