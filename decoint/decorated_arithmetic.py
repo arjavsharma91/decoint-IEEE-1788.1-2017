@@ -171,6 +171,23 @@ def div(x: DecoratedInterval, y: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def fma(x: DecoratedInterval, y: DecoratedInterval, z: DecoratedInterval) -> DecoratedInterval:
+  """
+  Perform decorated interval fused multiply-add (FMA): (x * y) + z.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      First decorated interval factor.
+  y : DecoratedInterval
+      Second decorated interval factor.
+  z : DecoratedInterval
+      Third decorated interval addend.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated interval enclosure for the FMA operation.
+  """
   x = DecoratedInterval._coerce(x)
   y = DecoratedInterval._coerce(y)
   z = DecoratedInterval._coerce(z)
