@@ -49,11 +49,23 @@ def sqrt(x: Interval) -> Interval:
   return Interval(sqrt_down(lo), sqrt_up(x.hi))
 
 def exp(x: Interval) -> Interval:
+  """
+  Compute the exponential of an interval.
+
+  Parameters
+  ----------
+  x : Interval
+      Input interval.
+
+  Returns
+  -------
+  Interval
+      The resulting exponential interval, with outward rounding.
+  """
   x = Interval._coerce(x)
   if x.is_empty:
     return Interval.empty()
   return Interval(exp_down(x.lo), exp_up(x.hi))
-
 def log(x: Interval) -> Interval:
   x = Interval._coerce(x)
   if x.is_empty:
