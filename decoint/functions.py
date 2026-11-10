@@ -66,7 +66,21 @@ def exp(x: Interval) -> Interval:
   if x.is_empty:
     return Interval.empty()
   return Interval(exp_down(x.lo), exp_up(x.hi))
+
 def log(x: Interval) -> Interval:
+  """
+  Compute the natural logarithm of an interval.
+
+  Parameters
+  ----------
+  x : Interval
+      Input interval.
+
+  Returns
+  -------
+  Interval
+      The resulting natural logarithm interval, with outward rounding.
+  """
   x = Interval._coerce(x)
   if x.is_empty:
     return Interval.empty()
