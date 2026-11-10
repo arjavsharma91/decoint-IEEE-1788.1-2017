@@ -27,6 +27,19 @@ MHALF_PI_DN = -HALF_PI_UP
 MHALF_PI_UP = -HALF_PI_DN
 
 def sqrt(x: Interval) -> Interval:
+  """
+  Compute the square root of an interval.
+
+  Parameters
+  ----------
+  x : Interval
+      Input interval.
+
+  Returns
+  -------
+  Interval
+      The resulting interval square root, with outward rounding.
+  """
   x = Interval._coerce(x)
   if x.is_empty:
     return Interval.empty()
