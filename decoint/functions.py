@@ -208,6 +208,21 @@ def interval_min(x: Interval, y: Interval) -> Interval:
   return Interval(min(x.lo, y.lo), min(x.hi, y.hi))
 
 def interval_max(x: Interval, y: Interval) -> Interval:
+  """
+  Compute the upper envelope (maximum) of two intervals.
+
+  Parameters
+  ----------
+  x : Interval
+      First interval.
+  y : Interval
+      Second interval.
+
+  Returns
+  -------
+  Interval
+      The resulting maximum interval.
+  """
   x = Interval._coerce(x)
   y = Interval._coerce(y)
   
