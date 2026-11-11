@@ -186,6 +186,21 @@ def sign(x: Interval) -> Interval:
   return Interval(Number(-1), Number(1))
 
 def interval_min(x: Interval, y: Interval) -> Interval:
+  """
+  Compute the lower envelope (minimum) of two intervals.
+
+  Parameters
+  ----------
+  x : Interval
+      First interval.
+  y : Interval
+      Second interval.
+
+  Returns
+  -------
+  Interval
+      The resulting minimum interval.
+  """
   x = Interval._coerce(x)
   y = Interval._coerce(y)
   if x.is_empty or y.is_empty:
