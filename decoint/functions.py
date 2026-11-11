@@ -95,6 +95,21 @@ def log(x: Interval) -> Interval:
 
 
 def pow_int(x: Interval, n) -> Interval:
+  """
+  Compute an interval raised to an integer power.
+
+  Parameters
+  ----------
+  x : Interval
+      Base interval.
+  n : int
+      Integer exponent.
+
+  Returns
+  -------
+  Interval
+      The resulting power interval, with outward rounding.
+  """
   x = Interval._coerce(x)
   if x.is_empty:
     return Interval.empty()
