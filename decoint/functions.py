@@ -157,6 +157,19 @@ def pow_int(x: Interval, n) -> Interval:
     return Interval(lo, hi)
 
 def sign(x: Interval) -> Interval:
+  """
+  Compute the sign of an interval.
+
+  Parameters
+  ----------
+  x : Interval
+      Input interval.
+
+  Returns
+  -------
+  Interval
+      The sign interval representing the range of signs contained in x.
+  """
   x = Interval._coerce(x)
   if x.is_empty:
     return Interval.empty()
