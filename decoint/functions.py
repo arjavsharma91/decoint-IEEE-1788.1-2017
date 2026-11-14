@@ -524,21 +524,46 @@ def cosh(x: Interval) -> Interval:
     return Interval(mpfr(1), max(cosh_up(x.lo), cosh_up(x.hi)))
 
 def asinh(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-  return Interval(asinh_down(x.lo), asinh_up(x.hi))
+    """
+    Compute the inverse hyperbolic sine of an interval.
+
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting inverse hyperbolic sine interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+    return Interval(asinh_down(x.lo), asinh_up(x.hi))
 
 def acosh(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-  if x.hi < 1:
-    return Interval.empty()
-        
+    """
+    Compute the inverse hyperbolic cosine of an interval.
 
-  lo = max(x.lo, mpfr(1))
-  return Interval(acosh_down(lo), acosh_up(x.hi))
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting inverse hyperbolic cosine interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+    if x.hi < 1:
+        return Interval.empty()
+        
+    lo = max(x.lo, mpfr(1))
+    return Interval(acosh_down(lo), acosh_up(x.hi))
 
 def atanh(x: Interval) -> Interval:
   x = Interval._coerce(x)
