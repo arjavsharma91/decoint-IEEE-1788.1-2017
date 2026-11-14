@@ -618,14 +618,44 @@ def abs(x: Interval) -> Interval:
     return Interval(Number(0), hi)
 
 def safe_atan2_dn(y, x):
-  y_val = ZERO if is_zero(y) else y
-  x_val = ZERO if is_zero(x) else x
-  return atan2_down(y_val, x_val)
+    """
+    Compute directed downward rounding for atan2 with zero normalization.
+
+    Parameters
+    ----------
+    y : mpfr or float/int
+        Y coordinate value.
+    x : mpfr or float/int
+        X coordinate value.
+
+    Returns
+    -------
+    mpfr
+        The rounded downward atan2 value.
+    """
+    y_val = ZERO if is_zero(y) else y
+    x_val = ZERO if is_zero(x) else x
+    return atan2_down(y_val, x_val)
 
 def safe_atan2_up(y, x):
-  y_val = ZERO if is_zero(y) else y
-  x_val = ZERO if is_zero(x) else x
-  return atan2_up(y_val, x_val)
+    """
+    Compute directed upward rounding for atan2 with zero normalization.
+
+    Parameters
+    ----------
+    y : mpfr or float/int
+        Y coordinate value.
+    x : mpfr or float/int
+        X coordinate value.
+
+    Returns
+    -------
+    mpfr
+        The rounded upward atan2 value.
+    """
+    y_val = ZERO if is_zero(y) else y
+    x_val = ZERO if is_zero(x) else x
+    return atan2_up(y_val, x_val)
 
 def atan2(y: Interval, x: Interval) -> Interval:
   y = Interval._coerce(y)
