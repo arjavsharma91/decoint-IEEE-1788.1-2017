@@ -368,16 +368,29 @@ def cos(x: Interval) -> Interval:
     return Interval(lo, hi)
   
 def tan(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-  if x.width >= PI:
-    return Interval.entire()
-  if contains_periodic_point(x, HALF_PI, PI):
-    return Interval.entire()
-  lo = tan_down(x.lo)
-  hi = tan_up(x.hi)
-  return Interval(lo, hi)
+    """
+    Compute the tangent of an interval.
+
+    Parameters
+    ----------
+    x : Interval
+        Input interval in radians.
+
+    Returns
+    -------
+    Interval
+        The resulting tangent interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+    if x.width >= PI:
+        return Interval.entire()
+    if contains_periodic_point(x, HALF_PI, PI):
+        return Interval.entire()
+    lo = tan_down(x.lo)
+    hi = tan_up(x.hi)
+    return Interval(lo, hi)
 
 def asin(x: Interval) -> Interval:
   x = Interval._coerce(x)
