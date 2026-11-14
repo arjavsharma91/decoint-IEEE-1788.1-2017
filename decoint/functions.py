@@ -566,30 +566,56 @@ def acosh(x: Interval) -> Interval:
     return Interval(acosh_down(lo), acosh_up(x.hi))
 
 def atanh(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-    
-  x = x.intersection(Interval(-1, 1))
-  if x.is_empty:
-    return Interval.empty()
+    """
+    Compute the inverse hyperbolic tangent of an interval.
+
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting inverse hyperbolic tangent interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
         
-  lo = mpfr('-inf') if x.lo <= -1 else atanh_down(x.lo)
-  hi = mpfr('inf') if x.hi >= 1 else atanh_up(x.hi)
-    
-  return Interval(lo, hi)
+    x = x.intersection(Interval(-1, 1))
+    if x.is_empty:
+        return Interval.empty()
+        
+    lo = mpfr('-inf') if x.lo <= -1 else atanh_down(x.lo)
+    hi = mpfr('inf') if x.hi >= 1 else atanh_up(x.hi)
+        
+    return Interval(lo, hi)
 
 def abs(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-  if x.lo >= 0:
-    return Interval(x.lo, x.hi)
-  elif x.hi <= 0:
-    return Interval(-x.hi, -x.lo)
+    """
+    Compute the absolute value of an interval.
 
-  hi = max(-x.lo, x.hi)
-  return Interval(Number(0), hi)
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting absolute value interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+    if x.lo >= 0:
+        return Interval(x.lo, x.hi)
+    elif x.hi <= 0:
+        return Interval(-x.hi, -x.lo)
+
+    hi = max(-x.lo, x.hi)
+    return Interval(Number(0), hi)
 
 def safe_atan2_dn(y, x):
   y_val = ZERO if is_zero(y) else y
