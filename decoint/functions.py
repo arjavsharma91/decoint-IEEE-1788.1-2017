@@ -265,22 +265,41 @@ def nth_root(x: Interval, n: int) -> Interval:
     return Interval(root_down(lo, n_int), root_up(x.hi, n_int))
 
 def contains_periodic_point(x, offset, period, prec = 128):
-  with context(get_context(), precision = prec):
-    off_val = offset() if callable(offset) else offset
-    per_val = period() if callable(offset) else period
+    """
+    Check if an interval contains a periodic point given an offset and period.
 
-    lo_mpfr = mpfr(str(x.lo))
-    hi_mpfr = mpfr(str(x.hi))
-    off_mpfr = mpfr(str(off_val))
-    per_mpfr = mpfr(str(per_val))
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+    offset : float or callable
+        Periodic offset.
+    period : float or callable
+        Period length.
+    prec : int, optional
+        Working precision in bits. Defaults to 128.
 
-    if hi_mpfr - lo_mpfr >= per_mpfr:
-      return True
+    Returns
+    -------
+    bool
+        True if a periodic point is contained within the interval bounds, False otherwise.
+    """
+    with context(get_context(), precision = prec):
+        off_val = offset() if callable(offset) else offset
+        per_val = period() if callable(offset) else period
 
-    k_lo = (lo_mpfr - off_mpfr) / per_mpfr
-    k_hi = (hi_mpfr - off_mpfr) / per_mpfr
+        lo_mpfr = mpfr(str(x.lo))
+        hi_mpfr = mpfr(str(x.hi))
+        off_mpfr = mpfr(str(off_val))
+        per_mpfr = mpfr(str(per_val))
 
-    return ceil(k_lo) <= floor(k_hi)
+        if hi_mpfr - lo_mpfr >= per_mpfr:
+            return True
+
+        k_lo = (lo_mpfr - off_mpfr) / per_mpfr
+        k_hi = (hi_mpfr - off_mpfr) / per_mpfr
+
+        return ceil(k_lo) <= floor(k_hi)
 
 def sin(x: Interval) -> Interval:
   x = Interval._coerce(x)
