@@ -438,21 +438,47 @@ def acos(x: Interval) -> Interval:
     return Interval(acos_down(x.hi), acos_up(x.lo))
 
 def atan(x: Interval) -> Interval:
-  x = Interval._coerce(x)
+    """
+    Compute the inverse tangent (arctangent) of an interval.
 
-  if x.is_empty:
-    return Interval.empty()
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
 
-  return Interval(
-    atan_down(x.lo),
-    atan_up(x.hi)
+    Returns
+    -------
+    Interval
+        The resulting arctangent interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+
+    if x.is_empty:
+        return Interval.empty()
+
+    return Interval(
+        atan_down(x.lo),
+        atan_up(x.hi)
     )
 
 def sinh(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-  return Interval(sinh_down(x.lo), sinh_up(x.hi))
+    """
+    Compute the hyperbolic sine of an interval.
+
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting hyperbolic sine interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+    return Interval(sinh_down(x.lo), sinh_up(x.hi))
 
 def tanh(x: Interval) -> Interval:
   x = Interval._coerce(x)
