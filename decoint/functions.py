@@ -393,23 +393,49 @@ def tan(x: Interval) -> Interval:
     return Interval(lo, hi)
 
 def asin(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-  x = x.intersection(Interval(-1, 1))
+    """
+    Compute the inverse sine (arcsine) of an interval.
 
-  if x.is_empty:
-    return Interval.empty()
-  return Interval(asin_down(x.lo), asin_up(x.hi))
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting arcsine interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+    x = x.intersection(Interval(-1, 1))
+
+    if x.is_empty:
+        return Interval.empty()
+    return Interval(asin_down(x.lo), asin_up(x.hi))
 
 def acos(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-  x = x.intersection(Interval(-1, 1))
-  if x.is_empty:
-    return Interval.empty()
-  return Interval(acos_down(x.hi), acos_up(x.lo))
+    """
+    Compute the inverse cosine (arccosine) of an interval.
+
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting arccosine interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+    x = x.intersection(Interval(-1, 1))
+    if x.is_empty:
+        return Interval.empty()
+    return Interval(acos_down(x.hi), acos_up(x.lo))
 
 def atan(x: Interval) -> Interval:
   x = Interval._coerce(x)
