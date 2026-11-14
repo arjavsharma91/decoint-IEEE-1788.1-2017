@@ -481,21 +481,47 @@ def sinh(x: Interval) -> Interval:
     return Interval(sinh_down(x.lo), sinh_up(x.hi))
 
 def tanh(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-  return Interval(tanh_down(x.lo), tanh_up(x.hi))
+    """
+    Compute the hyperbolic tangent of an interval.
+
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting hyperbolic tangent interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+    return Interval(tanh_down(x.lo), tanh_up(x.hi))
 
 def cosh(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
+    """
+    Compute the hyperbolic cosine of an interval.
 
-  if x.lo >= 0:
-    return Interval(cosh_down(x.lo), cosh_up(x.hi))
-  if x.hi <= 0:
-    return Interval(cosh_down(x.hi), cosh_up(x.lo))
-  return Interval(mpfr(1), max(cosh_up(x.lo), cosh_up(x.hi)))
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting hyperbolic cosine interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+
+    if x.lo >= 0:
+        return Interval(cosh_down(x.lo), cosh_up(x.hi))
+    if x.hi <= 0:
+        return Interval(cosh_down(x.hi), cosh_up(x.lo))
+    return Interval(mpfr(1), max(cosh_up(x.lo), cosh_up(x.hi)))
 
 def asinh(x: Interval) -> Interval:
   x = Interval._coerce(x)
