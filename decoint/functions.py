@@ -302,44 +302,70 @@ def contains_periodic_point(x, offset, period, prec = 128):
         return ceil(k_lo) <= floor(k_hi)
 
 def sin(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-  if x.width >= TWO_PI:
-    return Interval(mpfr(-1), mpfr(1))
-  s1 = sin_down(x.lo)
-  s2 = sin_down(x.hi)
-  t1 = sin_up(x.lo)
-  t2 = sin_up(x.hi)
-  lo = min(s1, s2)
-  hi = max(t1, t2)
+    """
+    Compute the sine of an interval.
 
-  if contains_periodic_point(x, HALF_PI, TWO_PI):
-    hi = mpfr(1)
-  if contains_periodic_point(x, -HALF_PI, TWO_PI):
-    lo = mpfr(-1)
-  return Interval(lo, hi)
+    Parameters
+    ----------
+    x : Interval
+        Input interval in radians.
+
+    Returns
+    -------
+    Interval
+        The resulting sine interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+    if x.width >= TWO_PI:
+        return Interval(mpfr(-1), mpfr(1))
+    s1 = sin_down(x.lo)
+    s2 = sin_down(x.hi)
+    t1 = sin_up(x.lo)
+    t2 = sin_up(x.hi)
+    lo = min(s1, s2)
+    hi = max(t1, t2)
+
+    if contains_periodic_point(x, HALF_PI, TWO_PI):
+        hi = mpfr(1)
+    if contains_periodic_point(x, -HALF_PI, TWO_PI):
+        lo = mpfr(-1)
+    return Interval(lo, hi)
 
 def cos(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-  if x.width >= TWO_PI:
-    return Interval(mpfr(-1), mpfr(1))
+    """
+    Compute the cosine of an interval.
+
+    Parameters
+    ----------
+    x : Interval
+        Input interval in radians.
+
+    Returns
+    -------
+    Interval
+        The resulting cosine interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+    if x.width >= TWO_PI:
+        return Interval(mpfr(-1), mpfr(1))
         
-  c1 = cos_down(x.lo)
-  c2 = cos_down(x.hi)
-  d1 = cos_up(x.lo)
-  d2 = cos_up(x.hi)
-  lo = min(c1, c2)
-  hi = max(d1, d2)
+    c1 = cos_down(x.lo)
+    c2 = cos_down(x.hi)
+    d1 = cos_up(x.lo)
+    d2 = cos_up(x.hi)
+    lo = min(c1, c2)
+    hi = max(d1, d2)
 
     # Cosine peaks at 0 (mod 2pi), troughs at pi (mod 2pi)
-  if contains_periodic_point(x, mpfr(0), TWO_PI):
-    hi = mpfr(1)
-  if contains_periodic_point(x, PI, TWO_PI):
-    lo = mpfr(-1)
-  return Interval(lo, hi)
+    if contains_periodic_point(x, mpfr(0), TWO_PI):
+        hi = mpfr(1)
+    if contains_periodic_point(x, PI, TWO_PI):
+        lo = mpfr(-1)
+    return Interval(lo, hi)
   
 def tan(x: Interval) -> Interval:
   x = Interval._coerce(x)
