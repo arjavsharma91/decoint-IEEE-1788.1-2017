@@ -231,23 +231,38 @@ def interval_max(x: Interval, y: Interval) -> Interval:
   return Interval(max(x.lo, y.lo), max(x.hi, y.hi))
   
 def nth_root(x: Interval, n: int) -> Interval:
-  x = Interval._coerce(x)
-  try:
-    n_int = int(n)
-    if n_int != n:
-      return Interval(mpfr('nan'), mpfr('nan'))
-  except Exception:
-    return Interval(mpfr('nan'), mpfr('nan'))
-  if n_int <= 0:
-    return Interval(mpfr('nan'), mpfr('nan'))
-  if x.is_empty:
-    return Interval.empty()
-  if n_int % 2 == 1:
-    return Interval(root_down(x.lo, n), root_up(x.hi, n))
-  if x.hi < 0:
-    return Interval.empty()
-  lo = max(x.lo, mpfr(0))
-  return Interval(root_down(lo, n_int), root_up(x.hi, n_int))
+    """
+    Compute the n-th root of an interval.
+
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+    n : int
+        Root degree (must be a positive integer).
+
+    Returns
+    -------
+    Interval
+        The resulting n-th root interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    try:
+        n_int = int(n)
+        if n_int != n:
+            return Interval(mpfr('nan'), mpfr('nan'))
+    except Exception:
+        return Interval(mpfr('nan'), mpfr('nan'))
+    if n_int <= 0:
+        return Interval(mpfr('nan'), mpfr('nan'))
+    if x.is_empty:
+        return Interval.empty()
+    if n_int % 2 == 1:
+        return Interval(root_down(x.lo, n), root_up(x.hi, n))
+    if x.hi < 0:
+        return Interval.empty()
+    lo = max(x.lo, mpfr(0))
+    return Interval(root_down(lo, n_int), root_up(x.hi, n_int))
 
 def contains_periodic_point(x, offset, period, prec = 128):
   with context(get_context(), precision = prec):
