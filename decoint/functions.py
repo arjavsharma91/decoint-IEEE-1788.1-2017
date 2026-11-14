@@ -658,97 +658,112 @@ def safe_atan2_up(y, x):
     return atan2_up(y_val, x_val)
 
 def atan2(y: Interval, x: Interval) -> Interval:
-  y = Interval._coerce(y)
-  x = Interval._coerce(x)
+    """
+    Compute the 2-argument arctangent of interval y and interval x.
 
-  # 1. Empty set handling
-  if y.is_empty or x.is_empty:
-    return Interval.empty()
+    Parameters
+    ----------
+    y : Interval
+        Y-coordinate interval.
+    x : Interval
+        X-coordinate interval.
 
-  # 2. Undefined origin point (0, 0) handling
-  if y.lo == ZERO and y.hi == ZERO and x.lo == ZERO and x.hi == ZERO:
-    return Interval.empty()
+    Returns
+    -------
+    Interval
+        The resulting atan2 interval enclosure, with outward rounding.
+    """
+    y = Interval._coerce(y)
+    x = Interval._coerce(x)
 
-  y1, y2 = y.lo, y.hi
-  x1, x2 = x.lo, x.hi
+    # 1. Empty set handling
+    if y.is_empty or x.is_empty:
+        return Interval.empty()
 
-  # Case 1: X is strictly positive (x1 > 0)
-  if x1 > ZERO:
-    if y1 >= ZERO:
-      lo = safe_atan2_dn(y1, x2)
-      hi = safe_atan2_up(y2, x1)
-    elif y2 <= ZERO:
-      lo = safe_atan2_dn(y1, x1)
-      hi = safe_atan2_up(y2, x2)
-    else:
-      lo = safe_atan2_dn(y1, x1)
-      hi = safe_atan2_up(y2, x1)
+    # 2. Undefined origin point (0, 0) handling
+    if y.lo == ZERO and y.hi == ZERO and x.lo == ZERO and x.hi == ZERO:
+        return Interval.empty()
 
-  # Case 2: X is strictly negative (x2 < 0)
-  elif x2 < ZERO:
-    if y1 > ZERO:
-      lo = safe_atan2_dn(y2, x2)
-      hi = safe_atan2_up(y1, x1)
-    elif y2 < ZERO:
-      lo = safe_atan2_dn(y2, x1)
-      hi = safe_atan2_up(y1, x2)
-    elif y1 == ZERO and y2 == ZERO:
-      lo, hi = PI_DN, PI_UP
-    elif y1 == ZERO and y2 > ZERO:
-      lo = safe_atan2_dn(y2, x2)
-      hi = PI_UP
-    else:  # y1 < ZERO and y2 >= ZERO
-      lo, hi = MPI_DN, PI_UP
+    y1, y2 = y.lo, y.hi
+    x1, x2 = x.lo, x.hi
 
-  # Case 3: X contains zero (x1 <= 0 <= x2)
-  else:
-    # Subcase 3.0: X is degenerate [0, 0]
-    if x1 == ZERO and x2 == ZERO:
-      if y1 >= ZERO:
-        lo, hi = HALF_PI_DN, HALF_PI_UP
-      elif y2 <= ZERO:
-        lo, hi = MHALF_PI_DN, MHALF_PI_UP
-      else:  # y1 < ZERO and y2 > ZERO
-        lo, hi = MHALF_PI_DN, HALF_PI_UP
+    # Case 1: X is strictly positive (x1 > 0)
+    if x1 > ZERO:
+        if y1 >= ZERO:
+            lo = safe_atan2_dn(y1, x2)
+            hi = safe_atan2_up(y2, x1)
+        elif y2 <= ZERO:
+            lo = safe_atan2_dn(y1, x1)
+            hi = safe_atan2_up(y2, x2)
+        else:
+            lo = safe_atan2_dn(y1, x1)
+            hi = safe_atan2_up(y2, x1)
 
-    # Subcase 3.1: Y is strictly positive
-    elif y1 > ZERO:
-      lo = safe_atan2_dn(y1, x2)
-      hi = safe_atan2_up(y1, x1)
-
-    # Subcase 3.2: Y is strictly negative
-    elif y2 < ZERO:
-      lo = safe_atan2_dn(y2, x1)
-      hi = safe_atan2_up(y2, x2)
-
-    # Subcase 3.3: Y contains zero (y1 <= 0 <= y2) and X is non-degenerate
-    else:
-      if x1 < ZERO:
-        if y1 < ZERO and y2 > ZERO:
-          lo, hi = MPI_DN, PI_UP
+    # Case 2: X is strictly negative (x2 < 0)
+    elif x2 < ZERO:
+        if y1 > ZERO:
+            lo = safe_atan2_dn(y2, x2)
+            hi = safe_atan2_up(y1, x1)
+        elif y2 < ZERO:
+            lo = safe_atan2_dn(y2, x1)
+            hi = safe_atan2_up(y1, x2)
         elif y1 == ZERO and y2 == ZERO:
-          if x2 > ZERO:
-            lo, hi = ZERO, PI_UP
-          else:  # x2 == ZERO
             lo, hi = PI_DN, PI_UP
         elif y1 == ZERO and y2 > ZERO:
-          if x2 > ZERO:
-            lo, hi = ZERO, PI_UP
-          else:  # x2 == ZERO
-            lo, hi = HALF_PI_DN, PI_UP
-        else:  # y1 < ZERO and y2 == ZERO
-          lo, hi = MPI_DN, PI_UP
-      else:  # x1 == ZERO and x2 > ZERO
-        if y1 < ZERO and y2 > ZERO:
-          lo, hi = MHALF_PI_DN, HALF_PI_UP
-        elif y1 == ZERO and y2 == ZERO:
-          lo, hi = ZERO, ZERO
-        elif y1 == ZERO and y2 > ZERO:
-          lo, hi = ZERO, HALF_PI_UP
-        else:  # y1 < ZERO and y2 == ZERO
-          lo, hi = MHALF_PI_DN, ZERO
+            lo = safe_atan2_dn(y2, x2)
+            hi = PI_UP
+        else:  # y1 < ZERO and y2 >= ZERO
+            lo, hi = MPI_DN, PI_UP
 
-  return Interval(lo, hi)
+    # Case 3: X contains zero (x1 <= 0 <= x2)
+    else:
+        # Subcase 3.0: X is degenerate [0, 0]
+        if x1 == ZERO and x2 == ZERO:
+            if y1 >= ZERO:
+                lo, hi = HALF_PI_DN, HALF_PI_UP
+            elif y2 <= ZERO:
+                lo, hi = MHALF_PI_DN, MHALF_PI_UP
+            else:  # y1 < ZERO and y2 > ZERO
+                lo, hi = MHALF_PI_DN, HALF_PI_UP
+
+        # Subcase 3.1: Y is strictly positive
+        elif y1 > ZERO:
+            lo = safe_atan2_dn(y1, x2)
+            hi = safe_atan2_up(y1, x1)
+
+        # Subcase 3.2: Y is strictly negative
+        elif y2 < ZERO:
+            lo = safe_atan2_dn(y2, x1)
+            hi = safe_atan2_up(y2, x2)
+
+        # Subcase 3.3: Y contains zero (y1 <= 0 <= y2) and X is non-degenerate
+        else:
+            if x1 < ZERO:
+                if y1 < ZERO and y2 > ZERO:
+                    lo, hi = MPI_DN, PI_UP
+                elif y1 == ZERO and y2 == ZERO:
+                    if x2 > ZERO:
+                        lo, hi = ZERO, PI_UP
+                    else:  # x2 == ZERO
+                        lo, hi = PI_DN, PI_UP
+                elif y1 == ZERO and y2 > ZERO:
+                    if x2 > ZERO:
+                        lo, hi = ZERO, PI_UP
+                    else:  # x2 == ZERO
+                        lo, hi = HALF_PI_DN, PI_UP
+                else:  # y1 < ZERO and y2 == ZERO
+                    lo, hi = MPI_DN, PI_UP
+            else:  # x1 == ZERO and x2 > ZERO
+                if y1 < ZERO and y2 > ZERO:
+                    lo, hi = MHALF_PI_DN, HALF_PI_UP
+                elif y1 == ZERO and y2 == ZERO:
+                    lo, hi = ZERO, ZERO
+                elif y1 == ZERO and y2 > ZERO:
+                    lo, hi = ZERO, HALF_PI_UP
+                else:  # y1 < ZERO and y2 == ZERO
+                    lo, hi = MHALF_PI_DN, ZERO
+
+    return Interval(lo, hi)
             
 
 
