@@ -51,7 +51,7 @@ The pipeline for interval computations flows through a three tier hierarchy:
 
 `decoint` provides immediate value to researchers by providing reliable guaranteed containment and the elimination of floating point rounding errors, as well as reliable error state tracking. With extensive ITF1788 edge case testing, it provides a reliable tool for verifying numerical stability across scientific computing and research.
 
-To show the viability of the library, `decoint` was used to analyze error growth in the Logistic Map [@sharma2026predictability]. By implementing Mean Value Forms, the library tracks loss of state certainty in chaotic regimes while demonstrating contraction down to machine precision ($\approx 10^{-16}$) in stable regimes.
+To show the viability of the library, `decoint` was used to analyze error growth in the Logistic Map [@sharma2026predictability]. By implementing Mean Value Forms, the library tracks loss of state certainty in chaotic regimes while demonstrating contraction down to machine precision ($\approx 10^{-16}$) in stable regimes. Within the broader numerical analysis community, `decoint` is currently indexed as an official interval software resource on the Interval Computations portal [Interval and Related Software](https://reliable-computing.org/intsoft.html) and has been featured in NA Digest [Numerical Analysis Digest](https://na-digest.coecis.cornell.edu/na-digest-html/26/v26n30.html)
 
 # AI Usage Disclosure
 
