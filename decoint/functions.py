@@ -796,6 +796,21 @@ def sqr(x: Interval) -> Interval:
     return Interval(mpfr(0), hi)
 
 def pow_interval(x: Interval, y: Interval) -> Interval:
+    """
+    Compute an interval raised to an interval power ($x^y$).
+
+    Parameters
+    ----------
+    x : Interval
+        Base interval.
+    y : Interval
+        Exponent interval.
+
+    Returns
+    -------
+    Interval
+        The resulting power interval enclosure, with outward rounding.
+    """
     x = Interval._coerce(x)
     y = Interval._coerce(y)
 
