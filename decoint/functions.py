@@ -877,20 +877,46 @@ def pow_interval(x: Interval, y: Interval) -> Interval:
     return Interval(min(v_down), max(v_up))
 
 def exp2(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  
-  if x.is_empty:
-    return Interval.empty()
+    """
+    Compute base-2 exponential of an interval ($2^x$).
 
-  return Interval(exp2_down(x.lo), exp2_up(x.hi))
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting base-2 exponential interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+  
+    if x.is_empty:
+        return Interval.empty()
+
+    return Interval(exp2_down(x.lo), exp2_up(x.hi))
 
 def exp10(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  
-  if x.is_empty:
-    return Interval.empty()
+    """
+    Compute base-10 exponential of an interval ($10^x$).
 
-  return Interval(exp10_down(x.lo), exp10_up(x.hi))
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting base-10 exponential interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+  
+    if x.is_empty:
+        return Interval.empty()
+
+    return Interval(exp10_down(x.lo), exp10_up(x.hi))
 
 def log2(x: Interval) -> Interval:
   x = Interval._coerce(x)
