@@ -768,19 +768,32 @@ def atan2(y: Interval, x: Interval) -> Interval:
 
 
 def sqr(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-  if x.lo >= 0:
-    lo = sqr_down(x.lo)
-    hi = sqr_up(x.hi)
-    return Interval(lo, hi)
-  elif x.hi <= 0:
-    lo = sqr_down(builtins.abs(x.hi))
-    hi = sqr_up(builtins.abs(x.lo))
-    return Interval(lo, hi)
-  hi = max(sqr_up(builtins.abs(x.hi)), sqr_up(builtins.abs(x.lo)))
-  return Interval(mpfr(0), hi)
+    """
+    Compute the square of an interval.
+
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting squared interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+    if x.lo >= 0:
+        lo = sqr_down(x.lo)
+        hi = sqr_up(x.hi)
+        return Interval(lo, hi)
+    elif x.hi <= 0:
+        lo = sqr_down(builtins.abs(x.hi))
+        hi = sqr_up(builtins.abs(x.lo))
+        return Interval(lo, hi)
+    hi = max(sqr_up(builtins.abs(x.hi)), sqr_up(builtins.abs(x.lo)))
+    return Interval(mpfr(0), hi)
 
 def pow_interval(x: Interval, y: Interval) -> Interval:
     x = Interval._coerce(x)
