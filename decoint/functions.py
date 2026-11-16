@@ -919,30 +919,56 @@ def exp10(x: Interval) -> Interval:
     return Interval(exp10_down(x.lo), exp10_up(x.hi))
 
 def log2(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-  if x.hi <= 0:
-    return Interval.empty()
-  if x.lo <= 0:
-    lo = mpfr('-inf')
-  else:
-    lo = log2_down(x.lo)
-  hi = log2_up(x.hi)
-  return Interval(lo, hi)
+    """
+    Compute base-2 logarithm of an interval ($\log_2 x$).
+
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting base-2 logarithm interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+    if x.hi <= 0:
+        return Interval.empty()
+    if x.lo <= 0:
+        lo = mpfr('-inf')
+    else:
+        lo = log2_down(x.lo)
+    hi = log2_up(x.hi)
+    return Interval(lo, hi)
 
 def log10(x: Interval) -> Interval:
-  x = Interval._coerce(x)
-  if x.is_empty:
-    return Interval.empty()
-  if x.hi <= 0:
-    return Interval.empty()
-  if x.lo <= 0:
-    lo = mpfr('-inf')
-  else:
-    lo = log10_down(x.lo)
-  hi = log10_up(x.hi)
-  return Interval(lo, hi)
+    """
+    Compute base-10 logarithm of an interval ($\log_{10} x$).
+
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting base-10 logarithm interval, with outward rounding.
+    """
+    x = Interval._coerce(x)
+    if x.is_empty:
+        return Interval.empty()
+    if x.hi <= 0:
+        return Interval.empty()
+    if x.lo <= 0:
+        lo = mpfr('-inf')
+    else:
+        lo = log10_down(x.lo)
+    hi = log10_up(x.hi)
+    return Interval(lo, hi)
 
 def interval_ceil(x: Interval) -> Interval:
   if x.is_empty:
