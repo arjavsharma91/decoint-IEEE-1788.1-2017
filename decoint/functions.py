@@ -1023,14 +1023,27 @@ def interval_floor(x: Interval) -> Interval:
     return Interval(lo, hi)
 
 def interval_trunc(x: Interval) -> Interval:
-  if x.is_empty:
-    return Interval.empty()
-  if x.lo == mpfr('-inf'):
-    lo = mpfr('-inf')
-  else:
-    lo = trunc(x.lo)
-  if x.hi == mpfr('inf'):
-    hi = mpfr('inf')
-  else:
-    hi = trunc(x.hi)
-  return Interval(lo, hi)
+    """
+    Compute the truncated integer value of an interval.
+
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting truncated interval.
+    """
+    if x.is_empty:
+        return Interval.empty()
+    if x.lo == mpfr('-inf'):
+        lo = mpfr('-inf')
+    else:
+        lo = trunc(x.lo)
+    if x.hi == mpfr('inf'):
+        hi = mpfr('inf')
+    else:
+        hi = trunc(x.hi)
+    return Interval(lo, hi)
