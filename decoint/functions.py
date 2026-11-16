@@ -971,30 +971,56 @@ def log10(x: Interval) -> Interval:
     return Interval(lo, hi)
 
 def interval_ceil(x: Interval) -> Interval:
-  if x.is_empty:
-    return Interval.empty()
-  if x.lo == mpfr('-inf'):
-    lo = mpfr('-inf')
-  else:
-    lo = ceil(x.lo)
-  if x.hi == mpfr('inf'):
-    hi = mpfr('inf')
-  else:
-    hi = ceil(x.hi)
-  return Interval(lo, hi)
+    """
+    Compute the ceiling of an interval.
+
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting ceiling interval.
+    """
+    if x.is_empty:
+        return Interval.empty()
+    if x.lo == mpfr('-inf'):
+        lo = mpfr('-inf')
+    else:
+        lo = ceil(x.lo)
+    if x.hi == mpfr('inf'):
+        hi = mpfr('inf')
+    else:
+        hi = ceil(x.hi)
+    return Interval(lo, hi)
 
 def interval_floor(x: Interval) -> Interval:
-  if x.is_empty:
-    return Interval.empty()
-  if x.lo == mpfr('-inf'):
-    lo = mpfr('-inf')
-  else:
-    lo = floor(x.lo)
-  if x.hi == mpfr('inf'):
-    hi = mpfr('inf')
-  else:
-    hi = floor(x.hi)
-  return Interval(lo, hi)
+    """
+    Compute the floor of an interval.
+
+    Parameters
+    ----------
+    x : Interval
+        Input interval.
+
+    Returns
+    -------
+    Interval
+        The resulting floor interval.
+    """
+    if x.is_empty:
+        return Interval.empty()
+    if x.lo == mpfr('-inf'):
+        lo = mpfr('-inf')
+    else:
+        lo = floor(x.lo)
+    if x.hi == mpfr('inf'):
+        hi = mpfr('inf')
+    else:
+        hi = floor(x.hi)
+    return Interval(lo, hi)
 
 def interval_trunc(x: Interval) -> Interval:
   if x.is_empty:
