@@ -6,6 +6,19 @@ from .interval import Interval
 from gmpy2 import mpfr, is_integer, is_infinite, floor, ceil, trunc
 
 def exp(x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the exponential of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated exponential interval.
+  """
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
