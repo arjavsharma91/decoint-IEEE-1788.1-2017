@@ -128,6 +128,19 @@ def pow_int(x: DecoratedInterval, n: int) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def sign(x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the sign of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated sign interval.
+  """
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
