@@ -30,6 +30,19 @@ def exp(x: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def sqrt(x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the square root of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated square root interval.
+  """
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
