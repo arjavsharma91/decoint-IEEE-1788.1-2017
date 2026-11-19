@@ -90,6 +90,21 @@ def log(x: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def pow_int(x: DecoratedInterval, n: int) -> DecoratedInterval:
+  """
+  Compute an integer power of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Base decorated interval.
+  n : int
+      Integer exponent.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated power interval.
+  """
   x = DecoratedInterval._coerce(x)
   try:
     n_int = int(n)
