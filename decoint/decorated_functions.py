@@ -217,6 +217,21 @@ def interval_max(x: DecoratedInterval, y: DecoratedInterval) -> DecoratedInterva
   return DecoratedInterval(interval, dec)
 
 def nth_root(x: DecoratedInterval, n: int) -> DecoratedInterval:
+  """
+  Compute the n-th root of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+  n : int
+      Root degree.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated n-th root interval.
+  """
   x = DecoratedInterval._coerce(x)
   try:
     n_int = int(n)
