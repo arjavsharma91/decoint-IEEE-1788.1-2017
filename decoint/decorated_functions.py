@@ -187,6 +187,21 @@ def interval_min(x: DecoratedInterval, y: DecoratedInterval) -> DecoratedInterva
   return DecoratedInterval(interval, dec)
 
 def interval_max(x: DecoratedInterval, y: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the maximum of two decorated intervals.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      First decorated interval.
+  y : DecoratedInterval
+      Second decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated maximum interval.
+  """
   x = DecoratedInterval._coerce(x)
   y = DecoratedInterval._coerce(y)
 
