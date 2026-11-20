@@ -157,6 +157,21 @@ def sign(x: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def interval_min(x: DecoratedInterval, y: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the minimum of two decorated intervals.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      First decorated interval.
+  y : DecoratedInterval
+      Second decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated minimum interval.
+  """
   x = DecoratedInterval._coerce(x)
   y = DecoratedInterval._coerce(y)
 
