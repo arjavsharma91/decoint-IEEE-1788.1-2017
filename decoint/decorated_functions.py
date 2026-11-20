@@ -261,6 +261,19 @@ def nth_root(x: DecoratedInterval, n: int) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def sin(x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the sine of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated sine interval.
+  """
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
@@ -276,6 +289,19 @@ def sin(x: DecoratedInterval) -> DecoratedInterval:
 
 
 def cos(x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the cosine of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated cosine interval.
+  """
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
