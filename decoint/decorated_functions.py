@@ -552,6 +552,19 @@ def asinh(x: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def acosh(x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the inverse hyperbolic cosine of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated inverse hyperbolic cosine interval.
+  """
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
