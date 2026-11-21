@@ -525,6 +525,19 @@ def tanh(x: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
   
 def asinh(x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the inverse hyperbolic sine of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated inverse hyperbolic sine interval.
+  """
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
