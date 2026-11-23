@@ -618,6 +618,19 @@ def atanh(x: DecoratedInterval) -> DecoratedInterval:
 
 
 def abs(x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the absolute value of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated absolute value interval.
+  """
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
