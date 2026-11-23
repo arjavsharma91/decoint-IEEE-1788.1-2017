@@ -748,6 +748,19 @@ def pow_interval(x: DecoratedInterval, y: DecoratedInterval) -> DecoratedInterva
   return DecoratedInterval(interval, dec)
 
 def exp2(x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the base-2 exponential of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated base-2 exponential interval.
+  """
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
