@@ -928,6 +928,19 @@ def interval_floor(x: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(res_interval, dec)
 
 def interval_trunc(x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the truncated integer value of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated truncated interval.
+  """
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
