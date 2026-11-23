@@ -684,6 +684,19 @@ def atan2(y: DecoratedInterval, x: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def sqr(x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the square of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated square interval.
+  """
   x = DecoratedInterval._coerce(x)
 
   if x.is_nai:
