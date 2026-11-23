@@ -645,6 +645,21 @@ def abs(x: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def atan2(y: DecoratedInterval, x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the 2-argument arctangent of decorated interval y and decorated interval x.
+
+  Parameters
+  ----------
+  y : DecoratedInterval
+      Y-coordinate decorated interval.
+  x : DecoratedInterval
+      X-coordinate decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated atan2 interval.
+  """
   y = DecoratedInterval._coerce(y)
   x = DecoratedInterval._coerce(x)
 
