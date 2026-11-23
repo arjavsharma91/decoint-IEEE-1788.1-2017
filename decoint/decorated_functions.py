@@ -825,6 +825,19 @@ def log2(x: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def log10(x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the base-10 logarithm of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated base-10 logarithm interval.
+  """
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
