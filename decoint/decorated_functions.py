@@ -890,6 +890,19 @@ def interval_ceil(x: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(res_interval, dec)
 
 def interval_floor(x: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute the floor of a decorated interval.
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Input decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated floor interval.
+  """
   x = DecoratedInterval._coerce(x)
   if x.is_nai:
     return DecoratedInterval.new_nai()
