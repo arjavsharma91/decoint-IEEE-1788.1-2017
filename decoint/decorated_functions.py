@@ -712,6 +712,21 @@ def sqr(x: DecoratedInterval) -> DecoratedInterval:
   return DecoratedInterval(interval, dec)
 
 def pow_interval(x: DecoratedInterval, y: DecoratedInterval) -> DecoratedInterval:
+  """
+  Compute a decorated interval raised to a decorated interval power ($x^y$).
+
+  Parameters
+  ----------
+  x : DecoratedInterval
+      Base decorated interval.
+  y : DecoratedInterval
+      Exponent decorated interval.
+
+  Returns
+  -------
+  DecoratedInterval
+      The resulting decorated power interval.
+  """
   x = DecoratedInterval._coerce(x)
   y = DecoratedInterval._coerce(y)
 
