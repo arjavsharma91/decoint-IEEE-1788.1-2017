@@ -90,12 +90,42 @@ def sub_up(a: Number, b: Number) -> Number:
         return mpfr_a - mpfr_b
 
 def mul_down(a: Number, b: Number) -> Number:
+    """
+    Multiply two numbers with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        First factor.
+    b : Number
+        Second factor.
+
+    Returns
+    -------
+    Number
+        Product rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
         return mpfr_a*mpfr_b
 
 def mul_up(a: Number, b: Number):
+    """
+    Multiply two numbers with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        First factor.
+    b : Number
+        Second factor.
+
+    Returns
+    -------
+    Number
+        Product rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
