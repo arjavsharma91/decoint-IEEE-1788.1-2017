@@ -6,12 +6,42 @@ ctx.emin = -1073
 ctx.emax = 1024
 
 def add_down(a: Number, b: Number) -> Number:
+    """
+    Add two numbers with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        First operand.
+    b : Number
+        Second operand.
+
+    Returns
+    -------
+    Number
+        Sum rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
         return mpfr_a + mpfr_b
 
 def add_up(a: Number, b: Number) -> Number:
+    """
+    Add two numbers with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        First operand.
+    b : Number
+        Second operand.
+
+    Returns
+    -------
+    Number
+        Sum rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
