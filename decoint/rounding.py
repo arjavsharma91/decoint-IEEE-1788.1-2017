@@ -210,11 +210,37 @@ def sqrt_down(a: Number):
         return sqrt(mpfr_a)
 
 def exp_up(a: Number):
+    """
+    Compute natural exponential with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input exponent.
+
+    Returns
+    -------
+    Number
+        Exponential rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return exp(mpfr_a)
 
 def exp_down(a: Number):
+    """
+    Compute natural exponential with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input exponent.
+
+    Returns
+    -------
+    Number
+        Exponential rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return exp(mpfr_a)
