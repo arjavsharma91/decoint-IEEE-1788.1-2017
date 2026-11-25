@@ -132,12 +132,42 @@ def mul_up(a: Number, b: Number):
         return mpfr_a*mpfr_b
 
 def div_down(a: Number, b: Number):
+    """
+    Divide two numbers with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Numerator.
+    b : Number
+        Denominator.
+
+    Returns
+    -------
+    Number
+        Quotient rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
         return mpfr_a / mpfr_b
 
 def div_up(a: Number, b: Number):
+    """
+    Divide two numbers with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Numerator.
+    b : Number
+        Denominator.
+
+    Returns
+    -------
+    Number
+        Quotient rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
