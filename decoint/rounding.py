@@ -174,11 +174,37 @@ def div_up(a: Number, b: Number):
         return mpfr_a / mpfr_b
 
 def sqrt_up(a: Number):
+    """
+    Compute square root with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Square root rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return sqrt(mpfr_a)
 
 def sqrt_down(a: Number):
+    """
+    Compute square root with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Square root rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return sqrt(mpfr_a)
