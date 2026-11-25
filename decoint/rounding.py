@@ -246,11 +246,37 @@ def exp_down(a: Number):
         return exp(mpfr_a)
 
 def log_down(a: Number):
+    """
+    Compute natural logarithm with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Natural logarithm rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return log(mpfr_a)
 
 def log_up(a: Number):
+    """
+    Compute natural logarithm with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Natural logarithm rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return log(mpfr_a)
