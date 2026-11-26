@@ -542,11 +542,37 @@ def atan_up(a: Number):
         return atan(mpfr_a)
 
 def acos_up(a: Number):
+    """
+    Compute arccosine with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Arccosine rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return acos(mpfr_a)
 
 def acos_down(a: Number):
+    """
+    Compute arccosine with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Arccosine rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return acos(mpfr_a)
