@@ -794,17 +794,47 @@ def atanh_down(a: Number):
         return atanh(mpfr_a)
 
 def atan2_down(y: Number, x: Number):
+    """
+    Compute 2-argument arctangent with downward directed rounding.
+
+    Parameters
+    ----------
+    y : Number
+        Y coordinate.
+    x : Number
+        X coordinate.
+
+    Returns
+    -------
+    Number
+        Arctangent rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_x = Number(x)
         mpfr_y = Number(y)
         return atan2(mpfr_y, mpfr_x)
 
 def atan2_up(y: Number, x: Number):
+    """
+    Compute 2-argument arctangent with upward directed rounding.
+
+    Parameters
+    ----------
+    y : Number
+        Y coordinate.
+    x : Number
+        X coordinate.
+
+    Returns
+    -------
+    Number
+        Arctangent rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_x = Number(x)
         mpfr_y = Number(y)
         return atan2(mpfr_y, mpfr_x)
-
+        
 def sqr_up(a: Number):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
