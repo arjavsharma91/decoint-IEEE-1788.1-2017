@@ -998,11 +998,37 @@ def exp2_up(a: Number):
         return exp2(mpfr_a)
 
 def exp10_down(a: Number):
+    """
+    Compute base-10 exponential with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input exponent.
+
+    Returns
+    -------
+    Number
+        Base-10 exponential rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return exp10(mpfr_a)
 
 def exp10_up(a: Number):
+    """
+    Compute base-10 exponential with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input exponent.
+
+    Returns
+    -------
+    Number
+        Base-10 exponential rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return exp10(mpfr_a)
