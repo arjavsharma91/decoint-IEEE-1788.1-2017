@@ -1034,11 +1034,37 @@ def exp10_up(a: Number):
         return exp10(mpfr_a)
 
 def log2_down(a: Number):
+    """
+    Compute base-2 logarithm with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Base-2 logarithm rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return log2(mpfr_a)
 
 def log2_up(a: Number):
+    """
+    Compute base-2 logarithm with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Base-2 logarithm rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return log2(mpfr_a)
