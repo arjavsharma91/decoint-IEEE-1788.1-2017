@@ -578,11 +578,37 @@ def acos_down(a: Number):
         return acos(mpfr_a)
 
 def sinh_up(a: Number):
+    """
+    Compute hyperbolic sine with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Hyperbolic sine rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return sinh(mpfr_a)
 
 def sinh_down(a: Number):
+    """
+    Compute hyperbolic sine with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Hyperbolic sine rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return sinh(mpfr_a)
