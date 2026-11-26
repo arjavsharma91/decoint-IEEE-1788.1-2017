@@ -366,7 +366,7 @@ Because these components are implemented as properties rather than standard inst
 * **`is_singleton`:** Returns `True` if the interval represents a singular exact value (a point interval where the lower bound equals the upper bound).
 * **`is_bounded`:** Returns `True` if both the lower and upper bounds are finite real values (i.e., neither bound is infinity).
 * **`is_entire`:** Returns `True` if the interval spans the entire mathematical real line from negative infinity to positive infinity.
-* **`is_common`:** Returns `True` if the interval is both completely bounded and non-empty (representing a standard, standard-compliant bounded subset).
+* **`is_common`:** Returns `True` if the interval is both completely bounded and non-empty (representing a finite, non-empty bounded interval).
 
 ```python
 from decoint import Interval
@@ -400,7 +400,7 @@ Like the boolean properties, these are zero-argument indicators. **Do not use pa
 * **`sup` (Supremum):** Exposes the exact upper bound of the interval set.
 * **`width`:** The total distance spanned by the interval bounds (`sup - inf`). Returns infinity for unbounded sets.
 * **`radius`:** Half of the interval's total width (`width / 2`).
-* **`midpoint`:** The exact geographical center point of the interval set (`(inf + sup) / 2`).
+* **`midpoint`:** The exact geometric center point of the interval set (`(inf + sup) / 2`).
 * **`magnitude`:** The maximum absolute value mapped within the interval set. Mathematically defined as `max(|inf|, |sup|)`.
 * **`mignitude`:** The minimum absolute value mapped within the interval set. Returns `0` if the interval encloses zero; otherwise, evaluates to `min(|inf|, |sup|)`.
 
@@ -467,7 +467,6 @@ max_res = interval_max(i1, i2)
 
 ---
 
-Markdown
 ## Set Relations and Comparisons
 
 Intervals can be evaluated topologically and geometrically to determine how they nest, overlap, or position themselves relative to one another on the real number line. In `decoint`, these relations are exposed primarily as instance methods returning boolean values, with standard relational operators overloaded for intuitive comparison syntax.
