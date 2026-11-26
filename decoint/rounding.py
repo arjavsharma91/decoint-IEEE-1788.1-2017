@@ -614,11 +614,37 @@ def sinh_down(a: Number):
         return sinh(mpfr_a)
 
 def cosh_down(a: Number):
+    """
+    Compute hyperbolic cosine with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Hyperbolic cosine rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return cosh(mpfr_a)
 
 def cosh_up(a: Number):
+    """
+    Compute hyperbolic cosine with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Hyperbolic cosine rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return cosh(mpfr_a)
