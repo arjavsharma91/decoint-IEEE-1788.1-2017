@@ -506,11 +506,37 @@ def asin_down(a: Number):
         return asin(mpfr_a)
 
 def atan_down(a: Number):
+    """
+    Compute arctangent with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Arctangent rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return atan(mpfr_a)
 
 def atan_up(a: Number):
+    """
+    Compute arctangent with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Arctangent rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return atan(mpfr_a)
