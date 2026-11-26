@@ -18,7 +18,7 @@ valid = Interval("1.1", "2.1")
 
 ### Why This Matters
 
-Because `decoint` is built on top of `gmpy2` (leveraging the arbitrary-precision MPFR library), it is capable of tracking exact mathematical boundaries using directed rounding modes. However, if you pass a standard Python float like `1.1`, the precision loss occurs before your library ever sees the data:
+Because `decoint` is built on top of `gmpy2` (leveraging the arbitrary-precision MPFR library), it is capable of tracking exact mathematical boundaries using directed rounding modes. However, if you pass a standard Python float like `1.1`, the precision loss occurs before the library ever sees the data:
 
 1. **Immediate Base-2 Approximation:** Python immediately converts the literal `1.1` into a standard `binary64` hardware float. Because 1.1 cannot be exactly represented in binary, it becomes `1.10000000000000008881784...`.
 2. **Imprecise Bounding:** `gmpy2` reads that already-imprecise float, causing the interval bounds to tightly wrap around a corrupted value rather than the exact fractional value of 11/10.
@@ -104,7 +104,7 @@ Decorated intervals pair an existing mathematical `Interval` object with a **dec
 Unlike standard intervals, a `DecoratedInterval` is instantiated by passing an actual **`Interval` instance** along with its tracking state, rather than raw numbers.
 
 The standard IEEE 1788.1-2017 decoration states (ordered from highest validity to lowest) are:
-* `com` (Comly): Entirely continuous, bounded, and well-defined.
+* `com` (Common): Entirely continuous, bounded, and well-defined.
 * `dac` (Defined and Continuous): Bounded and continuous, but may have hit a domain boundary.
 * `def` (Defined): Well-defined, but continuity may have been violated.
 * `trv` (Trivial): No information or constraints guaranteed (the ultimate fallback/error state).
