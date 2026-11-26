@@ -836,11 +836,37 @@ def atan2_up(y: Number, x: Number):
         return atan2(mpfr_y, mpfr_x)
         
 def sqr_up(a: Number):
+    """
+    Compute square with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Square rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return square(mpfr_a)
 
 def sqr_down(a: Number):
+    """
+    Compute square with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Square rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return square(mpfr_a)
