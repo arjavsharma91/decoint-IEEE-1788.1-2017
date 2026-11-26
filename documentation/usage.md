@@ -254,7 +254,7 @@ from decoint import Interval, sin, cos, tan, asin, acos, atan, atan2
 # Standard Trigonometric Functions (Arguments in Radians)
 # Handles internal extrema safely (e.g., crossing pi/2 wraps perfectly to 1.0)
 sin_res = sin(Interval(0, 2))
-cos_res = cos(Interval(0, 3.14159))
+cos_res = cos(Interval(0, "3.14159"))
 tan_res = tan(Interval("-1.0", "1.0"))
 
 # Inverse Trigonometric Functions
@@ -271,7 +271,7 @@ atan2_res = atan2(Interval(1, 2), Interval(3, 4))
 
 ## 9. Hyperbolic Operations
 
-`decoint` natively tracks hyperbolic functions and their inverses. While functions like `sinh`, `tanh`, `asinh`, `acosh`, and `atanh` are strictly monotonic over their domains, the `cosh` function includes a global minimum at $x = 0$. The engine safely registers this critical inflection point to produce rigorous outer boundaries.
+`decoint` natively tracks hyperbolic functions and their inverses. While functions like `sinh`, `tanh`, `asinh`, `acosh`, and `atanh` are strictly monotonic over their domains, the `cosh` function includes a global minimum at $x = 0$. The engine safely registers this critical point to produce rigorous outer boundaries.
 
 All listed functions are **unary operators** and take an `Interval` or `DecoratedInterval` instance as their lone argument.
 
