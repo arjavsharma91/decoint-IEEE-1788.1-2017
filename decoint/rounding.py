@@ -398,11 +398,37 @@ def sin_down(a: Number):
         return sin(mpfr_a)
 
 def cos_down(a: Number):
+    """
+    Compute cosine with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Angle in radians.
+
+    Returns
+    -------
+    Number
+        Cosine rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return cos(mpfr_a)
 
 def cos_up(a: Number):
+    """
+    Compute cosine with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Angle in radians.
+
+    Returns
+    -------
+    Number
+        Cosine rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return cos(mpfr_a)
