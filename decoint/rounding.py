@@ -722,15 +722,40 @@ def asinh_down(a: Number):
         return asinh(mpfr_a)
 
 def acosh_up(a: Number):
+    """
+    Compute inverse hyperbolic cosine with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Inverse hyperbolic cosine rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return acosh(mpfr_a)
 
 def acosh_down(a: Number):
+    """
+    Compute inverse hyperbolic cosine with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Inverse hyperbolic cosine rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return acosh(mpfr_a)
-
 def atanh_up(a: Number):
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
