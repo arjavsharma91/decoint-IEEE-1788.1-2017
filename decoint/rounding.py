@@ -962,11 +962,37 @@ def pow_down_interval(a: Number, n: Number):
         return mpfr_a ** mpfr_n
 
 def exp2_down(a: Number):
+    """
+    Compute base-2 exponential with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input exponent.
+
+    Returns
+    -------
+    Number
+        Base-2 exponential rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return exp2(mpfr_a)
 
 def exp2_up(a: Number):
+    """
+    Compute base-2 exponential with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input exponent.
+
+    Returns
+    -------
+    Number
+        Base-2 exponential rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return exp2(mpfr_a)
