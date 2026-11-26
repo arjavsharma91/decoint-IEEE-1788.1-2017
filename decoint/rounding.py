@@ -686,11 +686,37 @@ def tanh_down(a: Number):
         return tanh(mpfr_a)
 
 def asinh_up(a: Number):
+    """
+    Compute inverse hyperbolic sine with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Inverse hyperbolic sine rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return asinh(mpfr_a)
 
 def asinh_down(a: Number):
+    """
+    Compute inverse hyperbolic sine with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Inverse hyperbolic sine rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return asinh(mpfr_a)
