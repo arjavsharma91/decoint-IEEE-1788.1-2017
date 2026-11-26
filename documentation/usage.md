@@ -9,10 +9,10 @@ When defining intervals with decimal values, **it is highly recommended to pass 
 ```python
 from decoint import Interval
 
-# ❌ NOT RECOMMENDED: The floats 1.1 and 2.1 are already imprecise before creating the interval
+# NOT RECOMMENDED: The floats 1.1 and 2.1 are already imprecise before creating the interval
 invalid = Interval(1.1, 2.1)
 
-# ✅ RECOMMENDED: High-precision parsing preserves exact decimal intent
+# RECOMMENDED: High-precision parsing preserves exact decimal intent
 valid = Interval("1.1", "2.1")
 ```
 
