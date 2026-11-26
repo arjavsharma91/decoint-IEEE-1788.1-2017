@@ -872,6 +872,23 @@ def sqr_down(a: Number):
         return square(mpfr_a)
 
 def fma_up(a: Number, b: Number, c: Number):
+    """
+    Compute fused multiply-add (a * b + c) with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        First factor.
+    b : Number
+        Second factor.
+    c : Number
+        Addend.
+
+    Returns
+    -------
+    Number
+        FMA result rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
@@ -879,6 +896,23 @@ def fma_up(a: Number, b: Number, c: Number):
         return fma(mpfr_a, mpfr_b, mpfr_c)
 
 def fma_down(a: Number, b: Number, c: Number):
+    """
+    Compute fused multiply-add (a * b + c) with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        First factor.
+    b : Number
+        Second factor.
+    c : Number
+        Addend.
+
+    Returns
+    -------
+    Number
+        FMA result rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         mpfr_b = Number(b)
