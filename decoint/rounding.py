@@ -470,11 +470,37 @@ def tan_down(a: Number):
         return tan(mpfr_a)
 
 def asin_up(a: Number):
+    """
+    Compute arcsine with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Arcsine rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return asin(mpfr_a)
 
 def asin_down(a: Number):
+    """
+    Compute arcsine with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Arcsine rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return asin(mpfr_a)
