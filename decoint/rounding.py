@@ -756,12 +756,39 @@ def acosh_down(a: Number):
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return acosh(mpfr_a)
+
 def atanh_up(a: Number):
+    """
+    Compute inverse hyperbolic tangent with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Inverse hyperbolic tangent rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return atanh(mpfr_a)
 
 def atanh_down(a: Number):
+    """
+    Compute inverse hyperbolic tangent with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Inverse hyperbolic tangent rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return atanh(mpfr_a)
