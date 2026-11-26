@@ -920,12 +920,42 @@ def fma_down(a: Number, b: Number, c: Number):
         return fma(mpfr_a, mpfr_b, mpfr_c)
 
 def pow_up_interval(a: Number, n: Number):
+    """
+    Compute real power (a ** n) with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Base value.
+    n : Number
+        Exponent value.
+
+    Returns
+    -------
+    Number
+        Power rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         mpfr_n = Number(n)
         return mpfr_a ** mpfr_n
 
 def pow_down_interval(a: Number, n: Number):
+    """
+    Compute real power (a ** n) with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Base value.
+    n : Number
+        Exponent value.
+
+    Returns
+    -------
+    Number
+        Power rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         mpfr_n = Number(n)
