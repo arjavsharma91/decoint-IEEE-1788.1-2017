@@ -322,11 +322,41 @@ def pow_down(a: Number, n: int):
         return mpfr_a ** n
 
 def root_up(a: Number, n: int):
+    """
+    Compute the n-th root with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+    n : int
+        Root degree.
+
+    Returns
+    -------
+    Number
+        n-th root rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return root(mpfr_a, int(n))
 
 def root_down(a: Number, n: int):
+    """
+    Compute the n-th root with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+    n : int
+        Root degree.
+
+    Returns
+    -------
+    Number
+        n-th root rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return root(mpfr_a, int(n))
