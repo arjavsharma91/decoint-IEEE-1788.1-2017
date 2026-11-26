@@ -650,11 +650,37 @@ def cosh_up(a: Number):
         return cosh(mpfr_a)
 
 def tanh_up(a: Number):
+    """
+    Compute hyperbolic tangent with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Hyperbolic tangent rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return tanh(mpfr_a)
 
 def tanh_down(a: Number):
+    """
+    Compute hyperbolic tangent with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Input value.
+
+    Returns
+    -------
+    Number
+        Hyperbolic tangent rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return tanh(mpfr_a)
