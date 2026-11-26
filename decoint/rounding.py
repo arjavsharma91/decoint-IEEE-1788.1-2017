@@ -282,11 +282,41 @@ def log_up(a: Number):
         return log(mpfr_a)
 
 def pow_up(a: Number, n: int):
+    """
+    Raise a number to an integer power with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Base value.
+    n : int
+        Integer exponent.
+
+    Returns
+    -------
+    Number
+        Power rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return mpfr_a ** n
 
 def pow_down(a: Number, n: int):
+    """
+    Raise a number to an integer power with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Base value.
+    n : int
+        Integer exponent.
+
+    Returns
+    -------
+    Number
+        Power rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return mpfr_a ** n
