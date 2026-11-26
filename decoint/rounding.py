@@ -362,11 +362,37 @@ def root_down(a: Number, n: int):
         return root(mpfr_a, int(n))
 
 def sin_up(a: Number):
+    """
+    Compute sine with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Angle in radians.
+
+    Returns
+    -------
+    Number
+        Sine rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return sin(mpfr_a)
 
 def sin_down(a: Number):
+    """
+    Compute sine with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Angle in radians.
+
+    Returns
+    -------
+    Number
+        Sine rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return sin(mpfr_a)
