@@ -434,11 +434,37 @@ def cos_up(a: Number):
         return cos(mpfr_a)
 
 def tan_up(a: Number):
+    """
+    Compute tangent with upward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Angle in radians.
+
+    Returns
+    -------
+    Number
+        Tangent rounded toward positive infinity.
+    """
     with context(get_context(), round = RoundUp):
         mpfr_a = Number(a)
         return tan(mpfr_a)
 
 def tan_down(a: Number):
+    """
+    Compute tangent with downward directed rounding.
+
+    Parameters
+    ----------
+    a : Number
+        Angle in radians.
+
+    Returns
+    -------
+    Number
+        Tangent rounded toward negative infinity.
+    """
     with context(get_context(), round = RoundDown):
         mpfr_a = Number(a)
         return tan(mpfr_a)
